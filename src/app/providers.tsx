@@ -3,7 +3,12 @@
 
 import { ChakraProvider } from '@chakra-ui/react';
 import { theme } from '../ui/theme';
+import ReduxProvider from './store-provider';
 
 export function Providers({ children }: { children: React.ReactNode }) {
-  return <ChakraProvider theme={theme}>{children}</ChakraProvider>;
+  return (
+    <ReduxProvider>
+      <ChakraProvider theme={theme}>{children}</ChakraProvider>
+    </ReduxProvider>
+  );
 }
