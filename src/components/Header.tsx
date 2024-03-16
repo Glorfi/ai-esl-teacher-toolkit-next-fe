@@ -5,6 +5,7 @@ import { APP_PATHS } from '../constants/AppPaths';
 //import { MobileMenuMain } from './MobileMenuMain';
 import { useContext } from 'react';
 import { Link } from '@chakra-ui/next-js';
+import { AuthProvider } from '@/app/auth-provider';
 //import { UserContext } from '../contexts/UserContext';
 
 export const Header = (): JSX.Element => {

@@ -1,70 +1,69 @@
 'use client';
-import { APP_PATHS } from '@/constants/AppPaths';
 import circle from '../../assets/signin-elipse.svg';
+import validator from 'validator';
+import { ArrowForwardIcon } from '@chakra-ui/icons';
 import {
-  useToast,
-  Stack,
+  Box,
   Card,
   CardBody,
+  CardFooter,
   FormControl,
-  Input,
   FormErrorMessage,
+  FormHelperText,
   HStack,
   IconButton,
-  Box,
   Image,
+  Input,
+  Stack,
   Text,
+  useToast,
 } from '@chakra-ui/react';
-import validator from 'validator';
-import { useContext, useState, ChangeEvent, useEffect } from 'react';
 
-import { LSHandler } from '@/utils/handleLocalStorage';
-import { useDebounce } from '@/utils/useDebounce';
 import { Link } from '@chakra-ui/next-js';
-import { customError } from '@/interfaces/customError';
+import { APP_PATHS } from '../../constants/AppPaths';
+import { ChangeEvent, useContext, useEffect, useState } from 'react';
+import { useDebounce } from '../../utils/useDebounce';
+import { customError } from '../../interfaces/customError';
+import { useSignUpMutation } from '../../store/main-api/mutations/signup';
+import { useSelector } from 'react-redux';
+import { RootState } from '@/store/store';
 import { useRouter } from 'next/navigation';
-import { ArrowForwardIcon } from '@chakra-ui/icons';
-import { useSignInMutation } from '@/store/main-api/mutations/signin';
-import { useLazyGetCurrentUserQuery } from '@/store/main-api/queries/auth';
+//import { UserContext } from '../../contexts/UserContext';
 
-interface ISignInForm {
+interface ISignUPForm {
   email: string;
   password: string;
+  confirmPassword: string;
 }
 
 interface IFormValid {
   isEmailValid: boolean | null;
   isPasswordValid: boolean | null;
+  arePasswordsEquals: boolean | null;
 }
 
-import type { Metadata } from 'next';
-import { useDispatch, useSelector } from 'react-redux';
-import { setUser } from '@/store/user/user-router';
-import { RootState } from '@/store/store';
-
-const SignInPage = (): JSX.Element => {
-  //  const [userData, setUserData] = useState();
-  const [formValues, setFormValues] = useState<ISignInForm>({
+const SignUpPage = (): JSX.Element => {
+  //  const [userData, setUserData] = useContext(UserContext);
+  const [formValues, setFormValues] = useState<ISignUPForm>({
     email: '',
     password: '',
+    confirmPassword: '',
   });
-
   const [isFormValid, setIsFormValid] = useState<IFormValid>({
     isEmailValid: null,
     isPasswordValid: null,
+    arePasswordsEquals: null,
   });
-
-  const [getUser, { data: userData }] = useLazyGetCurrentUserQuery();
 
   const debounceEmail = useDebounce(formValues.email, 1000);
   const debouncePassword = useDebounce(formValues.password, 1000);
+  const debounceConfirmPassword = useDebounce(formValues.confirmPassword, 1000);
 
-  const [signIn, { data, isSuccess, isError, error }] = useSignInMutation();
+  const [signUp, { data, isSuccess, isError, error }] = useSignUpMutation();
   const toast = useToast();
-
+  const userData = useSelector((state: RootState) => state.user);
+  // const navigate = useNavigate();
   const router = useRouter();
-  const dispatch = useDispatch();
-  const reduxUser = useSelector((state: RootState) => state.user);
 
   function handleInputChange(e: ChangeEvent<HTMLInputElement>) {
     setFormValues({ ...formValues, [e.target.name]: e.target.value });
@@ -73,7 +72,7 @@ const SignInPage = (): JSX.Element => {
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     const { email, password } = formValues;
-    signIn({ email, password });
+    signUp({ email, password });
   }
 
   useEffect(() => {
@@ -103,12 +102,7 @@ const SignInPage = (): JSX.Element => {
         });
   }, [debouncePassword]);
 
-  useEffect(() => {
-    if (data) {
-      LSHandler.setJwt(data.jwt);
-    }
-  }, [data]);
-
+  // TO DO: подумать как позже хендлить ошибки чуть более централизовано
   useEffect(() => {
     if (error) {
       const customError = error as customError;
@@ -125,40 +119,30 @@ const SignInPage = (): JSX.Element => {
   useEffect(() => {
     if (data && isSuccess) {
       toast({
-        title: `You're logged in! Redirecting...`,
+        title: 'You made an account!',
         status: 'success',
         isClosable: true,
         position: 'top-right',
       });
-      getUser(data.jwt);
-      // .then((data) => {
-      //   dispatch(setUser(data));
-      //   if (userData && reduxUser) {
-      //     console.log(reduxUser)
-      //   }
-      // })
-      // .then(
-      //   () =>
-
-      //   //  router.push(APP_PATHS.DASHBOARD)
-      // );
+      //  navigate(APP_PATHS.SIGN_IN);
     }
   }, [isSuccess]);
 
   useEffect(() => {
-    if (userData) {
-      console.log(userData);
-
-      dispatch(setUser(userData));
-      //  router.push(APP_PATHS.DASHBOARD);
-    }
-  }, [userData]);
+    debounceConfirmPassword.length > 1
+      ? setIsFormValid({
+          ...isFormValid,
+          arePasswordsEquals:
+            debounceConfirmPassword === formValues.password ? true : false,
+        })
+      : setIsFormValid({ ...isFormValid, arePasswordsEquals: null });
+  }, [debounceConfirmPassword]);
 
   useEffect(() => {
-    if (reduxUser) {
+    if (userData) {
       router.push(APP_PATHS.MAIN);
     }
-  }, [reduxUser]);
+  }, [userData]);
 
   return (
     <Stack minH={'100vh'} alignItems={'center'} justifyContent={'center'}>
@@ -182,7 +166,7 @@ const SignInPage = (): JSX.Element => {
             maxW={'228px'}
             lineHeight={'43px'}
           >
-            Welcome Back
+            Create Account
           </Text>
           <Box
             as="form"
@@ -190,7 +174,7 @@ const SignInPage = (): JSX.Element => {
             display={'flex'}
             flexDir={'column'}
             action="none"
-            id="signinform"
+            id="signupform"
             onSubmit={handleSubmit}
           >
             <FormControl
@@ -251,6 +235,37 @@ const SignInPage = (): JSX.Element => {
                 Your password must contain 4-10 symbols
               </FormErrorMessage>
             </FormControl>
+            <FormControl
+              minH={'85px'}
+              isInvalid={
+                isFormValid.arePasswordsEquals === false &&
+                formValues.confirmPassword.length != 0
+                  ? true
+                  : false
+              }
+            >
+              <Input
+                minH={'60px'}
+                type="password"
+                name="confirmPassword"
+                fontSize={'18px'}
+                placeholder="Confirm password"
+                colorScheme="secondary"
+                borderRadius={'20px'}
+                _placeholder={{ color: 'secondary.base' }}
+                bgColor={'gray.200'}
+                onChange={handleInputChange}
+                isInvalid={
+                  isFormValid.arePasswordsEquals === false &&
+                  formValues.confirmPassword.length != 0
+                    ? true
+                    : false
+                }
+              />
+              <FormErrorMessage padding={'0 16px'}>
+                Your passwords don't match
+              </FormErrorMessage>
+            </FormControl>
           </Box>
           <HStack mt={'20px'} justifyContent={'space-between'}>
             <Text
@@ -259,13 +274,13 @@ const SignInPage = (): JSX.Element => {
               fontWeight={900}
               lineHeight={'43px'}
             >
-              Sign in
+              Sign up
             </Text>
             <IconButton
               isRound={true}
               aria-label={''}
               type="submit"
-              form="signinform"
+              form="signupform"
               bgColor={'secondary.base'}
               colorScheme="secondary"
               icon={<ArrowForwardIcon w={'24px'} h={'30px'} />}
@@ -276,18 +291,18 @@ const SignInPage = (): JSX.Element => {
               }
             />
           </HStack>
-          <Box mt={'125px'}>
+          <Box mt={'100px'}>
             <Text fontSize={'20px'} color={'highlight'}>
-              Don't have an account?
+              Already have an account?
             </Text>
             <Link
-              href={APP_PATHS.SIGN_UP}
+              href={APP_PATHS.SIGN_IN}
               fontSize={'24px'}
               fontWeight={900}
               color={'secondary.base'}
               // _hover={{ textDecoration: 'none' }}
             >
-              Sign up
+              Sign in
             </Link>
           </Box>
         </CardBody>
@@ -296,4 +311,4 @@ const SignInPage = (): JSX.Element => {
   );
 };
 
-export default SignInPage;
+export default SignUpPage;
