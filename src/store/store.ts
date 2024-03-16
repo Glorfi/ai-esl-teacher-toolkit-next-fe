@@ -1,7 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { ExerciseFormRouter } from './exercise-form/exercise-form-router';
 import { exerciseListRouter } from './exerciseList/exercise-list-router';
-import { gptApi } from './gpt-api/gpt.api';
 import { isEditingRouter } from './isEditing/isEditing-router';
 import { mainApi } from './main-api/MainApiRouter.api';
 
