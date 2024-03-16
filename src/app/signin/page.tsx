@@ -17,14 +17,15 @@ import {
 } from '@chakra-ui/react';
 import validator from 'validator';
 import { useContext, useState, ChangeEvent, useEffect } from 'react';
-import { useSignInMutation } from '../lib/store/main-api/mutations/signin';
-import { useLazyGetCurrentUserQuery } from '../lib/store/main-api/queries/auth';
+
 import { LSHandler } from '@/utils/handleLocalStorage';
 import { useDebounce } from '@/utils/useDebounce';
 import { Link } from '@chakra-ui/next-js';
 import { customError } from '@/interfaces/customError';
 import { useRouter } from 'next/navigation';
 import { ArrowForwardIcon } from '@chakra-ui/icons';
+import { useSignInMutation } from '@/store/main-api/mutations/signin';
+import { useLazyGetCurrentUserQuery } from '@/store/main-api/queries/auth';
 
 interface ISignInForm {
   email: string;
