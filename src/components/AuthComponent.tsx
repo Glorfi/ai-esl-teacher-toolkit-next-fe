@@ -38,21 +38,21 @@ export const AuthComponent = (): JSX.Element => {
     }
   }, [data]);
 
-  if (isLoading) {
-    return (
-      <VStack minH={'100vh'} justifyContent={'center'}>
-        <Spinner
-          thickness="4px"
-          size={'xl'}
-          speed="0.8s"
-          emptyColor="gray.200"
-          color={'secondary.base'}
-          m={'0 auto'}
-        />
-        <Text>Loading...</Text>
-      </VStack>
-    );
-  }
+  // if (isLoading) {
+  //   return (
+  //     <VStack minH={'100vh'} justifyContent={'center'}>
+  //       <Spinner
+  //         thickness="4px"
+  //         size={'xl'}
+  //         speed="0.8s"
+  //         emptyColor="gray.200"
+  //         color={'secondary.base'}
+  //         m={'0 auto'}
+  //       />
+  //       <Text>Loading...</Text>
+  //     </VStack>
+  //   );
+  // }
 
   return <></>;
 };
