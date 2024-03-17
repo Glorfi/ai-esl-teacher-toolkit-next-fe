@@ -1,4 +1,6 @@
 'use client';
+import { APP_PATHS } from '@/constants/AppPaths';
+import { addExerciseList } from '@/store/exerciseList/exercise-list-router';
 import {
   useGetCurrentUserQuery,
   useLazyGetCurrentUserQuery,
@@ -8,24 +10,33 @@ import { setUser } from '@/store/user/user-router';
 import { LSHandler } from '@/utils/handleLocalStorage';
 import { VStack, Spinner, Text } from '@chakra-ui/react';
 import { skipToken } from '@reduxjs/toolkit/query';
+import { usePathname, useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-export const AuthComponent = (): JSX.Element => {
+interface IAuthComponentProps {
+  isPrivate?: boolean;
+}
+
+export const AuthComponent = (props: any): JSX.Element => {
+  const { isPrivate } = props;
   const [isRendered, setIsRendered] = useState<boolean>(false);
-  const [token, setToken] = useState<string | null>(null);
+  const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
   const userData = useSelector((state: RootState) => state.user);
-  const { data, isLoading } = useGetCurrentUserQuery(
-    token ? token : skipToken,
-    {
-      refetchOnMountOrArgChange: true,
-    }
-  );
+  const [auth, { data, isLoading, isError, isSuccess }] =
+    useLazyGetCurrentUserQuery();
+  const router = useRouter();
+  const pathname = usePathname();
   const dispatch = useDispatch();
+
+  const protectedRoutes = [APP_PATHS.SIGN_UP, APP_PATHS.DASHBOARD];
 
   useEffect(() => {
     if (isRendered && !userData) {
-      setToken(LSHandler.getJwt());
+      // console.log(isRendered);
+      // console.log(LSHandler.getJwt());
+      // console.log(pathname);
+      auth(LSHandler.getJwt());
     }
   }, [isRendered]);
 
@@ -35,9 +46,30 @@ export const AuthComponent = (): JSX.Element => {
 
   useEffect(() => {
     if (data) {
+      setIsLoggedIn(true);
       dispatch(setUser(data));
+      dispatch(addExerciseList(data.exercises));
     }
   }, [data]);
+
+  useEffect(() => {
+    if (isError && protectedRoutes.includes(pathname)) {
+      router.push(APP_PATHS.SIGN_IN);
+    }
+  }, [isError]);
+
+  useEffect(() => {
+    console.log(isRendered);
+    console.log(isError);
+    console.log(pathname);
+
+    if (isRendered && isError && protectedRoutes.includes(pathname)) {
+      console.log('GOTCHA!');
+      router.push(APP_PATHS.SIGN_IN);
+    } else {
+      return;
+    }
+  }, [isRendered, isError]);
 
   if (isLoading) {
     return (

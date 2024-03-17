@@ -138,11 +138,11 @@ const SignUpPage = (): JSX.Element => {
       : setIsFormValid({ ...isFormValid, arePasswordsEquals: null });
   }, [debounceConfirmPassword]);
 
-  useEffect(() => {
-    if (userData) {
-      router.push(APP_PATHS.MAIN);
-    }
-  }, [userData]);
+  // useEffect(() => {
+  //   if (userData) {
+  //     router.push(APP_PATHS.MAIN);
+  //   }
+  // }, [userData]);
 
   return (
     <Stack minH={'100vh'} alignItems={'center'} justifyContent={'center'}>
