@@ -3,15 +3,31 @@
 import { Button, ButtonGroup, HStack } from '@chakra-ui/react';
 import { APP_PATHS } from '../constants/AppPaths';
 //import { MobileMenuMain } from './MobileMenuMain';
-import { useContext, useEffect } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { Link } from '@chakra-ui/next-js';
 import { AuthProvider } from '@/app/auth-provider';
 import { useSelector } from 'react-redux';
 import { RootState } from '@/store/store';
 import { MobileMenuMain } from './MobileMenuMain';
+import { useGetCurrentUserQuery } from '@/store/main-api/queries/auth';
+import { LSHandler } from '@/utils/handleLocalStorage';
+import { skipToken } from '@reduxjs/toolkit/query/react';
 
 export const Header = (): JSX.Element => {
   const userData = useSelector((state: RootState) => state.user);
+  const [isRendered, setIsRendered] = useState<boolean>(false);
+  const [token, setToken] = useState<string | null>(null);
+  const { isLoading, isSuccess, isError } = useGetCurrentUserQuery(
+    token ? token : skipToken,
+    // {
+    //   refetchOnMountOrArgChange: true,
+    // }
+  );
+
+  useEffect(() => {
+    setIsRendered(true);
+    setToken(LSHandler.getJwt());
+  }, []);
 
   return (
     <HStack
@@ -21,7 +37,8 @@ export const Header = (): JSX.Element => {
       margin={'16px 0 0 0'}
       color={'highlight.base'}
       minHeight={'40px'}
-      opacity={!userData ? '0' : '1'}
+      visibility={!isRendered ? 'hidden' : 'visible'}
+      opacity={isLoading ? '0' : '1'}
       transition={'all 1s ease-in'}
     >
       <ButtonGroup display={['none', 'inline-flex']}>
