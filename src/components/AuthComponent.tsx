@@ -46,6 +46,7 @@ export const AuthComponent = (): JSX.Element => {
         w={'100%'}
         justifyContent={'center'}
         position={'fixed'}
+        bgColor={'white'}
         left={0}
         top={0}
       >

@@ -37,8 +37,8 @@ export const Header = (): JSX.Element => {
       margin={'16px 0 0 0'}
       color={'highlight.base'}
       minHeight={'40px'}
-      visibility={!isRendered ? 'hidden' : 'visible'}
-      opacity={isLoading ? '0' : '1'}
+     visibility={!isRendered ? 'hidden' : 'visible'}
+     opacity={isLoading ? '0' : '1'}
       transition={'all 1s ease-in'}
     >
       <ButtonGroup display={['none', 'inline-flex']}>

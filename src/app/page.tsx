@@ -1,4 +1,4 @@
-'use client'
+'use client';
 import Image from 'next/image';
 import styles from './page.module.css';
 import { VStack, Text } from '@chakra-ui/react';
@@ -14,7 +14,6 @@ export default function Home() {
       maxW={'800px'}
       padding={['0 20px', '0 20px', '0 20px', '0']}
     >
-      <AuthComponent />
       <Header />
       <VStack
         gap={0}

@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import './globals.css';
 import { Providers } from './providers';
 import { fonts } from '../ui/fonts';
+import { AuthComponent } from '@/components/AuthComponent';
 
 export const metadata: Metadata = {
   title: 'AI ESL Teacher Toolkit',
@@ -16,7 +17,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={fonts.lato.className}>
-        <Providers>{children}</Providers>
+        <Providers>
+          {children}
+          <AuthComponent />
+        </Providers>
       </body>
     </html>
   );
