@@ -59,12 +59,7 @@ export const AuthComponent = (props: any): JSX.Element => {
   }, [isError]);
 
   useEffect(() => {
-    console.log(isRendered);
-    console.log(isError);
-    console.log(pathname);
-
     if (isRendered && isError && protectedRoutes.includes(pathname)) {
-      console.log('GOTCHA!');
       router.push(APP_PATHS.SIGN_IN);
     } else {
       return;
