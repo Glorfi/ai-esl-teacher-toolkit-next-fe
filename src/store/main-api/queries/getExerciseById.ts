@@ -6,7 +6,7 @@ const GetExerciseEndpoint = mainApi.injectEndpoints({
   endpoints: (builder) => ({
     getExerciseById: builder.query<
       IExercise,
-      { token?: string | null | undefined; id: string | undefined }
+      { token?: string | null | undefined; id: string | undefined | string[] }
     >({
       query: ({ token, id }) => ({
         url: `${API_PATH.EXERCISES}/${id}`,

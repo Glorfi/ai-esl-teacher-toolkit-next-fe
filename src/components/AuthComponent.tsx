@@ -8,9 +8,10 @@ import {
 import { RootState } from '@/store/store';
 import { setUser } from '@/store/user/user-router';
 import { LSHandler } from '@/utils/handleLocalStorage';
+import { trimIdFromPath } from '@/utils/trimIdFromPathname';
 import { VStack, Spinner, Text } from '@chakra-ui/react';
 import { skipToken } from '@reduxjs/toolkit/query';
-import { usePathname, useRouter } from 'next/navigation';
+import { useParams, usePathname, useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -26,12 +27,17 @@ export const AuthComponent = (props: any): JSX.Element => {
   const [auth, { data, isLoading, isError, isSuccess }] =
     useLazyGetCurrentUserQuery();
   const router = useRouter();
-  const pathname = usePathname();
+  const pathname = trimIdFromPath(usePathname());
+  const params = useParams();
   const dispatch = useDispatch();
 
   const protectedRoutes = [APP_PATHS.SIGN_UP, APP_PATHS.DASHBOARD];
+  const byPassRoute = [APP_PATHS.SHARED_EXERCISE.replace('/:id', '')];
 
   useEffect(() => {
+    if (byPassRoute.includes(pathname)) {
+      return;
+    }
     if (isRendered && !userData) {
       // console.log(isRendered);
       // console.log(LSHandler.getJwt());
@@ -41,6 +47,9 @@ export const AuthComponent = (props: any): JSX.Element => {
   }, [isRendered]);
 
   useEffect(() => {
+    console.log(APP_PATHS.SHARED_EXERCISE.replace('/:id', ''));
+    console.log(byPassRoute.includes(pathname));
+
     setIsRendered(true);
   }, []);
 
