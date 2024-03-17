@@ -1,9 +1,8 @@
-import { API_PATH } from "@/constants/ApiBaseUrl";
-import { IUserData } from "@/interfaces/userData";
-import { mainApi } from "../MainApiRouter.api";
+import { API_PATH } from '@/constants/ApiBaseUrl';
+import { IUserData } from '@/interfaces/userData';
+import { mainApi } from '../MainApiRouter.api';
 
-
-const mainApiEndpoint = mainApi.injectEndpoints({
+const AuthEndpoint = mainApi.injectEndpoints({
   endpoints: (builder) => ({
     getCurrentUser: builder.query<IUserData, string | null>({
       query: (token) => ({
@@ -19,4 +18,4 @@ const mainApiEndpoint = mainApi.injectEndpoints({
 });
 
 export const { useGetCurrentUserQuery, useLazyGetCurrentUserQuery } =
-  mainApiEndpoint;
+  AuthEndpoint;

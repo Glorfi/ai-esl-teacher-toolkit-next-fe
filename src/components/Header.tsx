@@ -3,13 +3,16 @@
 import { Button, ButtonGroup, HStack } from '@chakra-ui/react';
 import { APP_PATHS } from '../constants/AppPaths';
 //import { MobileMenuMain } from './MobileMenuMain';
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import { Link } from '@chakra-ui/next-js';
 import { AuthProvider } from '@/app/auth-provider';
-//import { UserContext } from '../contexts/UserContext';
+import { useSelector } from 'react-redux';
+import { RootState } from '@/store/store';
+import { MobileMenuMain } from './MobileMenuMain';
 
 export const Header = (): JSX.Element => {
-  //  const [userData, _] = useContext(UserContext);
+  const userData = useSelector((state: RootState) => state.user);
+
   return (
     <HStack
       as={'header'}
@@ -17,6 +20,9 @@ export const Header = (): JSX.Element => {
       w={'100%'}
       margin={'16px 0 0 0'}
       color={'highlight.base'}
+      minHeight={'40px'}
+      opacity={!userData ? '0' : '1'}
+      transition={'all 1s ease-in'}
     >
       <ButtonGroup display={['none', 'inline-flex']}>
         <Link
@@ -44,27 +50,8 @@ export const Header = (): JSX.Element => {
           Profile
         </Link>
       </ButtonGroup>
-      {/* <MobileMenuMain /> */}
-      <ButtonGroup alignItems={'center'}>
-        <Link
-          href={APP_PATHS.SIGN_IN}
-          color={'secondary.base'}
-          border={'1px solid transparent'}
-          _hover={{ textDecoration: 'none', borderBottom: '1px solid' }}
-        >
-          Sign In
-        </Link>
-        <Link href={APP_PATHS.SIGN_UP}>
-          <Button
-            variant={'ghost'}
-            colorScheme="secondary"
-            borderRadius={'40px'}
-          >
-            SIGN UP
-          </Button>
-        </Link>
-      </ButtonGroup>
-      {/* {!userData ? (
+      <MobileMenuMain />
+      {!userData ? (
         <ButtonGroup alignItems={'center'}>
           <Link
             href={APP_PATHS.SIGN_IN}
@@ -84,7 +71,7 @@ export const Header = (): JSX.Element => {
             </Button>
           </Link>
         </ButtonGroup>
-      ) : null} */}
+      ) : null}
     </HStack>
   );
 };

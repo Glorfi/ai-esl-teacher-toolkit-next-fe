@@ -2,7 +2,7 @@ import { API_PATH } from '../../../constants/ApiBaseUrl';
 import { IExercise } from '../../../interfaces/exercise';
 import { mainApi } from '../MainApiRouter.api';
 
-const mainApiEndpoint = mainApi.injectEndpoints({
+const GetExerciseEndpoint = mainApi.injectEndpoints({
   endpoints: (builder) => ({
     getExerciseById: builder.query<
       IExercise,
@@ -21,4 +21,4 @@ const mainApiEndpoint = mainApi.injectEndpoints({
 });
 
 export const { useGetExerciseByIdQuery, useLazyGetExerciseByIdQuery } =
-  mainApiEndpoint;
+  GetExerciseEndpoint;

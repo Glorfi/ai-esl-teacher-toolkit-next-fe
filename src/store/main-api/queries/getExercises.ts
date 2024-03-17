@@ -3,7 +3,7 @@ import { IExercise } from '../../../interfaces/exercise';
 import { IUserData } from '../../../interfaces/userData';
 import { mainApi } from '../MainApiRouter.api';
 
-const mainApiEndpoint = mainApi.injectEndpoints({
+const getExercisesEndpoint = mainApi.injectEndpoints({
   endpoints: (builder) => ({
     getExercises: builder.query<IExercise[], string | null>({
       query: (token) => ({
@@ -19,4 +19,4 @@ const mainApiEndpoint = mainApi.injectEndpoints({
 });
 
 export const { useGetExercisesQuery, useLazyGetExercisesQuery } =
-  mainApiEndpoint;
+  getExercisesEndpoint;

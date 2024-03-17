@@ -13,6 +13,7 @@ export default function Home() {
       maxW={'800px'}
       padding={['0 20px', '0 20px', '0 20px', '0']}
     >
+      <AuthComponent />
       <Header />
       <VStack
         gap={0}
@@ -42,7 +43,6 @@ export default function Home() {
     ) : null} */}
       {/* <ExerciseSentenceInput sentenceList={sampleData2} />
     <ExerciseSelectInput sentenceList={sampleDataSelect}/> */}
-      <AuthComponent />
     </VStack>
   );
 }
