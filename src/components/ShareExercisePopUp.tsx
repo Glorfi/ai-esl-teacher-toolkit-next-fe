@@ -29,7 +29,7 @@ export const ShareExercisePopUp = (
   const { isOpen, onOpen, onClose, id } = props;
   const publicLink = `http://${
     window.location.host
-  }/#${APP_PATHS.SHARED_EXERCISE.replace('/:id', '/')}${id}`;
+  }${APP_PATHS.SHARED_EXERCISE.replace('/:id', '/')}${id}`;
   const [isCopied, setIsCopied] = useState<boolean>(false);
 
   function handleCopyButton(e: React.MouseEvent) {

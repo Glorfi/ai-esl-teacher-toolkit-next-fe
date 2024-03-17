@@ -2,21 +2,33 @@
 import { ExerciseSelectInput } from '@/components/ExerciseSelectInput';
 import { ExerciseSentenceInput } from '@/components/ExerciseSentenceInput';
 import { APP_PATHS } from '@/constants/AppPaths';
-import { useGetExerciseByIdQuery } from '@/store/main-api/queries/getExerciseById';
+import {
+  useGetExerciseByIdQuery,
+  useLazyGetExerciseByIdQuery,
+} from '@/store/main-api/queries/getExerciseById';
 import { LSHandler } from '@/utils/handleLocalStorage';
 import { Link } from '@chakra-ui/next-js';
-import { Box, Text, VStack } from '@chakra-ui/react';
+import { Box, Skeleton, Text, VStack } from '@chakra-ui/react';
 import { useParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
 const SharedExercisePage = (): JSX.Element => {
   const { id } = useParams();
   const [token, setToken] = useState<string | null>(null);
-  const { data: ex, isError } = useGetExerciseByIdQuery({ token, id });
+  // const [getExercise, { data: ex, isError, isLoading, isSuccess }] =
+  //   useLazyGetExerciseByIdQuery();
+  const {
+    data: ex,
+    isError,
+    isLoading,
+    isSuccess,
+  } = useGetExerciseByIdQuery({ token, id });
 
-  useEffect(() => {
-    setToken(LSHandler.getJwt());
-  }, []);
+  // useEffect(() => {
+  //   setToken(LSHandler.getJwt());
+  //   getExercise({ token, id });
+  // }, []);
+
   return (
     <Box
       //  minH={'100vh'}
@@ -31,40 +43,44 @@ const SharedExercisePage = (): JSX.Element => {
         margin={'auto'}
         mt={'40px'}
       >
-        {ex?.title ? (
+        <Skeleton isLoaded={isSuccess} height={'36px'} w={'300px'}>
           <Text color={'primary'} fontWeight={'bold'} fontSize={'x-large'}>
             {ex?.title}
           </Text>
-        ) : null}
+        </Skeleton>
         {isError ? <Text>Ooops! Seems The exercise isn't found</Text> : null}
-        {ex?.type === 'fillInGaps' ? (
-          <ExerciseSentenceInput
-            sentenceList={ex.sentenceList}
-            taskDescription={ex.taskDescription}
-          />
-        ) : null}
-        {ex?.type === 'multipleChoice' ? (
-          <ExerciseSelectInput
-            sentenceList={ex.sentenceList}
-            taskDescription={ex.taskDescription}
-          />
-        ) : null}
-        <Text
-          fontSize={'12px'}
-          alignSelf={'flex-end'}
-          color={'highlight.base'}
-          fontWeight={'light'}
-        >
-          Powered by{' '}
-          <Link
-            href={APP_PATHS.MAIN}
+        <Skeleton isLoaded={isSuccess} height={'100%'} minH={'50px'} w={'100%'}>
+          {ex?.type === 'fillInGaps' ? (
+            <ExerciseSentenceInput
+              sentenceList={ex.sentenceList}
+              taskDescription={ex.taskDescription}
+            />
+          ) : null}
+          {ex?.type === 'multipleChoice' ? (
+            <ExerciseSelectInput
+              sentenceList={ex.sentenceList}
+              taskDescription={ex.taskDescription}
+            />
+          ) : null}
+        </Skeleton>
+        <Skeleton isLoaded={isSuccess} alignSelf={'flex-end'}>
+          <Text
             fontSize={'12px'}
-            // color="highlight.base"
-            fontWeight={'medium'}
+            alignSelf={'flex-end'}
+            color={'highlight.base'}
+            fontWeight={'light'}
           >
-            AI ESL teacher toolkit
-          </Link>
-        </Text>
+            Powered by{' '}
+            <Link
+              href={APP_PATHS.MAIN}
+              fontSize={'12px'}
+              // color="highlight.base"
+              fontWeight={'medium'}
+            >
+              AI ESL teacher toolkit
+            </Link>
+          </Text>
+        </Skeleton>
       </VStack>
     </Box>
   );

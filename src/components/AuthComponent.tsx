@@ -6,6 +6,7 @@ import {
   useLazyGetCurrentUserQuery,
 } from '@/store/main-api/queries/auth';
 import { RootState } from '@/store/store';
+
 import { setUser } from '@/store/user/user-router';
 import { LSHandler } from '@/utils/handleLocalStorage';
 import { trimIdFromPath } from '@/utils/trimIdFromPathname';
@@ -27,7 +28,7 @@ export const AuthComponent = (props: any): JSX.Element => {
   const [auth, { data, isLoading, isError, isSuccess }] =
     useLazyGetCurrentUserQuery();
   const router = useRouter();
-  const pathname = trimIdFromPath(usePathname());
+  const pathname = usePathname();
   const params = useParams();
   const dispatch = useDispatch();
 
@@ -35,21 +36,17 @@ export const AuthComponent = (props: any): JSX.Element => {
   const byPassRoute = [APP_PATHS.SHARED_EXERCISE.replace('/:id', '')];
 
   useEffect(() => {
-    if (byPassRoute.includes(pathname)) {
-      return;
-    }
+    // if (byPassRoute.includes(trimIdFromPath(pathname))) {
+    //   console.log('You got here');
+
+    //   return;
+    // }
     if (isRendered && !userData) {
-      // console.log(isRendered);
-      // console.log(LSHandler.getJwt());
-      // console.log(pathname);
       auth(LSHandler.getJwt());
     }
   }, [isRendered]);
 
   useEffect(() => {
-    console.log(APP_PATHS.SHARED_EXERCISE.replace('/:id', ''));
-    console.log(byPassRoute.includes(pathname));
-
     setIsRendered(true);
   }, []);
 
@@ -62,13 +59,22 @@ export const AuthComponent = (props: any): JSX.Element => {
   }, [data]);
 
   useEffect(() => {
+    // console.log(1);
+    // console.log(pathname);
+    // console.log(APP_PATHS.DASHBOARD);
+
+    // console.log(protectedRoutes.includes(pathname));
+
     if (isError && protectedRoutes.includes(pathname)) {
+      console.log('1');
       router.push(APP_PATHS.SIGN_IN);
     }
   }, [isError]);
 
   useEffect(() => {
     if (isRendered && isError && protectedRoutes.includes(pathname)) {
+      console.log('2');
+
       router.push(APP_PATHS.SIGN_IN);
     } else {
       return;

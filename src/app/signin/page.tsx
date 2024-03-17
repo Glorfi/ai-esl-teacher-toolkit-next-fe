@@ -41,6 +41,7 @@ import type { Metadata } from 'next';
 import { useDispatch, useSelector } from 'react-redux';
 import { setUser } from '@/store/user/user-router';
 import { RootState } from '@/store/store';
+import { addExerciseList } from '@/store/exerciseList/exercise-list-router';
 
 const SignInPage = (): JSX.Element => {
   //  const [userData, setUserData] = useState();
@@ -131,8 +132,6 @@ const SignInPage = (): JSX.Element => {
         position: 'top-right',
       });
       getUser(data.jwt);
-      // .then((data) => {
-      //   dispatch(setUser(data));
       //   if (userData && reduxUser) {
       //     console.log(reduxUser)
       //   }
@@ -148,8 +147,8 @@ const SignInPage = (): JSX.Element => {
   useEffect(() => {
     if (userData) {
       console.log(userData);
-
       dispatch(setUser(userData));
+      dispatch(addExerciseList(userData.exercises));
       //  router.push(APP_PATHS.DASHBOARD);
     }
   }, [userData]);
