@@ -28,6 +28,9 @@ import { useSignUpMutation } from '../../store/main-api/mutations/signup';
 import { useSelector } from 'react-redux';
 import { RootState } from '@/store/store';
 import { useRouter } from 'next/navigation';
+import { useGetExercisesQuery } from '@/store/main-api/queries/getExercises';
+import { useGetExerciseByIdQuery } from '@/store/main-api/queries/getExerciseById';
+
 //import { UserContext } from '../../contexts/UserContext';
 
 interface ISignUPForm {
@@ -53,6 +56,11 @@ const SignUpPage = (): JSX.Element => {
     isEmailValid: null,
     isPasswordValid: null,
     arePasswordsEquals: null,
+  });
+
+  const { data: ex } = useGetExerciseByIdQuery({
+    token: null,
+    id: '65f3b103551d4bcbf32d47ff',
   });
 
   const debounceEmail = useDebounce(formValues.email, 1000);
