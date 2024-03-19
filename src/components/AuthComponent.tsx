@@ -32,7 +32,11 @@ export const AuthComponent = (props: any): JSX.Element => {
   const params = useParams();
   const dispatch = useDispatch();
 
-  const protectedRoutes = [APP_PATHS.SIGN_UP, APP_PATHS.DASHBOARD];
+  const protectedRoutes = [
+    APP_PATHS.SIGN_UP,
+    APP_PATHS.DASHBOARD,
+    APP_PATHS.DASHBOARD_EXERCISE.replace('/:id', ''),
+  ];
   const byPassRoute = [APP_PATHS.SHARED_EXERCISE.replace('/:id', '')];
 
   useEffect(() => {
@@ -61,18 +65,22 @@ export const AuthComponent = (props: any): JSX.Element => {
   useEffect(() => {
     // console.log(1);
     // console.log(pathname);
-    // console.log(APP_PATHS.DASHBOARD);
+    // console.log(trimIdFromPath(pathname));
 
-    // console.log(protectedRoutes.includes(pathname));
+    // console.log(APP_PATHS.DASHBOARD_EXERCISE.replace('/:id', ''));
+    //  console.log(pathname.includes(APP_PATHS.DASHBOARD));
+    console.log(protectedRoutes.some((route) => pathname.includes(route)));
 
-    if (isError && protectedRoutes.includes(pathname)) {
+    console.log(protectedRoutes.includes(pathname));
+
+    if (isError && protectedRoutes.some((route) => pathname.includes(route))) {
       console.log('1');
       router.push(APP_PATHS.SIGN_IN);
     }
   }, [isError]);
 
   useEffect(() => {
-    if (isRendered && isError && protectedRoutes.includes(pathname)) {
+    if (isRendered && isError && protectedRoutes.some((route) => pathname.includes(route))) {
       console.log('2');
 
       router.push(APP_PATHS.SIGN_IN);
