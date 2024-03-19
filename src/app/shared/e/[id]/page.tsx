@@ -43,7 +43,7 @@ const SharedExercisePage = (): JSX.Element => {
         margin={'auto'}
         mt={'40px'}
       >
-        <Skeleton isLoaded={isSuccess} height={'36px'} w={'300px'}>
+        <Skeleton isLoaded={isSuccess} height={'36px'} minW={'300px'}>
           <Text color={'primary'} fontWeight={'bold'} fontSize={'x-large'}>
             {ex?.title}
           </Text>

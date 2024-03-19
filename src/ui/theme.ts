@@ -71,8 +71,8 @@ const breakboints = {
 };
 
 const fonts = {
-  heading: 'var(--font-rubik)',
-  body: 'var(--font-rubik)',
+  heading: 'var(--font-lato)',
+  body: 'var(--font-lato)',
 };
 
 export const theme = extendTheme({ colors, breakboints, fonts });
