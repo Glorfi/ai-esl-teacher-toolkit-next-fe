@@ -7,4 +7,5 @@ export interface IUpdateExerciseRequest {
 interface IUpdateExerciseBodyRequest {
   taskDescription?: string;
   title?: string;
+  isRandomOrderEnabled?: boolean;
 }

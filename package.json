@@ -4,9 +4,11 @@
   "private": true,
   "scripts": {
     "dev": "next dev -p 3050",
+    "local": "next dev -p 3050 -H 192.168.43.59",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "theme": "chakra-cli tokens ./src/ui/theme.ts --template default"
   },
   "dependencies": {
     "@chakra-ui/icons": "^2.1.1",
@@ -25,6 +27,7 @@
     "validator": "^13.11.0"
   },
   "devDependencies": {
+    "@chakra-ui/cli": "^2.4.1",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",

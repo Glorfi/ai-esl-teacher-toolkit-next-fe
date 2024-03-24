@@ -1,3 +1,4 @@
+import { defineStyle, defineStyleConfig } from '@chakra-ui/react';
 import { Lato } from 'next/font/google';
 
 const lato = Lato({
@@ -9,3 +10,9 @@ const lato = Lato({
 export const fonts = {
   lato,
 };
+
+export const textTheme = defineStyleConfig({
+  baseStyle: {
+    color: 'primary',
+  },
+});

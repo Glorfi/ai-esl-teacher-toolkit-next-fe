@@ -33,8 +33,8 @@ const ClientDashboardLayout = ({
           justifyContent={['flex-start']}
           padding={['20px', '0']}
         >
-          {children}
           <MobileMenuDashBoard />
+          {children}
         </HStack>
       </HStack>
     </Box>

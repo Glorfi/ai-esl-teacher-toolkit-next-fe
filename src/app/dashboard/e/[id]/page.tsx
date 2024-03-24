@@ -1,4 +1,5 @@
 'use client';
+import { BadgeUpdating } from '@/components/BadgeUpdating';
 import { ExerciseEditForm } from '@/components/ExerciseEditForm';
 import { ExerciseSelectInput } from '@/components/ExerciseSelectInput';
 import { ExerciseSentenceInput } from '@/components/ExerciseSentenceInput';
@@ -7,6 +8,7 @@ import { SideBarMenu } from '@/components/SideBar/SideBar';
 import { APP_PATHS } from '@/constants/AppPaths';
 import { IExercise } from '@/interfaces/exercise';
 import { useDeleteExerciseMutation } from '@/store/main-api/mutations/deleteExercise';
+import { useUpdateExerciseMutation } from '@/store/main-api/mutations/updateExercise';
 import { RootState } from '@/store/store';
 import {
   Box,
@@ -17,6 +19,7 @@ import {
   TabPanels,
   Tabs,
   Text,
+  border,
 } from '@chakra-ui/react';
 
 import { useParams, useRouter } from 'next/navigation';
@@ -36,6 +39,8 @@ const DashboardExercisePage = (): JSX.Element => {
   const [_, { data: deletedEx }] = useDeleteExerciseMutation({
     fixedCacheKey: 'deleteEx',
   });
+  const [__, { data: updatedEx }] =
+  useUpdateExerciseMutation({ fixedCacheKey: `exupdate` });
 
   function toggleSideBar() {
     setIsSideBarOpen(!isSideBarOpen);
@@ -57,7 +62,7 @@ const DashboardExercisePage = (): JSX.Element => {
     }
     setIsNotFound(false);
     setEx(currentEx);
-  }, [exerciseList, id]);
+  }, [exerciseList, id, updatedEx]);
 
   return (
     <Tabs
@@ -73,12 +78,33 @@ const DashboardExercisePage = (): JSX.Element => {
         <Tab>Preview</Tab>
       </TabList>
       <TabPanels w={'100%'} minW={['unset', '600px']} maxW={['unset', '600px']}>
-        <TabPanel p={0} borderTop={'none'}>
+        <TabPanel
+          p={0}
+          borderTop={'none'}
+          borderRight={'1px solid'}
+          borderLeft={'1px solid'}
+          borderColor={'gray.200'}
+          borderBottomEndRadius={'20px'}
+          position={'relative'}
+        >
+          {/* <Text color={'primary'} fontWeight={'bold'} p={'20px 20px 0'}>
+            Exercise Content:
+          </Text>
+          <HStack position={'absolute'} top={'20px'} right={'20px'} gap={0}>
+            <BadgeUpdating />
+          </HStack> */}
           {ex ? (
             <ExerciseEditForm exercise={ex} key={`${ex._id}_editForm`} />
           ) : null}
         </TabPanel>
-        <TabPanel p={0} borderTop={'none'}>
+        <TabPanel
+          p={0}
+          borderTop={'none'}
+          borderRight={'1px solid'}
+          borderLeft={'1px solid'}
+          borderColor={'gray.200'}
+          borderBottomEndRadius={'20px'}
+        >
           {isNotFound ? (
             <Text>Ooops! Seems The exercise isn't found</Text>
           ) : null}
@@ -86,12 +112,14 @@ const DashboardExercisePage = (): JSX.Element => {
             <ExerciseSentenceInput
               sentenceList={ex.sentenceList}
               taskDescription={ex.taskDescription}
+              isRandomOrderEnabled={ex.isRandomOrderEnabled}
             />
           ) : null}
           {ex?.type === 'multipleChoice' ? (
             <ExerciseSelectInput
               sentenceList={ex.sentenceList}
               taskDescription={ex.taskDescription}
+              isRandomOrderEnabled={ex.isRandomOrderEnabled}
             />
           ) : null}
         </TabPanel>

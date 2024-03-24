@@ -24,6 +24,7 @@ import { shuffleArray } from '../utils/shuffleArray';
 interface IExerciseSentenceInput {
   sentenceList: ISentence[];
   taskDescription: string | undefined;
+  isRandomOrderEnabled: boolean | undefined;
 }
 
 export const ExerciseSentenceInput = (props: IExerciseSentenceInput) => {
@@ -46,14 +47,16 @@ export const ExerciseSentenceInput = (props: IExerciseSentenceInput) => {
     });
   };
   useEffect(() => {
-    const arr = shuffleArray([...props.sentenceList]);
     const hintArr = props.sentenceList.map((item) => {
       return item.hint;
     });
     const shuffledHints = shuffleArray([...hintArr]);
-    setExsData(arr);
     setHintsList(shuffledHints);
-  }, [props.sentenceList]);
+    if (props.isRandomOrderEnabled) {
+      const arr = shuffleArray([...props.sentenceList]);
+      setExsData(arr);
+    }
+  }, [props.sentenceList, props.isRandomOrderEnabled]);
 
   useEffect(() => {
     const qCounter = exsData.length;

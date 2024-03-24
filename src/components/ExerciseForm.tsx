@@ -25,23 +25,25 @@ import { addExercise } from '../store/exerciseList/exercise-list-router';
 import { useGenerateExerciseMutation } from '../store/main-api/mutations/generateExercise';
 import { APP_PATHS } from '../constants/AppPaths';
 import { useRouter } from 'next/navigation';
+import { getStudentAgeMapped } from '@/utils/getStudentAgeMapped';
+import { getStudentLevelMapped } from '@/utils/getStudentLevelMapped';
 
 interface IFormValues {
   skill: 'grammar' | 'vocabulary' | string;
   taskType: string;
   wordList: string;
   learnerLevel: string;
-  learnerAge: string;
+  learnerAge: 'children' | 'teenagers' | 'adults' | string;
 }
 
 function ExerciseForm() {
-  const [token, setToken] = useState<string | null>(null)
+  const [token, setToken] = useState<string | null>(null);
   const [formValues, setFormValues] = useState<IFormValues>({
     skill: '',
     taskType: '',
     wordList: '',
-    learnerLevel: LEARNER_LEVEL.B1,
-    learnerAge: LEARNER_AGE.adults,
+    learnerLevel: 'B1',
+    learnerAge: 'adults',
   });
   const [isFormValid, setIsFormValid] = useState<boolean>(false);
   const router = useRouter();
@@ -58,6 +60,8 @@ function ExerciseForm() {
       body: {
         type: formValues.taskType,
         skill: formValues.skill,
+        studentAge: getStudentAgeMapped(formValues.learnerAge),
+        studentLevel: getStudentLevelMapped(formValues.learnerLevel),
         prompt: prompt,
       },
     });
@@ -116,7 +120,7 @@ function ExerciseForm() {
   }, [error]);
 
   useEffect(() => {
-    setToken(LSHandler.getJwt()) 
+    setToken(LSHandler.getJwt());
   }, []);
 
   return (

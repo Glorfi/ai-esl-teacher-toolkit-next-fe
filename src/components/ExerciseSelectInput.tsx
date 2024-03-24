@@ -27,6 +27,7 @@ import { IoMdCheckmarkCircleOutline } from 'react-icons/io';
 interface IExerciseSelectInput {
   sentenceList: ISentence[];
   taskDescription: string | undefined;
+  isRandomOrderEnabled: boolean | undefined;
 }
 
 export const ExerciseSelectInput = (props: IExerciseSelectInput) => {
@@ -49,14 +50,17 @@ export const ExerciseSelectInput = (props: IExerciseSelectInput) => {
     });
   };
   useEffect(() => {
-    const arr = shuffleArray([...props.sentenceList]);
-    const hintArr = props.sentenceList.map((item) => {
-      return item.hint;
-    });
-    const shuffledHints = shuffleArray([...hintArr]);
-    setExsData(arr);
-    setHintsList(shuffledHints);
-  }, [props.sentenceList]);
+    console.log(props.isRandomOrderEnabled);
+    if (props.isRandomOrderEnabled) {
+      const arr = shuffleArray([...props.sentenceList]);
+      const hintArr = props.sentenceList.map((item) => {
+        return item.hint;
+      });
+      const shuffledHints = shuffleArray([...hintArr]);
+      setExsData(arr);
+      setHintsList(shuffledHints);
+    }
+  }, [props.sentenceList, props.isRandomOrderEnabled]);
 
   useEffect(() => {
     const qCounter = exsData.length;

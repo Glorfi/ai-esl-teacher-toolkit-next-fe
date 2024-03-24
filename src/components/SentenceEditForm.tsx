@@ -132,7 +132,11 @@ export const SentenceEditForm = (
           variant={'unstyled'}
           onClick={isFormOpen.onToggle}
         />
-        <Text fontWeight={isFormOpen.isOpen ? 'bold' : 400}>
+        <Text
+          fontWeight={isFormOpen.isOpen ? 'bold' : 400}
+          onClick={isFormOpen.onToggle}
+          cursor={'pointer'}
+        >
           {sentence.sentence}
         </Text>
       </HStack>

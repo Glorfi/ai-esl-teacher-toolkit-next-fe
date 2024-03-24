@@ -54,12 +54,14 @@ const SharedExercisePage = (): JSX.Element => {
             <ExerciseSentenceInput
               sentenceList={ex.sentenceList}
               taskDescription={ex.taskDescription}
+              isRandomOrderEnabled={ex.isRandomOrderEnabled}
             />
           ) : null}
           {ex?.type === 'multipleChoice' ? (
             <ExerciseSelectInput
               sentenceList={ex.sentenceList}
               taskDescription={ex.taskDescription}
+              isRandomOrderEnabled={ex.isRandomOrderEnabled}
             />
           ) : null}
         </Skeleton>
