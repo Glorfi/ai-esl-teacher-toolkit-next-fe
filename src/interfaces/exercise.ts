@@ -9,10 +9,10 @@ export interface IExercise {
   createdAt: Date | string;
   updatedAt: Date | string;
   sentenceList: ISentence[];
-  topicList: ITopic[] |[] 
+  topicList: ITopic[] | [];
   title?: string;
   taskDescription?: string;
-  studentLevel?: "A1" | "A2" | "B1" | "B2" | "C1" | string
+  studentLevel?: 'A1' | 'A2' | 'B1' | 'B2' | 'C1' | string;
   studentAge?: string;
   isRandomOrderEnabled?: boolean;
   __v: number;
@@ -30,4 +30,5 @@ export interface IExerciseGenerate {
   prompt: string;
   studentAge: string;
   studentLevel: string;
+  isStrictChecking: boolean;
 }

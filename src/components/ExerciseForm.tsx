@@ -13,7 +13,10 @@ import {
   Tooltip,
   Textarea,
   useToast,
+  Switch,
+  IconButton,
 } from '@chakra-ui/react';
+import { BsInfoCircle } from 'react-icons/bs';
 import { useEffect, useState } from 'react';
 import { useGeneratePrompt } from '../utils/generatePrompt';
 import { LEARNER_AGE, LEARNER_LEVEL } from '../constants/prompt';
@@ -34,6 +37,7 @@ interface IFormValues {
   wordList: string;
   learnerLevel: string;
   learnerAge: 'children' | 'teenagers' | 'adults' | string;
+  isStrictChecking: boolean;
 }
 
 function ExerciseForm() {
@@ -44,6 +48,7 @@ function ExerciseForm() {
     wordList: '',
     learnerLevel: 'B1',
     learnerAge: 'adults',
+    isStrictChecking: true,
   });
   const [isFormValid, setIsFormValid] = useState<boolean>(false);
   const router = useRouter();
@@ -63,6 +68,7 @@ function ExerciseForm() {
         studentAge: getStudentAgeMapped(formValues.learnerAge),
         studentLevel: getStudentLevelMapped(formValues.learnerLevel),
         prompt: prompt,
+        isStrictChecking: formValues.isStrictChecking,
       },
     });
   }
@@ -75,11 +81,15 @@ function ExerciseForm() {
   );
 
   const checkFormValidity = () => {
-    for (const key in formValues) {
-      if (
-        formValues.hasOwnProperty(key) &&
-        formValues[key as keyof IFormValues] === ''
-      ) {
+    const requiredFields = [
+      'skill',
+      'taskType',
+      'wordList',
+      'learnerLevel',
+      'learnerAge',
+    ];
+    for (const key of requiredFields) {
+      if (formValues[key as keyof IFormValues] === '') {
         setIsFormValid(false);
         return;
       }
@@ -194,6 +204,34 @@ function ExerciseForm() {
           <option value={'teenagers'}>Teenagers 13-20 y.o.</option>
           <option value={'adults'}>Adults 20+ y.o</option>
         </Select>
+        <HStack>
+          <Tooltip
+            hasArrow
+            label="If disabled, you might have to edit exercise later, its answer an options to make it work properly for students"
+            placement="top"
+          >
+            <IconButton
+              aria-label="info"
+              icon={<BsInfoCircle />}
+              isRound
+              size={'sm'}
+              variant={'ghost'}
+              colorScheme="secondary"
+              p={0}
+            />
+          </Tooltip>
+          <Text fontSize={'medium'}>Enable strict checking?</Text>
+          <Switch
+            colorScheme="secondary"
+            defaultChecked
+            onChange={(e) =>
+              setFormValues({
+                ...formValues,
+                isStrictChecking: e.target.checked,
+              })
+            }
+          />
+        </HStack>
       </CardBody>
       <CardFooter justifyContent={'center'}>
         {' '}

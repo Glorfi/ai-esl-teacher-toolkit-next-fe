@@ -24,6 +24,7 @@ import {
   FormControl,
   FormLabel,
   Switch,
+  Tooltip,
 } from '@chakra-ui/react';
 import { IExercise } from '../interfaces/exercise';
 import { IoIosCheckmark, IoMdCheckmarkCircleOutline } from 'react-icons/io';
@@ -131,15 +132,21 @@ export const ExerciseEditForm = (props: IExerciseEditForm) => {
         alignItems={'center'}
       >
         <ButtonGroup spacing={'0.1rem'}>
-          <IconButton
-            size={'sm'}
-            aria-label="Search database"
-            icon={<FaPlus />}
-            isRound
-            variant={'ghost'}
-            colorScheme="secondary"
-            isDisabled
-          />{' '}
+          <Tooltip
+            hasArrow
+            label="Available in future release!"
+            placement="top"
+          >
+            <IconButton
+              size={'sm'}
+              aria-label="Search database"
+              icon={<FaPlus />}
+              isRound
+              variant={'ghost'}
+              colorScheme="secondary"
+              isDisabled
+            />
+          </Tooltip>
           <IconButton
             size={'sm'}
             aria-label="Search database"
@@ -267,22 +274,6 @@ export const ExerciseEditForm = (props: IExerciseEditForm) => {
               </Tag>
             );
           })}
-          {/* <Tag colorScheme="secondary" variant={'outline'}>
-            <TagLabel>Daily Routine</TagLabel>
-            <TagCloseButton />
-          </Tag>
-          <Tag colorScheme="secondary" variant={'outline'}>
-            <TagLabel>Everyday actions</TagLabel>
-            <TagCloseButton />
-          </Tag> */}
-          {/* <IconButton
-            aria-label="add tag"
-            size={'xs'}
-            icon={<FaPlus />}
-            isRound
-            variant={'ghost'}
-            colorScheme="secondary"
-          /> */}
           <AddTopicMenu exercise={exercise} />
         </HStack>
         <Divider m={'20px 0 8px'} />
@@ -299,8 +290,15 @@ export const ExerciseEditForm = (props: IExerciseEditForm) => {
             onChange={handleCheckBoxChange}
           />
         </FormControl>
+
         <FormControl display="flex" alignItems="center">
-          <FormLabel mb="0">Make exercise private?</FormLabel>
+          <Tooltip
+            hasArrow
+            label="Available in future release!"
+            placement="top"
+          >
+            <FormLabel mb="0">Make exercise private?</FormLabel>
+          </Tooltip>
           <Switch
             name="isPrivate"
             colorScheme="secondary"
@@ -308,6 +306,7 @@ export const ExerciseEditForm = (props: IExerciseEditForm) => {
             isDisabled
           />
         </FormControl>
+
         <ButtonGroup>
           {/* <Button
             colorScheme={'highlight'}

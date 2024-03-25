@@ -134,6 +134,11 @@ export const SentenceEditForm = (
         />
         <Text
           fontWeight={isFormOpen.isOpen ? 'bold' : 400}
+          color={
+            isSentenceValid && areOptionsValid && isAnswerValid
+              ? 'primary'
+              : 'error.base'
+          }
           onClick={isFormOpen.onToggle}
           cursor={'pointer'}
         >
