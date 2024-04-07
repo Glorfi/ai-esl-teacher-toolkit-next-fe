@@ -1,0 +1,19 @@
+.thumbnailStack {
+  --sb-track-color: #232e3333;
+  --sb-thumb-color: #fffefa;
+  --sb-size: 4px;
+}
+
+.thumbnailStack::-webkit-scrollbar {
+  width: var(--sb-size);
+}
+
+.thumbnailStack::-webkit-scrollbar-track {
+  background: var(--sb-track-color);
+  border-radius: 3px;
+}
+
+.thumbnailStack::-webkit-scrollbar-thumb {
+  background: var(--sb-thumb-color);
+  border-radius: 3px;
+}

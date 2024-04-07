@@ -12,10 +12,11 @@ import {
 } from '@chakra-ui/react';
 import { customError } from '@/interfaces/customError';
 import { ChangeEvent, useEffect, useState } from 'react';
-import { useSignUpMutation } from '@/store/main-api/mutations/signup';
+
 import { useDebounce } from '@/utils/useDebounce';
 import { useRouter } from 'next/navigation';
 import { APP_PATHS } from '@/constants/AppPaths';
+import { useSignUpMutation } from '@/features/user/signup/api/signup';
 
 interface ISignUPForm {
   email: string;
@@ -29,7 +30,7 @@ interface IFormValid {
   arePasswordsEquals: boolean | null;
 }
 
-const SignUpForm = (): JSX.Element => {
+export const SignUpForm = (): JSX.Element => {
   const [formValues, setFormValues] = useState<ISignUPForm>({
     email: '',
     password: '',
@@ -47,7 +48,7 @@ const SignUpForm = (): JSX.Element => {
 
   const [signUp, { data, isSuccess, isError, error }] = useSignUpMutation();
   const toast = useToast();
-  const router = useRouter()
+  const router = useRouter();
 
   function handleInputChange(e: ChangeEvent<HTMLInputElement>) {
     setFormValues({ ...formValues, [e.target.name]: e.target.value });
@@ -108,7 +109,7 @@ const SignUpForm = (): JSX.Element => {
         isClosable: true,
         position: 'top-right',
       });
-        router.push(APP_PATHS.SIGN_IN);
+      router.push(APP_PATHS.SIGN_IN);
     }
   }, [isSuccess]);
 
@@ -247,5 +248,3 @@ const SignUpForm = (): JSX.Element => {
     </>
   );
 };
-
-export default SignUpForm;

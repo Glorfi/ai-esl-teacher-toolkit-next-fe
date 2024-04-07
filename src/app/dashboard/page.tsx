@@ -1,7 +1,5 @@
 'use client';
 import ExerciseForm from '@/components/ExerciseForm';
-import { MobileMenuDashBoard } from '@/components/MobileMenuDashboard';
-import { SideBarMenu } from '@/components/SideBar/SideBar';
 import { Box, HStack, Text, VStack } from '@chakra-ui/react';
 
 import { useState } from 'react';

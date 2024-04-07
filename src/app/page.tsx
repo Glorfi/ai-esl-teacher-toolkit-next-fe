@@ -2,7 +2,7 @@
 import Image from 'next/image';
 import styles from './page.module.css';
 import { VStack, Text } from '@chakra-ui/react';
-import { Header } from '@/components/Header';
+import { Header } from '@/widgets/Header';
 import { AuthProvider } from './auth-provider';
 import { AuthComponent } from '@/components/AuthComponent';
 

@@ -14,15 +14,12 @@ import {
   Input,
 } from '@chakra-ui/react';
 import { LSHandler } from '../utils/handleLocalStorage';
-import { useDeleteExerciseMutation } from '../store/main-api/mutations/deleteExercise';
+
 import { useDispatch } from 'react-redux';
 import { useEffect, useState } from 'react';
-import {
-  removeExercise,
-  replaceExercise,
-} from '../store/exerciseList/exercise-list-router';
-import { useAddTopicToExerciseMutation } from '@/store/main-api/mutations/addTopicToExercise';
 import { IAddTopic } from '@/interfaces/topic';
+import { replaceExercise } from '@/entities/exercise/model/exercise-list-router';
+import { useAddTopicToExerciseMutation } from '@/app/lib/store/main-api/mutations/addTopicToExercise';
 
 interface ICreateTopicPopUpProps {
   isOpen: boolean;
@@ -55,14 +52,6 @@ export const CreateTopicPopUp = (
   function handleConfirmClick() {
     createTopic({ token, body: formValues });
   }
-  // const [deleteExercise, { data, isLoading }] = useDeleteExerciseMutation({
-  //   fixedCacheKey: 'deleteEx',
-  // });
-  // const dispatch = useDispatch();
-
-  // function handleDeleteExercise(e: React.MouseEvent) {
-  //   deleteExercise({ token: jwt, id });
-  // }
 
   useEffect(() => {
     if (data) {

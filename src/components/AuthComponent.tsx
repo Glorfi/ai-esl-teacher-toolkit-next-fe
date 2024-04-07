@@ -1,13 +1,10 @@
 'use client';
+import { addExerciseList } from '@/entities/exercise/model/exercise-list-router';
+import { useLazyGetCurrentUserQuery } from '@/features/user/signin/api/auth';
+import { RootState } from '@/app/lib/store/store';
+import { setUser } from '@/app/lib/store/user/user-router';
 import { APP_PATHS } from '@/constants/AppPaths';
-import { addExerciseList } from '@/store/exerciseList/exercise-list-router';
-import {
-  useGetCurrentUserQuery,
-  useLazyGetCurrentUserQuery,
-} from '@/store/main-api/queries/auth';
-import { RootState } from '@/store/store';
 
-import { setUser } from '@/store/user/user-router';
 import { LSHandler } from '@/utils/handleLocalStorage';
 import { trimIdFromPath } from '@/utils/trimIdFromPathname';
 import { VStack, Spinner, Text } from '@chakra-ui/react';
@@ -80,7 +77,11 @@ export const AuthComponent = (props: any): JSX.Element => {
   }, [isError]);
 
   useEffect(() => {
-    if (isRendered && isError && protectedRoutes.some((route) => pathname.includes(route))) {
+    if (
+      isRendered &&
+      isError &&
+      protectedRoutes.some((route) => pathname.includes(route))
+    ) {
       console.log('2');
 
       router.push(APP_PATHS.SIGN_IN);

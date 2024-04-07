@@ -1,15 +1,16 @@
 'use client';
-import { BadgeUpdating } from '@/components/BadgeUpdating';
+import { useDeleteExerciseMutation } from '@/app/lib/store/main-api/mutations/deleteExercise';
+import { useUpdateExerciseMutation } from '@/app/lib/store/main-api/mutations/updateExercise';
+import { RootState } from '@/app/lib/store/store';
 import { ExerciseEditForm } from '@/components/ExerciseEditForm';
-import { ExerciseSelectInput } from '@/components/ExerciseSelectInput';
-import { ExerciseSentenceInput } from '@/components/ExerciseSentenceInput';
-import { MobileMenuDashBoard } from '@/components/MobileMenuDashboard';
-import { SideBarMenu } from '@/components/SideBar/SideBar';
+
 import { APP_PATHS } from '@/constants/AppPaths';
-import { IExercise } from '@/interfaces/exercise';
-import { useDeleteExerciseMutation } from '@/store/main-api/mutations/deleteExercise';
-import { useUpdateExerciseMutation } from '@/store/main-api/mutations/updateExercise';
-import { RootState } from '@/store/store';
+import { IExercise } from '@/entities/exercise';
+import {
+  ExerciseSentenceInput,
+  ExerciseSelectInput,
+} from '@/features/exercise';
+
 import {
   Box,
   HStack,
@@ -39,8 +40,9 @@ const DashboardExercisePage = (): JSX.Element => {
   const [_, { data: deletedEx }] = useDeleteExerciseMutation({
     fixedCacheKey: 'deleteEx',
   });
-  const [__, { data: updatedEx }] =
-  useUpdateExerciseMutation({ fixedCacheKey: `exupdate` });
+  const [__, { data: updatedEx }] = useUpdateExerciseMutation({
+    fixedCacheKey: `exupdate`,
+  });
 
   function toggleSideBar() {
     setIsSideBarOpen(!isSideBarOpen);

@@ -1,6 +1,7 @@
-import UserAuthCard from '@/entities/user/UserAuthCard';
-import { GoToSignUpFooter } from '@/features/user/go-to-signup/GoToSignUpFooter';
-import SignInForm from '@/features/user/signin/ui/SignInForm';
+
+import { UserAuthCard } from '@/entities/user';
+import { GoToSignUpFooter, SignInForm } from '@/features/user';
+
 
 const SignInWidget = (): JSX.Element => {
   return (

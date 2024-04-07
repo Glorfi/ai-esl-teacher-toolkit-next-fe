@@ -1,6 +1,6 @@
-import { IExercise } from '@/interfaces/exercise';
+
 import { ITopic } from '@/interfaces/topic';
-import { useLazyGetTopicsAutocompleteQuery } from '@/store/main-api/queries/getTopicsAutocomplete';
+
 import { LSHandler } from '@/utils/handleLocalStorage';
 import { useDebounce } from '@/utils/useDebounce';
 import {
@@ -29,9 +29,11 @@ import {
 import { ChangeEvent, useEffect, useRef, useState } from 'react';
 import { FaPlus } from 'react-icons/fa6';
 import { CreateTopicPopUp } from './CreateTopicPopUp';
-import { useAddTopicToExerciseMutation } from '@/store/main-api/mutations/addTopicToExercise';
 import { useDispatch } from 'react-redux';
-import { replaceExercise } from '@/store/exerciseList/exercise-list-router';
+import { replaceExercise } from '@/entities/exercise/model/exercise-list-router';
+import { useAddTopicToExerciseMutation } from '@/app/lib/store/main-api/mutations/addTopicToExercise';
+import { useLazyGetTopicsAutocompleteQuery } from '@/app/lib/store/main-api/queries/getTopicsAutocomplete';
+import { IExercise } from '@/entities/exercise';
 
 interface IAddTopicMenuProps {
   exercise: IExercise;

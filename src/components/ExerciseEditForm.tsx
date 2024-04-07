@@ -26,25 +26,30 @@ import {
   Switch,
   Tooltip,
 } from '@chakra-ui/react';
-import { IExercise } from '../interfaces/exercise';
+
 import { IoIosCheckmark, IoMdCheckmarkCircleOutline } from 'react-icons/io';
 import { SentenceEditForm } from './SentenceEditForm';
 import { ChangeEvent, useEffect, useState } from 'react';
-import { useUpdateExerciseMutation } from '../store/main-api/mutations/updateExercise';
+
 import { useDebounce } from '../utils/useDebounce';
 import { LSHandler } from '../utils/handleLocalStorage';
 import { useDispatch, useSelector } from 'react-redux';
-import { replaceExercise } from '../store/exerciseList/exercise-list-router';
+
 import { CheckIcon } from '@chakra-ui/icons';
 import { BadgeUpdating } from './BadgeUpdating';
-import { setIsEditing } from '../store/isEditing/isEditing-router';
+
 import { FaPlus, FaRegShareFromSquare, FaRegTrashCan } from 'react-icons/fa6';
 import { ShareExercisePopUp } from './ShareExercisePopUp';
 import { DeleteExercisePopUp } from './DeleteExercisePopUp';
 import formatDate from '@/utils/formatDate';
-import { RootState } from '@/store/store';
 import { AddTopicMenu } from './AddTopicMenu';
-import { useRemoveTopicFromExerciseMutation } from '@/store/main-api/mutations/removeTopicFromExercise';
+import { replaceExercise } from '@/entities/exercise/model/exercise-list-router';
+import { setIsEditing } from '@/app/lib/store/isEditing/isEditing-router';
+import { useRemoveTopicFromExerciseMutation } from '@/app/lib/store/main-api/mutations/removeTopicFromExercise';
+import { useUpdateExerciseMutation } from '@/app/lib/store/main-api/mutations/updateExercise';
+import { RootState } from '@/app/lib/store/store';
+import { IExercise } from '@/entities/exercise';
+
 
 interface IExerciseEditForm {
   exercise: IExercise;

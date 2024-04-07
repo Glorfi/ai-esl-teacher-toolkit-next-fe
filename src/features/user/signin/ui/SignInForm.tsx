@@ -1,7 +1,4 @@
 import { APP_PATHS } from '@/constants/AppPaths';
-import { addExerciseList } from '@/store/exerciseList/exercise-list-router';
-import { useSignInMutation } from '@/store/main-api/mutations/signin';
-import { useLazyGetCurrentUserQuery } from '@/store/main-api/queries/auth';
 import { customError } from '@/interfaces/customError';
 
 import { LSHandler } from '@/utils/handleLocalStorage';
@@ -21,8 +18,11 @@ import { useState, ChangeEvent, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import validator from 'validator';
 import { ArrowForwardIcon } from '@chakra-ui/icons';
-import { RootState } from '@/store/store';
-import { setUser } from '@/store/user/user-router';
+import { useLazyGetCurrentUserQuery } from '@/features/user/signin/api/auth';
+import { useSignInMutation } from '../api/signin';
+import { setUser } from '@/app/lib/store/user/user-router';
+import { addExerciseList } from '@/entities/exercise/model/exercise-list-router';
+import { useAppSelector } from '@/app/lib/hooks/hooks';
 
 interface ISignInForm {
   email: string;
@@ -34,7 +34,7 @@ interface IFormValid {
   isPasswordValid: boolean | null;
 }
 
-const SignInForm = (): JSX.Element => {
+export const SignInForm = (): JSX.Element => {
   const [formValues, setFormValues] = useState<ISignInForm>({
     email: '',
     password: '',
@@ -55,7 +55,7 @@ const SignInForm = (): JSX.Element => {
 
   const router = useRouter();
   const dispatch = useDispatch();
-  const reduxUser = useSelector((state: RootState) => state.user);
+  const reduxUser = useAppSelector((state) => state.user);
 
   function handleInputChange(e: ChangeEvent<HTMLInputElement>) {
     setFormValues({ ...formValues, [e.target.name]: e.target.value });
@@ -122,15 +122,6 @@ const SignInForm = (): JSX.Element => {
         position: 'top-right',
       });
       getUser(data.jwt);
-      //   if (userData && reduxUser) {
-      //     console.log(reduxUser)
-      //   }
-      // })
-      // .then(
-      //   () =>
-
-      //   //  router.push(APP_PATHS.DASHBOARD)
-      // );
     }
   }, [isSuccess]);
 
@@ -242,5 +233,3 @@ const SignInForm = (): JSX.Element => {
     </>
   );
 };
-
-export default SignInForm;

@@ -1,8 +1,9 @@
 import { HStack, VStack, Text } from '@chakra-ui/react';
-import { IExercise } from '../interfaces/exercise';
+
 import { APP_PATHS } from '../constants/AppPaths';
-import { ExThumbnailMenu } from './ExThumbnailMenu';
+import { ExThumbnailMenu } from '../features/exercise/ui/ExThumbnailMenu';
 import { useRouter } from 'next/navigation';
+import { IExercise } from '@/entities/exercise';
 
 interface IExerciseThumbnailProps {
   data: IExercise;

@@ -14,17 +14,19 @@ import { GrEdit } from 'react-icons/gr';
 import { ISentenceBodyUpdateRequest } from '../interfaces/requests/updateSentence';
 import { ChangeEvent, useEffect, useState } from 'react';
 import { useDebounce } from '../utils/useDebounce';
-import { useUpdateSentenceMutation } from '../store/main-api/mutations/updateSentence';
+
 import { LSHandler } from '../utils/handleLocalStorage';
 import { useDispatch } from 'react-redux';
+
+import validator from 'validator';
+import { useSelector } from 'react-redux';
+import { RootState } from '@/app/lib/store/store';
 import {
   replaceSentence,
   updateTimeStampById,
-} from '../store/exerciseList/exercise-list-router';
-import validator from 'validator';
-import { useSelector } from 'react-redux';
-import { RootState } from '../store/store';
-import { setIsEditing } from '../store/isEditing/isEditing-router';
+} from '@/entities/exercise/model/exercise-list-router';
+import { setIsEditing } from '@/app/lib/store/isEditing/isEditing-router';
+import { useUpdateSentenceMutation } from '@/app/lib/store/main-api/mutations/updateSentence';
 
 interface ISentenceEditFormProps {
   sentence: ISentence;

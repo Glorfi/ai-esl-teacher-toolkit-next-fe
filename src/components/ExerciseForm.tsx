@@ -21,15 +21,17 @@ import { useEffect, useState } from 'react';
 import { useGeneratePrompt } from '../utils/generatePrompt';
 import { LEARNER_AGE, LEARNER_LEVEL } from '../constants/prompt';
 import { useDispatch } from 'react-redux';
-import { addValues } from '../store/exercise-form/exercise-form-router';
+
 import { customError } from '../interfaces/customError';
 import { LSHandler } from '../utils/handleLocalStorage';
-import { addExercise } from '../store/exerciseList/exercise-list-router';
-import { useGenerateExerciseMutation } from '../store/main-api/mutations/generateExercise';
+
 import { APP_PATHS } from '../constants/AppPaths';
 import { useRouter } from 'next/navigation';
 import { getStudentAgeMapped } from '@/utils/getStudentAgeMapped';
 import { getStudentLevelMapped } from '@/utils/getStudentLevelMapped';
+import { useGenerateExerciseMutation } from '@/app/lib/store/main-api/mutations/generateExercise';
+import { addValues } from '@/app/lib/store/exercise-form/exercise-form-router';
+import { addExercise } from '@/entities/exercise/model/exercise-list-router';
 
 interface IFormValues {
   skill: 'grammar' | 'vocabulary' | string;

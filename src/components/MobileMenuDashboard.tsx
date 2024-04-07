@@ -17,7 +17,7 @@ import {
 import React, { useContext, useEffect, useState } from 'react';
 import { APP_PATHS } from '../constants/AppPaths';
 import { HamburgerIcon } from '@chakra-ui/icons';
-import { SideBarMenu } from './SideBar/SideBar';
+import { SideBarMenu } from '../shared/sidebar/Sidebar';
 import { LSHandler } from '../utils/handleLocalStorage';
 
 import { useDispatch, useSelector } from 'react-redux';

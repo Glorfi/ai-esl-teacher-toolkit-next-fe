@@ -1,11 +1,14 @@
 import { Icon, Text } from '@chakra-ui/react';
 import { IoMdCheckmarkCircleOutline } from 'react-icons/io';
-import { useUpdateExerciseMutation } from '../store/main-api/mutations/updateExercise';
+
 import { useEffect, useState } from 'react';
-import { useUpdateSentenceMutation } from '../store/main-api/mutations/updateSentence';
+
 import { customError } from '../interfaces/customError';
 import { useSelector } from 'react-redux';
-import { RootState } from '../store/store';
+import { useUpdateExerciseMutation } from '@/app/lib/store/main-api/mutations/updateExercise';
+import { RootState } from '@/app/lib/store/store';
+import { useUpdateSentenceMutation } from '@/app/lib/store/main-api/mutations/updateSentence';
+
 
 export const BadgeUpdating = (): JSX.Element => {
   const [, exerciseResult] = useUpdateExerciseMutation({

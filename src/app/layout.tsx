@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import './globals.css';
 import { Providers } from './providers';
-import { fonts } from '../ui/fonts';
+import { fonts } from '../shared/ui/fonts';
 import { AuthComponent } from '@/components/AuthComponent';
 
 export const metadata: Metadata = {
