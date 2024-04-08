@@ -1,7 +1,7 @@
 import { API_PATH } from '@/constants/ApiBaseUrl';
 import { IUpdateSentenceRequest } from '@/interfaces/requests/updateSentence';
 import { ISentence } from '@/interfaces/sentence-with-input';
-import { mainApi } from '../MainApiRouter.api';
+import { mainApi } from '../../../../../shared/api/MainApiRouter.api';
 
 const mainApiEndpoint = mainApi.injectEndpoints({
   endpoints: (builder) => ({

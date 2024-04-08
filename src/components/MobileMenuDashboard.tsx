@@ -15,23 +15,22 @@ import {
 } from '@chakra-ui/react';
 
 import React, { useContext, useEffect, useState } from 'react';
-import { APP_PATHS } from '../constants/AppPaths';
+import { APP_PATHS } from '../shared/constants/AppPaths';
 import { HamburgerIcon } from '@chakra-ui/icons';
-import { SideBarMenu } from '../shared/sidebar/Sidebar';
-import { LSHandler } from '../utils/handleLocalStorage';
 
 import { useDispatch, useSelector } from 'react-redux';
-import { IExercise } from '../interfaces/exercise';
+
 import { PiNotePencil } from 'react-icons/pi';
-import { ExerciseThumbnail } from './SideBarExerciseThumbnail';
-import { RootState } from '@/store/store';
+
 import { Link } from '@chakra-ui/next-js';
+import { useAppSelector } from '@/app/lib/hooks/hooks';
+import { ExerciseSidbarThumbnail, IExercise } from '@/entities/exercise';
 
 export const MobileMenuDashBoard = (): JSX.Element => {
   const { isOpen, onOpen, onClose, onToggle } = useDisclosure();
 
-  const userData = useSelector((state: RootState) => state.user);
-  const newExList = useSelector((state: RootState) => state.exerciseList);
+  const userData = useAppSelector((state) => state.user);
+  const newExList = useAppSelector((state) => state.exerciseList);
   const dispatch = useDispatch();
 
   const [exercisesToDisplay, setExercisesToDisplay] = useState<IExercise[]>([]);
@@ -102,9 +101,10 @@ export const MobileMenuDashBoard = (): JSX.Element => {
                 className="thumbnailStack"
                 w={'100%'}
               >
-                {exercisesToDisplay?.map((ex) => {
-                  return <ExerciseThumbnail data={ex} key={ex._id} />;
-                })}
+                {/* ПЕРЕРАБОТАТЬ МОБИЛЬНОЕ МЕНЮ*/}
+                {/* {exercisesToDisplay?.map((ex) => {
+                  return <ExerciseSidbarThumbnail data={ex} key={ex._id} />;
+                })} */}
               </VStack>
               <HStack
                 w={'100%'}

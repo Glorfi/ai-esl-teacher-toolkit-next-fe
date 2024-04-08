@@ -1,6 +1,7 @@
 'use client';
 
-import { MobileMenuDashBoard } from '@/components/MobileMenuDashboard';
+import { MobileMenuDashBoard } from '@/widgets/mobile-menu/MobileMenu';
+//import { MobileMenuDashBoard } from '@/components/MobileMenuDashboard';
 import { SidebarDashboard } from '@/widgets/sidebar-dashboard/SidebarDashboard';
 
 import { Box, HStack } from '@chakra-ui/react';

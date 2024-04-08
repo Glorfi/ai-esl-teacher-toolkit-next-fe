@@ -9,12 +9,12 @@ import {
   Button,
   Text,
 } from '@chakra-ui/react';
-import { LSHandler } from '../utils/handleLocalStorage';
+import { LSHandler } from '../../../utils/handleLocalStorage';
 
 import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import { removeExercise } from '@/entities/exercise/model/exercise-list-router';
-import { useDeleteExerciseMutation } from '@/app/lib/store/main-api/mutations/deleteExercise';
+import { useDeleteExerciseMutation } from '@/features/exercise/api/deleteExercise';
 
 
 interface IDeleteExercisePopUpProps {

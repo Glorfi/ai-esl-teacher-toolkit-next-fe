@@ -3,7 +3,7 @@ import { addExerciseList } from '@/entities/exercise/model/exercise-list-router'
 import { useLazyGetCurrentUserQuery } from '@/features/user/signin/api/auth';
 import { RootState } from '@/app/lib/store/store';
 import { setUser } from '@/app/lib/store/user/user-router';
-import { APP_PATHS } from '@/constants/AppPaths';
+
 
 import { LSHandler } from '@/utils/handleLocalStorage';
 import { trimIdFromPath } from '@/utils/trimIdFromPathname';
@@ -12,6 +12,7 @@ import { skipToken } from '@reduxjs/toolkit/query';
 import { useParams, usePathname, useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { APP_PATHS } from '@/shared';
 
 interface IAuthComponentProps {
   isPrivate?: boolean;

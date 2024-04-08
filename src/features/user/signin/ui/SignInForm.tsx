@@ -1,4 +1,4 @@
-import { APP_PATHS } from '@/constants/AppPaths';
+import { APP_PATHS } from '@/shared';
 import { customError } from '@/interfaces/customError';
 
 import { LSHandler } from '@/utils/handleLocalStorage';

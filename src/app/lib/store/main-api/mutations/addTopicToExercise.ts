@@ -1,6 +1,6 @@
 import { IAddTopicToExerciseRequest } from '@/interfaces/requests/addTopicToExercise';
 
-import { mainApi } from '../MainApiRouter.api';
+import { mainApi } from '../../../../../shared/api/MainApiRouter.api';
 import { IExercise } from '@/interfaces/exercise';
 import { API_PATH } from '@/constants/ApiBaseUrl';
 

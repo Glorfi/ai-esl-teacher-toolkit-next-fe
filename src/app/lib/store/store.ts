@@ -1,7 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { ExerciseFormRouter } from './exercise-form/exercise-form-router';
-import { mainApi } from './main-api/MainApiRouter.api';
-
+import { mainApi } from '@/shared';
 import { isEditingRouter } from './isEditing/isEditing-router';
 import { userRouter } from './user/user-router';
 import { exerciseListRouter } from '@/entities/exercise';

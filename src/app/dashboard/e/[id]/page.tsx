@@ -1,10 +1,10 @@
 'use client';
-import { useDeleteExerciseMutation } from '@/app/lib/store/main-api/mutations/deleteExercise';
+import { useDeleteExerciseMutation } from '@/features/exercise/api/deleteExercise';
 import { useUpdateExerciseMutation } from '@/app/lib/store/main-api/mutations/updateExercise';
 import { RootState } from '@/app/lib/store/store';
 import { ExerciseEditForm } from '@/components/ExerciseEditForm';
 
-import { APP_PATHS } from '@/constants/AppPaths';
+import { APP_PATHS } from '@/shared/constants/AppPaths';
 import { IExercise } from '@/entities/exercise';
 import {
   ExerciseSentenceInput,

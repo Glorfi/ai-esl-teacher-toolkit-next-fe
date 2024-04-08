@@ -8,8 +8,9 @@ import { getLastSevenDaysExercises } from '@/entities/exercise/lib/getLastSevenD
 import { getRestExercises } from '@/entities/exercise/lib/getRestExercises';
 import { getYesterdayExercises } from '@/entities/exercise/lib/getYesterdayExercises';
 import { useAppSelector } from '@/app/lib/hooks/hooks';
-import { IExercise } from '../../model/models';
-import { IExerciseSidbarThumbnailProps, IMenuFeatures } from '../thumbnail/ExerciseThumbnail';
+
+
+import { IExercise, IExerciseSidbarThumbnailProps, IMenuFeatures } from '../../model/models';
 
 interface RecentExercisesBoxProps {
   ExerciseThumbNail: React.ComponentType<IExerciseSidbarThumbnailProps>;

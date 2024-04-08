@@ -1,4 +1,4 @@
-import { mainApi } from '@/app/lib/store/main-api/MainApiRouter.api';
+import { mainApi } from '@/shared/api/MainApiRouter.api';
 import { API_PATH } from '@/constants/ApiBaseUrl';
 import { ISignUPResponse, ISignUPRequest } from '../model';
 

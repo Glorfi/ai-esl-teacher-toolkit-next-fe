@@ -1,4 +1,4 @@
-import { APP_PATHS } from '@/constants/AppPaths';
+import { APP_PATHS } from '@/shared';
 import { Link } from '@chakra-ui/next-js';
 import { Text } from '@chakra-ui/react';
 

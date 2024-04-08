@@ -1,6 +1,6 @@
 import { IGetTopicsAutoCompleteRequest } from '@/interfaces/requests/getTopicsAutocomplete';
 
-import { mainApi } from '../MainApiRouter.api';
+import { mainApi } from '../../../../../shared/api/MainApiRouter.api';
 import { ITopic } from '@/interfaces/topic';
 import { API_PATH } from '@/constants/ApiBaseUrl';
 

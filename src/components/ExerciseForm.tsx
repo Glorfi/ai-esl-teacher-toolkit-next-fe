@@ -25,13 +25,13 @@ import { useDispatch } from 'react-redux';
 import { customError } from '../interfaces/customError';
 import { LSHandler } from '../utils/handleLocalStorage';
 
-import { APP_PATHS } from '../constants/AppPaths';
 import { useRouter } from 'next/navigation';
 import { getStudentAgeMapped } from '@/utils/getStudentAgeMapped';
 import { getStudentLevelMapped } from '@/utils/getStudentLevelMapped';
 import { useGenerateExerciseMutation } from '@/app/lib/store/main-api/mutations/generateExercise';
 import { addValues } from '@/app/lib/store/exercise-form/exercise-form-router';
 import { addExercise } from '@/entities/exercise/model/exercise-list-router';
+import { APP_PATHS } from '@/shared';
 
 interface IFormValues {
   skill: 'grammar' | 'vocabulary' | string;

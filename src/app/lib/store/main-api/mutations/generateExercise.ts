@@ -1,7 +1,7 @@
 import { API_PATH } from '@/constants/ApiBaseUrl';
 import { IExercise } from '@/interfaces/exercise';
 import { IGenerateExerciseRequest } from '@/interfaces/requests/generateExercise';
-import { mainApi } from '../MainApiRouter.api';
+import { mainApi } from '../../../../../shared/api/MainApiRouter.api';
 
 const mainApiEndpoint = mainApi.injectEndpoints({
   endpoints: (builder) => ({

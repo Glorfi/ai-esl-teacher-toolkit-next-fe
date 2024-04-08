@@ -1,6 +1,6 @@
 'use client';
 import { Button, ButtonGroup, HStack } from '@chakra-ui/react';
-import { APP_PATHS } from '../constants/AppPaths';
+
 import { useContext, useEffect, useState } from 'react';
 import { Link } from '@chakra-ui/next-js';
 import { useSelector } from 'react-redux';
@@ -9,6 +9,7 @@ import { LSHandler } from '@/utils/handleLocalStorage';
 import { skipToken } from '@reduxjs/toolkit/query/react';
 import { useGetCurrentUserQuery } from '@/features/user/signin/api/auth';
 import { RootState } from '@/app/lib/store/store';
+import { APP_PATHS } from '@/shared';
 
 export const Header = (): JSX.Element => {
   const userData = useSelector((state: RootState) => state.user);

@@ -1,6 +1,6 @@
 'use client';
 import { useGetExerciseByIdQuery } from '@/app/lib/store/main-api/queries/getExerciseById';
-import { APP_PATHS } from '@/constants/AppPaths';
+import { APP_PATHS } from '@/shared';
 import { Link } from '@chakra-ui/next-js';
 import { Skeleton, Text, VStack } from '@chakra-ui/react';
 import { useParams } from 'next/navigation';

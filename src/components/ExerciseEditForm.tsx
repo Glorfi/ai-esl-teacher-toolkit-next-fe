@@ -39,8 +39,7 @@ import { CheckIcon } from '@chakra-ui/icons';
 import { BadgeUpdating } from './BadgeUpdating';
 
 import { FaPlus, FaRegShareFromSquare, FaRegTrashCan } from 'react-icons/fa6';
-import { ShareExercisePopUp } from './ShareExercisePopUp';
-import { DeleteExercisePopUp } from './DeleteExercisePopUp';
+
 import formatDate from '@/utils/formatDate';
 import { AddTopicMenu } from './AddTopicMenu';
 import { replaceExercise } from '@/entities/exercise/model/exercise-list-router';
@@ -49,6 +48,7 @@ import { useRemoveTopicFromExerciseMutation } from '@/app/lib/store/main-api/mut
 import { useUpdateExerciseMutation } from '@/app/lib/store/main-api/mutations/updateExercise';
 import { RootState } from '@/app/lib/store/store';
 import { IExercise } from '@/entities/exercise';
+import { DeleteExercisePopUp, ShareExercisePopUp } from '@/features/exercise';
 
 
 interface IExerciseEditForm {

@@ -1,7 +1,8 @@
 import { API_PATH } from '@/constants/ApiBaseUrl';
-import { IExercise } from '@/interfaces/exercise';
-import { IDeleteExerciseRequest } from '@/interfaces/requests/deleteExercise';
-import { mainApi } from '../MainApiRouter.api';
+
+import { IExercise } from '@/entities/exercise';
+import { IDeleteExerciseRequest } from '../model/types';
+import { mainApi } from '@/shared';
 
 const mainApiEndpoint = mainApi.injectEndpoints({
   endpoints: (builder) => ({

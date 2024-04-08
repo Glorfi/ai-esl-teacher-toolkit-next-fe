@@ -8,25 +8,11 @@ import {
   MenuButton,
   MenuItem,
   MenuList,
-  MenuItemProps,
 } from '@chakra-ui/react';
 import { useRouter } from 'next/navigation';
-import { IExercise } from '@/entities/exercise';
-import { APP_PATHS } from '@/constants/AppPaths';
+import { APP_PATHS } from '@/shared/constants/AppPaths';
 import { ExThumbnailButton } from '@/components/ExThumbNailButton';
-
-//вынести в публичный интерфейс
-export interface IExerciseSidbarThumbnailProps {
-  data: IExercise;
-  menuFeatures: IMenuFeatures[];
-}
-
-//вынести в публичный интерфейс
-export interface IMenuFeatures extends MenuItemProps {
-  feature: () => void;
-  title: string;
-  icon?: any;
-}
+import { IExerciseSidbarThumbnailProps } from '../../model/models';
 
 export const ExerciseSidbarThumbnail = (
   props: IExerciseSidbarThumbnailProps
@@ -50,115 +36,120 @@ export const ExerciseSidbarThumbnail = (
     router.push(`${redirectPath}${data._id}`);
   }
 
-  const deleteHandler = useDisclosure();
-  const shareHandler = useDisclosure();
+  const modalStates = menuFeatures.map(() => useDisclosure());
 
-  function handleDeleteButton(e: React.MouseEvent) {
+  function handleMenuItemClick(
+    e: React.MouseEvent,
+    index: number,
+    onMenuItem?: () => void
+  ) {
     e.stopPropagation();
-    deleteHandler.onOpen();
-  }
-
-  function handleShareButton(e: React.MouseEvent) {
-    e.stopPropagation();
-    shareHandler.onOpen();
-  }
-
-  function handleMenuItemClick(e: React.MouseEvent, feature: () => void) {
-    e.stopPropagation();
-    feature();
+    onMenuItem ? onMenuItem() : null;
+    modalStates[index].onOpen();
   }
   return (
-    <HStack
-      w={'100%'}
-      as={'article'}
-      justifyContent={'space-between'}
-      minH={'max-content'}
-      padding={'8px 12px 8px 16px'}
-      _hover={{ backgroundColor: 'whiteOpacity.50' }}
-      cursor={'pointer'}
-      borderRadius={'0.375rem'}
-      onClick={handleThumbnailClick}
-    >
-      <VStack>
-        <HStack width={'100%'}>
-          {data.title ? (
-            <Text
-              fontSize={'12px'}
-              color={'background'}
-              fontWeight={'semibold'}
-            >
-              {data.title}
-            </Text>
-          ) : (
-            <>
-              <Text fontSize={'12px'} color={'background'} fontWeight={'light'}>
-                Keywords:
-              </Text>
+    <>
+      <HStack
+        w={'100%'}
+        as={'article'}
+        justifyContent={'space-between'}
+        minH={'max-content'}
+        padding={'8px 12px 8px 16px'}
+        _hover={{ backgroundColor: 'whiteOpacity.50' }}
+        cursor={'pointer'}
+        borderRadius={'0.375rem'}
+        onClick={handleThumbnailClick}
+      >
+        <VStack>
+          <HStack width={'100%'}>
+            {data.title ? (
               <Text
                 fontSize={'12px'}
                 color={'background'}
                 fontWeight={'semibold'}
-                noOfLines={1}
               >
-                {keywords.join(', ')}
+                {data.title}
               </Text>
-            </>
-          )}
-        </HStack>
-        <HStack w={'100%'}>
-          <Text fontSize={'12px'} color={'background'} fontWeight={'light'}>
-            Skill:
-          </Text>
-          <Text
-            fontSize={'12px'}
-            color={'background'}
-            fontWeight={'semibold'}
-            noOfLines={1}
-          >
-            {data.skill}
-          </Text>
-          <Text fontSize={'12px'} color={'background'} fontWeight={'light'}>
-            Type:
-          </Text>
-          <Text
-            fontSize={'12px'}
-            color={'background'}
-            fontWeight={'semibold'}
-            noOfLines={1}
-          >
-            {type}
-          </Text>
-        </HStack>
-      </VStack>
-      <Menu closeOnBlur closeOnSelect placement={'bottom'}>
-        <MenuButton as={ExThumbnailButton}></MenuButton>
-        <MenuList bgColor={'background'}>
-          {menuFeatures.map(({ feature, title, icon, ...rest }, index) => (
-            <MenuItem
-              onClick={(e) => handleMenuItemClick(e, feature)}
-              {...rest}
-              key={`menu-item ${data._id}${index} `}
+            ) : (
+              <>
+                <Text
+                  fontSize={'12px'}
+                  color={'background'}
+                  fontWeight={'light'}
+                >
+                  Keywords:
+                </Text>
+                <Text
+                  fontSize={'12px'}
+                  color={'background'}
+                  fontWeight={'semibold'}
+                  noOfLines={1}
+                >
+                  {keywords.join(', ')}
+                </Text>
+              </>
+            )}
+          </HStack>
+          <HStack w={'100%'}>
+            <Text fontSize={'12px'} color={'background'} fontWeight={'light'}>
+              Skill:
+            </Text>
+            <Text
+              fontSize={'12px'}
+              color={'background'}
+              fontWeight={'semibold'}
+              noOfLines={1}
             >
-              {icon && (
-                <Icon
-                  as={icon}
-                  mr={'8px'}
-                  key={`menu-icon ${data._id}${data._id}${index} `}
-                />
-              )}
-              {title}
-            </MenuItem>
-          ))}
-          {/* <MenuItem onClick={handleShareButton}>
-            <Icon as={FaRegShareFromSquare} mr={'8px'} />
-            Share
-          </MenuItem>
-          <MenuItem onClick={handleDeleteButton} color={'error.base'}>
-            <Icon as={FaRegTrashCan} mr={'8px'} />
-            Delete
-          </MenuItem> */}
-        </MenuList>
-      </Menu>
-    </HStack>
+              {data.skill}
+            </Text>
+            <Text fontSize={'12px'} color={'background'} fontWeight={'light'}>
+              Type:
+            </Text>
+            <Text
+              fontSize={'12px'}
+              color={'background'}
+              fontWeight={'semibold'}
+              noOfLines={1}
+            >
+              {type}
+            </Text>
+          </HStack>
+        </VStack>
+        <Menu closeOnBlur closeOnSelect placement={'bottom'}>
+          <MenuButton as={ExThumbnailButton}></MenuButton>
+          <MenuList bgColor={'background'}>
+            {menuFeatures.map(
+              ({ onMenuItem, title, icon, modal, ...rest }, index) => (
+                <MenuItem
+                  onClick={(e) => handleMenuItemClick(e, index, onMenuItem)}
+                  {...rest}
+                  key={`menu-item ${data._id}${index} `}
+                >
+                  {icon && (
+                    <Icon
+                      as={icon}
+                      mr={'8px'}
+                      key={`menu-icon ${data._id}${data._id}${index} `}
+                    />
+                  )}
+                  {title}
+                </MenuItem>
+              )
+            )}
+          </MenuList>
+        </Menu>
+      </HStack>
+      {menuFeatures.map(
+        (feature, index) =>
+          feature.modal && (
+            <feature.modal
+              isOpen={modalStates[index].isOpen}
+              onClose={modalStates[index].onClose}
+              id={data._id}
+              key={`modal-${index}`}
+            />
+          )
+      )}
+    </>
   );
 };

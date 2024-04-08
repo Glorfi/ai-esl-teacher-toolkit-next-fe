@@ -13,9 +13,10 @@ import {
   InputRightElement,
   IconButton,
 } from '@chakra-ui/react';
-import { APP_PATHS } from '../constants/AppPaths';
+
 import { FaRegCopy } from 'react-icons/fa6';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
+import { APP_PATHS } from '@/shared';
 
 interface IShareExercisePopUpProps {
   isOpen: boolean;

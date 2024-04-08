@@ -1,5 +1,5 @@
 import { IExercise } from '@/interfaces/exercise';
-import { mainApi } from '../MainApiRouter.api';
+import { mainApi } from '../../../../../shared/api/MainApiRouter.api';
 import { ICreateExerciseRequest } from '@/interfaces/requests/createExercise';
 import { API_PATH } from '@/constants/ApiBaseUrl';
 

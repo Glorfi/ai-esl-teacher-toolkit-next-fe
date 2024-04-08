@@ -15,7 +15,7 @@ import { ChangeEvent, useEffect, useState } from 'react';
 
 import { useDebounce } from '@/utils/useDebounce';
 import { useRouter } from 'next/navigation';
-import { APP_PATHS } from '@/constants/AppPaths';
+import { APP_PATHS } from '@/shared';
 import { useSignUpMutation } from '@/features/user/signup/api/signup';
 
 interface ISignUPForm {

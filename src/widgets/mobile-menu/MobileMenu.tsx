@@ -8,20 +8,10 @@ import {
   ShareExercisePopUp,
 } from '@/features/exercise';
 import { OpenProfileThumbnail } from '@/features/user';
-import { SidebarContainer } from '@/shared';
-
+import { MobileMenuContainer } from '@/shared';
 import { FaRegShareFromSquare, FaRegTrashCan } from 'react-icons/fa6';
 
-interface ISideBarDashboardProps {
-  isOpen: boolean;
-  onToggle: () => void;
-}
-
-export const SidebarDashboard = (
-  props: ISideBarDashboardProps
-): JSX.Element => {
-  const { isOpen, onToggle } = props;
-
+export const MobileMenuDashBoard = (): JSX.Element => {
   const features = [
     {
       title: 'Share',
@@ -37,13 +27,13 @@ export const SidebarDashboard = (
   ];
 
   return (
-    <SidebarContainer isOpen={isOpen} onToggle={onToggle}>
+    <MobileMenuContainer>
       <CreateExerciseButton />
       <RecentExercisesBox
         ExerciseThumbNail={ExerciseSidbarThumbnail}
         ThumbNailMenuFeatures={features}
       />
       <OpenProfileThumbnail />
-    </SidebarContainer>
+    </MobileMenuContainer>
   );
 };

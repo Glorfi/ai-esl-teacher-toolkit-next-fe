@@ -11,7 +11,7 @@ import {
 // import { Link as ReactRouterLink } from 'react-router-dom';
 import { Link } from '@chakra-ui/next-js';
 import React from 'react';
-import { APP_PATHS } from '../constants/AppPaths';
+import { APP_PATHS } from '../shared/constants/AppPaths';
 import { HamburgerIcon } from '@chakra-ui/icons';
 
 export const MobileMenuMain = (): JSX.Element => {

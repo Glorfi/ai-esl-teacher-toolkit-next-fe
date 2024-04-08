@@ -1,5 +1,6 @@
 import { ISentence } from '@/entities/sentence';
 import { ITopic } from '@/interfaces/topic';
+import { MenuItemProps } from '@chakra-ui/react';
 
 export interface IExercise {
   owner: string[] | string;
@@ -16,4 +17,17 @@ export interface IExercise {
   studentAge?: string;
   isRandomOrderEnabled?: boolean;
   __v: number;
+}
+
+export interface IExerciseSidbarThumbnailProps {
+  data: IExercise;
+  menuFeatures: IMenuFeatures[];
+}
+
+//вынести в публичный интерфейс
+export interface IMenuFeatures extends MenuItemProps {
+  onMenuItem?: () => void;
+  title: string;
+  icon?: any;
+  modal?: React.ComponentType<any>;
 }
