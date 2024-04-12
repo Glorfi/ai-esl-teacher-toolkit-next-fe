@@ -24,7 +24,6 @@ export interface IExerciseSidbarThumbnailProps {
   menuFeatures: IMenuFeatures[];
 }
 
-//вынести в публичный интерфейс
 export interface IMenuFeatures extends MenuItemProps {
   onMenuItem?: () => void;
   title: string;

@@ -1,6 +1,7 @@
 'use client';
 
-import SignInWidget from '@/widgets/user/SignInWidget';
+
+import { SignInWidget } from '@/widgets/user';
 import { Stack } from '@chakra-ui/react';
 
 const SignInPage = (): JSX.Element => {

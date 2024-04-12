@@ -1,5 +1,5 @@
-import { mainApi } from '@/shared/api/MainApiRouter.api';
-import { API_PATH } from '@/constants/ApiBaseUrl';
+import { mainApi } from '@/shared';
+import { API_PATH } from '@/shared'
 import { ISignUPResponse, ISignUPRequest } from '../model';
 
 const mainApiEndpoint = mainApi.injectEndpoints({

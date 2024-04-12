@@ -10,10 +10,10 @@ import {
   Text,
   useToast,
 } from '@chakra-ui/react';
-import { customError } from '@/interfaces/customError';
+import { customError } from '@/shared/constants/customError';
 import { ChangeEvent, useEffect, useState } from 'react';
 
-import { useDebounce } from '@/utils/useDebounce';
+import { useDebounce } from '@/shared/utils/useDebounce';
 import { useRouter } from 'next/navigation';
 import { APP_PATHS } from '@/shared';
 import { useSignUpMutation } from '@/features/user/signup/api/signup';

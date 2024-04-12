@@ -1,6 +1,6 @@
-import { API_PATH } from '@/constants/ApiBaseUrl';
-import { IUserData } from '@/entities/user/model/userData';
-import { mainApi } from '../../../../shared/api/MainApiRouter.api';
+import { API_PATH } from '@/shared';
+import { IUserData } from '@/entities/user/model/types';
+import { mainApi } from '@/shared';
 
 const AuthEndpoint = mainApi.injectEndpoints({
   endpoints: (builder) => ({

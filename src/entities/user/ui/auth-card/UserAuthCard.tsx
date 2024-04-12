@@ -1,6 +1,6 @@
 'use client';
 import { SignInForm, SignUpForm } from '@/features/user';
-import circle from '../../../assets/signin-elipse.svg';
+import circle from '../../../../assets/signin-elipse.svg';
 import { Card, CardBody, Box, Image, Text } from '@chakra-ui/react';
 
 interface UserAuthCardProps {

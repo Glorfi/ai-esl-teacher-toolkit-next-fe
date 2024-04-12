@@ -1,6 +1,6 @@
 'use client';
-import SharedExerciseWidget from '@/widgets/exercise/SharedExerciseWidget';
-import { Box, Skeleton, Text, VStack } from '@chakra-ui/react';
+import { SharedExerciseWidget } from '@/widgets/exercise';
+import { Box } from '@chakra-ui/react';
 
 const SharedExercisePage = (): JSX.Element => {
   return (

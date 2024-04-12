@@ -1,7 +1,7 @@
 import { Input, Select, Text } from '@chakra-ui/react';
 import React, { useEffect, useState } from 'react';
 
-import { shuffleArray } from '../../../features/exercise/lib/shuffleArray';
+import { shuffleArray } from '../../../features/exercise/check-exercise/lib/shuffleArray';
 import { ISentence } from '../model/models';
 
 interface ISentenceSelectInputProps {

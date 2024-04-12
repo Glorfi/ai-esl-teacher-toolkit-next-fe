@@ -1,8 +1,8 @@
 import { APP_PATHS } from '@/shared';
-import { customError } from '@/interfaces/customError';
+import { customError } from '@/shared/constants/customError';
 
-import { LSHandler } from '@/utils/handleLocalStorage';
-import { useDebounce } from '@/utils/useDebounce';
+import { LSHandler } from '@/shared/hooks/handleLocalStorage';
+import { useDebounce } from '@/shared/utils/useDebounce';
 import {
   useToast,
   FormControl,
@@ -20,9 +20,9 @@ import validator from 'validator';
 import { ArrowForwardIcon } from '@chakra-ui/icons';
 import { useLazyGetCurrentUserQuery } from '@/features/user/signin/api/auth';
 import { useSignInMutation } from '../api/signin';
-import { setUser } from '@/app/lib/store/user/user-router';
-import { addExerciseList } from '@/entities/exercise/model/exercise-list-router';
-import { useAppSelector } from '@/app/lib/hooks/hooks';
+import { setUser } from '@/entities/user';
+import { addExerciseList } from '@/entities/exercise';
+import { useAppSelector } from '@/shared/hooks/hooks';
 
 interface ISignInForm {
   email: string;
@@ -136,7 +136,7 @@ export const SignInForm = (): JSX.Element => {
 
   useEffect(() => {
     if (reduxUser) {
-      router.push(APP_PATHS.MAIN);
+      router.push(APP_PATHS.DASHBOARD);
     }
   }, [reduxUser]);
   return (

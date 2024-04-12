@@ -1,4 +1,4 @@
-import { useAppSelector } from '@/app/lib/hooks/hooks';
+import { useAppSelector } from '@/shared/hooks/hooks';
 import { HStack, Text } from '@chakra-ui/react';
 
 export const OpenProfileThumbnail = (): JSX.Element => {

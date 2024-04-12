@@ -1,9 +1,9 @@
 import { configureStore } from '@reduxjs/toolkit';
-import { ExerciseFormRouter } from './exercise-form/exercise-form-router';
-import { mainApi } from '@/shared';
-import { isEditingRouter } from './isEditing/isEditing-router';
-import { userRouter } from './user/user-router';
+import { isEditingRouter, mainApi } from '@/shared';
+
 import { exerciseListRouter } from '@/entities/exercise';
+import { userRouter } from '@/entities/user';
+import { ExerciseFormRouter } from '@/features/exercise';
 
 export const store = configureStore({
   reducer: {

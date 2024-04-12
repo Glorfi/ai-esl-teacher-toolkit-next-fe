@@ -7,7 +7,7 @@ import { getTodayExercises } from '@/entities/exercise/lib/getTodayExercises';
 import { getLastSevenDaysExercises } from '@/entities/exercise/lib/getLastSevenDaysExercises';
 import { getRestExercises } from '@/entities/exercise/lib/getRestExercises';
 import { getYesterdayExercises } from '@/entities/exercise/lib/getYesterdayExercises';
-import { useAppSelector } from '@/app/lib/hooks/hooks';
+import { useAppSelector } from '@/shared/hooks/hooks';
 
 
 import { IExercise, IExerciseSidbarThumbnailProps, IMenuFeatures } from '../../model/models';

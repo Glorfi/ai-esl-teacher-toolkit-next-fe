@@ -1,4 +1,5 @@
-import { IExercise } from '../../../interfaces/exercise';
+import { IExercise } from "../model/models";
+
 
 export function getTodayExercises(array: IExercise[]) {
   const currentDate = new Date();

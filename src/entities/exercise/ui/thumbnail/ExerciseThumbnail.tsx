@@ -8,11 +8,26 @@ import {
   MenuButton,
   MenuItem,
   MenuList,
+  MenuItemProps,
 } from '@chakra-ui/react';
 import { useRouter } from 'next/navigation';
 import { APP_PATHS } from '@/shared/constants/AppPaths';
-import { ExThumbnailButton } from '@/components/ExThumbNailButton';
-import { IExerciseSidbarThumbnailProps } from '../../model/models';
+// import { IExerciseSidbarThumbnailProps } from '../../model/models';
+import { ExThumbnailButton } from '@/shared';
+import { IExercise } from '../../model/models';
+
+
+interface IExerciseSidbarThumbnailProps {
+  data: IExercise;
+  menuFeatures: IMenuFeatures[];
+}
+
+ interface IMenuFeatures extends MenuItemProps {
+  onMenuItem?: () => void;
+  title: string;
+  icon?: any;
+  modal?: React.ComponentType<any>;
+}
 
 export const ExerciseSidbarThumbnail = (
   props: IExerciseSidbarThumbnailProps
