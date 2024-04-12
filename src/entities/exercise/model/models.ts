@@ -1,5 +1,6 @@
 import { ISentence } from '@/entities/sentence';
-import { ITopic } from '@/interfaces/topic';
+import { ITopic } from '@/entities/topic'
+
 import { MenuItemProps } from '@chakra-ui/react';
 
 export interface IExercise {

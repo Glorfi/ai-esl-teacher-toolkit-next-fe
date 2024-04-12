@@ -20,7 +20,7 @@ import { useDispatch } from 'react-redux';
 import { replaceExercise } from '@/entities/exercise';
 
 import { IExercise } from '@/entities/exercise';
-import { ITopic } from '@/entities/topic/model/types';
+import { ITopic } from '@/entities/topic';
 import { useAddTopicToExerciseMutation } from '../api/addTopicToExercise';
 import { useLazyGetTopicsAutocompleteQuery } from '../api/getTopicsAutocomplete';
 

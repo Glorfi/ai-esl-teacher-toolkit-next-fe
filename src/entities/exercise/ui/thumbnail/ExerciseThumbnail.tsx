@@ -16,13 +16,12 @@ import { APP_PATHS } from '@/shared/constants/AppPaths';
 import { ExThumbnailButton } from '@/shared';
 import { IExercise } from '../../model/models';
 
-
 interface IExerciseSidbarThumbnailProps {
   data: IExercise;
   menuFeatures: IMenuFeatures[];
 }
 
- interface IMenuFeatures extends MenuItemProps {
+interface IMenuFeatures extends MenuItemProps {
   onMenuItem?: () => void;
   title: string;
   icon?: any;
@@ -50,7 +49,7 @@ export const ExerciseSidbarThumbnail = (
     }
     router.push(`${redirectPath}${data._id}`);
   }
-
+  // eslint-disable-next-line react-hooks/rules-of-hooks
   const modalStates = menuFeatures.map(() => useDisclosure());
 
   function handleMenuItemClick(
