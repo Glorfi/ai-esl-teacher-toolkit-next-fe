@@ -1,0 +1,35 @@
+.sliderMenu {
+  width: 320px;
+  transition: width 0.2s ease-in;
+}
+.sliderMenu_isOpened {
+  width: 320px;
+}
+.sliderMenu_isClosed {
+  width: 0;
+  overflow: hidden;
+}
+
+.slidemenuButton {
+  transition: all 0.2s ease-in;
+}
+
+.slidemenuButton_isOpen {
+  transform: rotate(180deg);
+}
+
+@supports not selector(::-webkit-scrollbar) {
+  body {
+    scrollbar-color: var(--sb-thumb-color) var(--sb-track-color);
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .sliderMenu {
+    width: 0;
+    transition: width 0.2s ease-in;
+  }
+  .sliderMenu_isOpened {
+    width: 0;
+  }
+}

@@ -2,7 +2,7 @@
 'use client';
 
 import { ChakraProvider } from '@chakra-ui/react';
-import { theme } from '../ui/theme';
+import { theme } from '../shared/ui/theme';
 import ReduxProvider from './store-provider';
 
 export function Providers({ children }: { children: React.ReactNode }) {

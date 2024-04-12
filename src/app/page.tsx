@@ -1,10 +1,6 @@
 'use client';
-import Image from 'next/image';
-import styles from './page.module.css';
 import { VStack, Text } from '@chakra-ui/react';
-import { Header } from '@/components/Header';
-import { AuthProvider } from './auth-provider';
-import { AuthComponent } from '@/components/AuthComponent';
+import { Header } from '@/widgets/header';
 
 export default function Home() {
   return (
@@ -35,14 +31,6 @@ export default function Home() {
           ESL Teacher ToolKit
         </Text>
       </VStack>
-      {/* {isSuccess && parsedData && formData.taskType === 'fillInGaps' ? (
-      <ExerciseSentenceInput sentenceList={parsedData} />
-    ) : null}
-    {isSuccess && parsedData && formData.taskType === 'multipleChoice' ? (
-      <ExerciseSelectInput sentenceList={parsedData} />
-    ) : null} */}
-      {/* <ExerciseSentenceInput sentenceList={sampleData2} />
-    <ExerciseSelectInput sentenceList={sampleDataSelect}/> */}
     </VStack>
   );
 }
