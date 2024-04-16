@@ -8,6 +8,7 @@ export { ShareExercisePopUp } from './share-exercise/ui/ShareExercisePopUp';
 export { BadgeUpdating } from './update-exercise/ui/BadgeUpdating';
 export { EditTitleAndDescriptionForm } from './update-exercise/ui/EditTitleAndDescriptionForm';
 export { EditExerciseSettingsForm } from './update-exercise/ui/EditExerciseSettingsForm';
+export { ExerciseFilterForm } from './filter-exercise/ui/ExerciseFilterForm';
 //Actions
 export { ExerciseFormRouter } from './generate-exercise/model/exercise-form-router';
 export {

@@ -9,8 +9,11 @@ import { getRestExercises } from '@/entities/exercise/lib/getRestExercises';
 import { getYesterdayExercises } from '@/entities/exercise/lib/getYesterdayExercises';
 import { useAppSelector } from '@/shared/hooks/hooks';
 
-
-import { IExercise, IExerciseSidbarThumbnailProps, IMenuFeatures } from '../../model/models';
+import {
+  IExercise,
+  IExerciseSidbarThumbnailProps,
+  IMenuFeatures,
+} from '../../model/models';
 
 interface RecentExercisesBoxProps {
   ExerciseThumbNail: React.ComponentType<IExerciseSidbarThumbnailProps>;
@@ -38,7 +41,7 @@ export const RecentExercisesBox = (
     setRestExList(getRestExercises(exList));
   }, [exList]);
   return (
-    <>
+    <VStack flexGrow={1} alignItems={'flex-start'} w={'100%'}>
       <Text
         fontSize={'14px'}
         color={'background'}
@@ -68,7 +71,13 @@ export const RecentExercisesBox = (
               Today
             </Text>
             {todayExList?.map((ex) => {
-              return <ExerciseThumbNail data={ex} key={ex._id} menuFeatures={ThumbNailMenuFeatures} />;
+              return (
+                <ExerciseThumbNail
+                  data={ex}
+                  key={ex._id}
+                  menuFeatures={ThumbNailMenuFeatures}
+                />
+              );
             })}
           </>
         ) : null}
@@ -85,7 +94,13 @@ export const RecentExercisesBox = (
               Yesterday
             </Text>
             {yesterdayExList?.map((ex) => {
-              return <ExerciseThumbNail data={ex} key={ex._id} menuFeatures={ThumbNailMenuFeatures} />;
+              return (
+                <ExerciseThumbNail
+                  data={ex}
+                  key={ex._id}
+                  menuFeatures={ThumbNailMenuFeatures}
+                />
+              );
             })}
           </>
         ) : null}
@@ -102,7 +117,13 @@ export const RecentExercisesBox = (
               Previous 7 Days
             </Text>
             {sevenDaysExList?.map((ex) => {
-              return <ExerciseThumbNail data={ex} key={ex._id} menuFeatures={ThumbNailMenuFeatures}/>;
+              return (
+                <ExerciseThumbNail
+                  data={ex}
+                  key={ex._id}
+                  menuFeatures={ThumbNailMenuFeatures}
+                />
+              );
             })}
           </>
         ) : null}
@@ -119,11 +140,17 @@ export const RecentExercisesBox = (
               Earlier
             </Text>
             {restExList?.map((ex) => {
-              return <ExerciseThumbNail data={ex} key={ex._id} menuFeatures={ThumbNailMenuFeatures} />;
+              return (
+                <ExerciseThumbNail
+                  data={ex}
+                  key={ex._id}
+                  menuFeatures={ThumbNailMenuFeatures}
+                />
+              );
             })}
           </>
         ) : null}
       </VStack>
-    </>
+    </VStack>
   );
 };

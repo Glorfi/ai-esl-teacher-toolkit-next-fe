@@ -1,12 +1,15 @@
 'use client';
 
 import { MobileMenuDashBoard } from '@/widgets/mobile-menu';
-import { SidebarDashboardWithRecentEx } from '@/widgets/sidebar-dashboard';
+import {
+  SidebarDashboardWithRecentEx,
+  SidebarUserLibrary,
+} from '@/widgets/sidebar-dashboard';
 
-import { Box, HStack } from '@chakra-ui/react';
+import { Box, HStack, VStack } from '@chakra-ui/react';
 import { useState } from 'react';
 
-const ClientDashboardLayout = ({
+const LibraryDashboardLayout = ({
   children,
 }: {
   children: React.ReactNode;
@@ -20,10 +23,7 @@ const ClientDashboardLayout = ({
   return (
     <Box minH={'100vh'}>
       <HStack alignItems={'flex-start'} w={'100%'}>
-        <SidebarDashboardWithRecentEx
-          isOpen={isSideBarOpen}
-          onToggle={toggleSideBar}
-        />
+        <SidebarUserLibrary isOpen={isSideBarOpen} onToggle={toggleSideBar} />
         <HStack
           marginLeft={'auto'}
           flexDirection={['column', 'column']}
@@ -42,4 +42,4 @@ const ClientDashboardLayout = ({
   );
 };
 
-export default ClientDashboardLayout;
+export default LibraryDashboardLayout;
