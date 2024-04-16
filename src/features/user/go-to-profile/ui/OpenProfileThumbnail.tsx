@@ -28,7 +28,7 @@ export const OpenProfileThumbnail = (): JSX.Element => {
         variant={'ghost'}
         colorScheme="whiteOpacity"
         isRound
-        icon={<FaBookOpen color="background" />}
+        icon={<FaBookOpen color="background " />}
         href={APP_PATHS.DASHBOARD_LIBRARY}
       />
     </HStack>
