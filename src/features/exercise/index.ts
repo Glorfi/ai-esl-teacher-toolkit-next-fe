@@ -10,6 +10,7 @@ export { EditTitleAndDescriptionForm } from './update-exercise/ui/EditTitleAndDe
 export { EditExerciseSettingsForm } from './update-exercise/ui/EditExerciseSettingsForm';
 export { ExerciseFilterForm } from './filter-exercise/ui/ExerciseFilterForm';
 //Actions
+export { filterOptionsRouter } from './filter-exercise/model/filter-options-router';
 export { ExerciseFormRouter } from './generate-exercise/model/exercise-form-router';
 export {
   useGetExerciseByIdQuery,

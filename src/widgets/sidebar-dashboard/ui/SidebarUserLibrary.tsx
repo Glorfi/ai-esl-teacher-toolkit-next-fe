@@ -24,20 +24,6 @@ export const SidebarUserLibrary = (
 ): JSX.Element => {
   const { isOpen, onToggle } = props;
 
-  const features = [
-    {
-      title: 'Share',
-      icon: FaRegShareFromSquare,
-      modal: ShareExercisePopUp,
-    },
-    {
-      icon: FaRegTrashCan,
-      title: 'Delete',
-      color: 'error.base',
-      modal: DeleteExercisePopUp,
-    },
-  ];
-
   return (
     <SidebarContainer isOpen={isOpen} onToggle={onToggle}>
       <CreateExerciseButton />
