@@ -13,18 +13,14 @@ import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { userTopicsSelector } from '../lib/useUsersTopics';
 import { IFilterOptions } from '../model/types';
-import { useAppDispatch } from '@/shared/hooks/hooks';
+import { useAppDispatch, useAppSelector } from '@/shared/hooks/hooks';
 import { setFilterOptions as setFilterConfig } from '../model/filter-options-router';
 import { log } from 'console';
 
 export const ExerciseFilterForm = (): JSX.Element => {
-  const [filterOptions, setFilterOptions] = useState<IFilterOptions>({
-    studentAge: '',
-    studentLevel: '',
-    skill: [],
-    type: [],
-    topicList: [],
-  });
+  const reduxFormValues = useAppSelector((state) => state.filterOptions);
+  const [filterOptions, setFilterOptions] =
+    useState<IFilterOptions>(reduxFormValues);
   const {
     value: skillValues,
     getCheckboxProps: getSkillCheckBoxProps,
@@ -71,6 +67,13 @@ export const ExerciseFilterForm = (): JSX.Element => {
   useEffect(() => {
     dispatch(setFilterConfig(filterOptions));
   }, [filterOptions]);
+
+  useEffect(() => {
+    //  setFilterOptions(reduxFormValues);
+    setSkillValue(reduxFormValues.skill);
+    setTypeValue(reduxFormValues.type);
+    setTopicValue(reduxFormValues.topicList);
+  }, []);
 
   return (
     <VStack
