@@ -1,9 +1,7 @@
+import { ExerciseUserLibraryWidget } from '@/widgets/exercise';
+
 const ClientLibraryPage = (): JSX.Element => {
-  return (
-    <>
-      <p>HELLO MOTHERFUCKER!</p>
-    </>
-  );
+  return <ExerciseUserLibraryWidget />;
 };
 
 export default ClientLibraryPage;
