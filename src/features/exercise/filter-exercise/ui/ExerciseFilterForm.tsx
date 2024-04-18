@@ -43,7 +43,7 @@ export const ExerciseFilterForm = (): JSX.Element => {
 
   //const topicList = useSelector(userTopicsSelector); // MEMOIZED VARIANT
   const topicList = getUniqueUserTopics(exercisesList); // NO MEMO VARIANT
-  // DELETE IN NEXT COMMIT
+  // DELETE IN NEXT COMMIT 
   const filteredEx = getFilteredExerciseList(exercisesList, filterOptions);
   console.log(filteredEx);
 
