@@ -11,14 +11,18 @@ import {
 import { useEffect, useState } from 'react';
 
 import { useSelector } from 'react-redux';
-import { userTopicsSelector } from '../lib/useUsersTopics';
+import {
+  getUniqueUserTopics,
+  userTopicsSelector,
+} from '../model/useUsersTopics';
 import { IFilterOptions } from '../model/types';
 import { useAppDispatch, useAppSelector } from '@/shared/hooks/hooks';
 import { setFilterOptions as setFilterConfig } from '../model/filter-options-router';
-import { log } from 'console';
+import { getFilteredExerciseList } from '../model/getFilteredExerciseList';
 
 export const ExerciseFilterForm = (): JSX.Element => {
   const reduxFormValues = useAppSelector((state) => state.filterOptions);
+  const exercisesList = useAppSelector((state) => state.exerciseList);
   const [filterOptions, setFilterOptions] =
     useState<IFilterOptions>(reduxFormValues);
   const {
@@ -37,7 +41,12 @@ export const ExerciseFilterForm = (): JSX.Element => {
     setValue: setTopicValue,
   } = useCheckboxGroup();
 
-  const topicList = useSelector(userTopicsSelector);
+  //const topicList = useSelector(userTopicsSelector); // MEMOIZED VARIANT
+  const topicList = getUniqueUserTopics(exercisesList); // NO MEMO VARIANT
+  // DELETE IN NEXT COMMIT
+  const filteredEx = getFilteredExerciseList(exercisesList, filterOptions);
+  console.log(filteredEx);
+
   const dispatch = useAppDispatch();
 
   const resetForm = () => {
@@ -134,11 +143,11 @@ export const ExerciseFilterForm = (): JSX.Element => {
         value={filterOptions.studentLevel}
       >
         <option value={''}></option>
-        <option value={'A1'}>Beginner A1</option>
-        <option value={'A2'}>Elementary A2</option>
-        <option value={'B1'}>Intermediate B1</option>
-        <option value={'B2'}>Upper-Intermediate B2</option>
-        <option value={'C1'}>Advanced C1</option>
+        <option value={'Beginner A1'}>Beginner A1</option>
+        <option value={'Elementary A2'}>Elementary A2</option>
+        <option value={'Intermediate B1'}>Intermediate B1</option>
+        <option value={'Upper-Intermediate B2'}>Upper-Intermediate B2</option>
+        <option value={'Advanced C1'}>Advanced C1</option>
       </Select>
       <Text color={'background'} fontSize={'14px'} fontWeight={'bold'}>
         Learner Age
@@ -170,8 +179,15 @@ export const ExerciseFilterForm = (): JSX.Element => {
           ))}
         </HStack>
       </CheckboxGroup>
-      <Button mt={'auto'} onClick={resetForm}>
-        Reset button
+      <Button
+        mt={'auto'}
+        w={'100%'}
+        onClick={resetForm}
+        variant={'ghost'}
+        colorScheme="whiteOpacity"
+        size={'sm'}
+      >
+        Reset filters
       </Button>
     </VStack>
   );

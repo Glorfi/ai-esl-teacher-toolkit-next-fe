@@ -18,3 +18,4 @@ export {
 } from './get-exercise/api/getExerciseById';
 export { useUpdateExerciseMutation } from './update-exercise/api/updateExercise';
 export { useDeleteExerciseMutation } from './delete-exercise/api/deleteExercise';
+export { getFilteredExerciseList } from './filter-exercise/model/getFilteredExerciseList';
