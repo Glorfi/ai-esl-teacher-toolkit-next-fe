@@ -25,7 +25,8 @@ export const MobileMenuContainer = ({
   function handleOnCloseClick(e: React.MouseEvent) {
     if (
       e.target instanceof HTMLButtonElement ||
-      e.target instanceof SVGElement
+      e.target instanceof SVGElement ||
+      e.target instanceof HTMLSelectElement
     ) {
       return;
     }

@@ -3,13 +3,14 @@ import { isEditingRouter, mainApi } from '@/shared';
 
 import { exerciseListRouter } from '@/entities/exercise';
 import { userRouter } from '@/entities/user';
-import { ExerciseFormRouter } from '@/features/exercise';
+import { ExerciseFormRouter, filterOptionsRouter } from '@/features/exercise';
 
 export const store = configureStore({
   reducer: {
     [userRouter.name]: userRouter.reducer,
     [ExerciseFormRouter.name]: ExerciseFormRouter.reducer,
     [exerciseListRouter.name]: exerciseListRouter.reducer,
+    [filterOptionsRouter.name]: filterOptionsRouter.reducer,
     [isEditingRouter.name]: isEditingRouter.reducer,
     [mainApi.reducerPath]: mainApi.reducer,
   },

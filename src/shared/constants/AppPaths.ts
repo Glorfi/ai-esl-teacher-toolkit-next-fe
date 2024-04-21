@@ -4,5 +4,6 @@ export const APP_PATHS = {
   SIGN_UP: '/signup',
   DASHBOARD: '/dashboard',
   DASHBOARD_EXERCISE: '/dashboard/e/:id',
+  DASHBOARD_LIBRARY: '/dashboard/lib',
   SHARED_EXERCISE: '/shared/e/:id',
 };

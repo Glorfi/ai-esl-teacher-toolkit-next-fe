@@ -1,5 +1,7 @@
 import type { Metadata } from 'next';
 import ClientDashboardLayout from './dashboard-cs-layout';
+import { usePathname } from 'next/navigation';
+import { useEffect } from 'react';
 
 export const metadata: Metadata = {
   title: 'AI ESL Teacher Toolkit - Dashboard',

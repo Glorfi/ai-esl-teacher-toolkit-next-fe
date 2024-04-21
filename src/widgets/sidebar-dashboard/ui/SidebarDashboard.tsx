@@ -17,7 +17,7 @@ interface ISideBarDashboardProps {
   onToggle: () => void;
 }
 
-export const SidebarDashboard = (
+export const SidebarDashboardWithRecentEx = (
   props: ISideBarDashboardProps
 ): JSX.Element => {
   const { isOpen, onToggle } = props;

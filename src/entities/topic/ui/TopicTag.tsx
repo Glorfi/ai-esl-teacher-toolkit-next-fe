@@ -6,6 +6,7 @@ interface ITopicTag extends TagProps {
   topic: ITopic;
   exerciseId: string;
   onDelete?: (args: DeleteHandlerArgs) => void;
+  onFilterClick?: (arg: string) => void;
 }
 
 type DeleteHandlerArgs = {
@@ -15,7 +16,7 @@ type DeleteHandlerArgs = {
 };
 
 export const TopicTag = (props: ITopicTag): JSX.Element => {
-  const { topic, onDelete, exerciseId } = props;
+  const { topic, onDelete, exerciseId, onFilterClick } = props;
   const [isHovered, setIsHovered] = useState<boolean>(false);
   const token = LSHandler.getJwt();
 
@@ -25,12 +26,22 @@ export const TopicTag = (props: ITopicTag): JSX.Element => {
     }
   }
 
+  function hanldeTagClick() {
+    if (onFilterClick) {
+      onFilterClick(topic._id);
+    }
+  }
+
   return (
     <Tag
       colorScheme="secondary"
       variant={'outline'}
-      onMouseEnter={() => setIsHovered(true)}
+      onMouseEnter={() => {
+        setIsHovered(true);
+      }}
       onMouseLeave={() => setIsHovered(false)}
+      onClick={hanldeTagClick}
+      cursor={onFilterClick && "pointer"}
     >
       <TagLabel>{topic.name}</TagLabel>
       <TagCloseButton
