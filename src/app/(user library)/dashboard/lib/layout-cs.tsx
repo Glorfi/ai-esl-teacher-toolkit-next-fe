@@ -1,6 +1,6 @@
 'use client';
 
-import { MobileMenuDashBoard } from '@/widgets/mobile-menu';
+import { MobileMenuUserLibrary } from '@/widgets/mobile-menu';
 import {
   SidebarDashboardWithRecentEx,
   SidebarUserLibrary,
@@ -34,7 +34,7 @@ const LibraryDashboardLayout = ({
           justifyContent={['flex-start']}
           padding={['20px', '0']}
         >
-          <MobileMenuDashBoard />
+          <MobileMenuUserLibrary />
           {children}
         </HStack>
       </HStack>

@@ -19,3 +19,4 @@ export {
 export { useUpdateExerciseMutation } from './update-exercise/api/updateExercise';
 export { useDeleteExerciseMutation } from './delete-exercise/api/deleteExercise';
 export { getFilteredExerciseList } from './filter-exercise/model/getFilteredExerciseList';
+export { toggleTopic } from './filter-exercise/model/filter-options-router';

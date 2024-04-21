@@ -43,9 +43,6 @@ export const ExerciseFilterForm = (): JSX.Element => {
 
   //const topicList = useSelector(userTopicsSelector); // MEMOIZED VARIANT
   const topicList = getUniqueUserTopics(exercisesList); // NO MEMO VARIANT
-  // DELETE IN NEXT COMMIT 
-  const filteredEx = getFilteredExerciseList(exercisesList, filterOptions);
-  console.log(filteredEx);
 
   const dispatch = useAppDispatch();
 
@@ -70,12 +67,20 @@ export const ExerciseFilterForm = (): JSX.Element => {
     setFilterOptions({ ...filterOptions, type: typeValues });
   }, [typeValues]);
   useEffect(() => {
-    setFilterOptions({ ...filterOptions, topicList: topicValues });
+    if (reduxFormValues.topicList.length !== topicValues.length) {
+      setFilterOptions({ ...filterOptions, topicList: topicValues });
+    }
   }, [topicValues]);
 
   useEffect(() => {
     dispatch(setFilterConfig(filterOptions));
   }, [filterOptions]);
+
+  useEffect(() => {
+    if (reduxFormValues.topicList.length !== topicValues.length) {
+      setTopicValue(reduxFormValues.topicList);
+    }
+  }, [reduxFormValues.topicList]);
 
   useEffect(() => {
     //  setFilterOptions(reduxFormValues);
