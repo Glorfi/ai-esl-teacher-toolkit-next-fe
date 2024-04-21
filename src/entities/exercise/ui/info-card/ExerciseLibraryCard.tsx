@@ -62,7 +62,7 @@ export const ExerciseLibraryCard = (
     }
     router.push(`${redirectPath}${exersice._id}`);
   }
-
+  // eslint-disable-next-line react-hooks/rules-of-hooks
   const modalStates = menuFeatures.map(() => useDisclosure());
 
   function handleMenuItemClick(
