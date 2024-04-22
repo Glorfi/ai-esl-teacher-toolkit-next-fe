@@ -23,8 +23,6 @@ export const MobileMenuContainer = ({
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   function handleOnCloseClick(e: React.MouseEvent) {
-    console.log(e.target);
-
     if (
       e.target instanceof HTMLButtonElement ||
       e.target instanceof SVGElement ||

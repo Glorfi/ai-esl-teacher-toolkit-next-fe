@@ -90,8 +90,6 @@ export const ExerciseFilterForm = (): JSX.Element => {
 
   useEffect(() => {
     //  setFilterOptions(reduxFormValues);
-    console.log('Render!');
-
     setSkillValue(reduxFormValues.skill);
     setTypeValue(reduxFormValues.type);
     setTopicValue(reduxFormValues.topicList);
