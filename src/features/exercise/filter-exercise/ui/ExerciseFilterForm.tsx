@@ -10,15 +10,10 @@ import {
 } from '@chakra-ui/react';
 import { useEffect, useState } from 'react';
 
-import { useSelector } from 'react-redux';
-import {
-  getUniqueUserTopics,
-  userTopicsSelector,
-} from '../model/useUsersTopics';
+import { getUniqueUserTopics } from '../model/useUsersTopics';
 import { IFilterOptions } from '../model/types';
 import { useAppDispatch, useAppSelector } from '@/shared/hooks/hooks';
 import { setFilterOptions as setFilterConfig } from '../model/filter-options-router';
-import { getFilteredExerciseList } from '../model/getFilteredExerciseList';
 
 export const ExerciseFilterForm = (): JSX.Element => {
   const reduxFormValues = useAppSelector((state) => state.filterOptions);
@@ -40,6 +35,8 @@ export const ExerciseFilterForm = (): JSX.Element => {
     getCheckboxProps: getTopicCheckBoxProps,
     setValue: setTopicValue,
   } = useCheckboxGroup();
+
+  const [allowTopicUpdate, setAllowTopicUpdate] = useState<boolean>(true);
 
   //const topicList = useSelector(userTopicsSelector); // MEMOIZED VARIANT
   const topicList = getUniqueUserTopics(exercisesList); // NO MEMO VARIANT
@@ -66,20 +63,29 @@ export const ExerciseFilterForm = (): JSX.Element => {
   useEffect(() => {
     setFilterOptions({ ...filterOptions, type: typeValues });
   }, [typeValues]);
+
   useEffect(() => {
-    if (reduxFormValues.topicList.length !== topicValues.length) {
-      setFilterOptions({ ...filterOptions, topicList: topicValues });
-    }
+    setFilterOptions({ ...filterOptions, topicList: topicValues });
   }, [topicValues]);
 
   useEffect(() => {
-    dispatch(setFilterConfig(filterOptions));
+    if (allowTopicUpdate) {
+      dispatch(setFilterConfig(filterOptions));
+    }
   }, [filterOptions]);
 
   useEffect(() => {
-    if (reduxFormValues.topicList.length !== topicValues.length) {
+    if (allowTopicUpdate) {
       setTopicValue(reduxFormValues.topicList);
     }
+  }, [reduxFormValues.topicList, allowTopicUpdate]);
+
+  useEffect(() => {
+    setAllowTopicUpdate(false);
+    const timeout = setTimeout(() => {
+      setAllowTopicUpdate(true);
+    }, 100);
+    return () => clearTimeout(timeout);
   }, [reduxFormValues.topicList]);
 
   useEffect(() => {

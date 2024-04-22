@@ -16,8 +16,9 @@ import {
   useRemoveTopicFromExerciseMutation,
 } from '@/features/topic';
 import { useAppDispatch, useAppSelector } from '@/shared/hooks/hooks';
-import { VStack, Text, Grid } from '@chakra-ui/react';
+import { VStack, Text, Grid, Icon } from '@chakra-ui/react';
 import { useEffect, useState } from 'react';
+import { BsExclamationCircle } from 'react-icons/bs';
 import { FaRegShareFromSquare, FaRegTrashCan } from 'react-icons/fa6';
 
 export const ExerciseUserLibraryWidget = (): JSX.Element => {
@@ -25,6 +26,7 @@ export const ExerciseUserLibraryWidget = (): JSX.Element => {
   const filterOptions = useAppSelector((state) => state.filterOptions);
   const dispatch = useAppDispatch();
   const [filteredExList, setFilteredExList] = useState<IExercise[]>([]);
+  const [isRendered, setIsRendered] = useState<boolean>(false);
 
   const features = [
     {
@@ -40,8 +42,8 @@ export const ExerciseUserLibraryWidget = (): JSX.Element => {
     },
   ];
 
-  const [removeTopic, { data: exWithRemovedTopic }] =
-    useRemoveTopicFromExerciseMutation();
+  // const [removeTopic, { data: exWithRemovedTopic }] =
+  //   useRemoveTopicFromExerciseMutation();
 
   const onTopicFilter = (topicId: string) => {
     dispatch(toggleTopic(topicId));
@@ -54,13 +56,14 @@ export const ExerciseUserLibraryWidget = (): JSX.Element => {
         new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime()
     );
     setFilteredExList(arr);
+    setIsRendered(true);
   }, [filterOptions, exerciseList]);
 
-  useEffect(() => {
-    if (exWithRemovedTopic) {
-      dispatch(replaceExercise(exWithRemovedTopic));
-    }
-  }, [exWithRemovedTopic]);
+  // useEffect(() => {
+  //   if (exWithRemovedTopic) {
+  //     dispatch(replaceExercise(exWithRemovedTopic));
+  //   }
+  // }, [exWithRemovedTopic]);
   return (
     <VStack maxW={'800px'} w={['100%', '100%', '80%']} p={['0', '20px 0']}>
       <Text w={'100%'} fontSize={'x-large'} fontWeight={'bold'}>
@@ -71,7 +74,6 @@ export const ExerciseUserLibraryWidget = (): JSX.Element => {
         gap={'8px'}
         w={'100%'}
       >
-        {/* <ExerciseLibraryCard exersice={filteredExList[0]} /> */}
         {filteredExList.map((item, index) => {
           return (
             <ExerciseLibraryCard
@@ -79,13 +81,26 @@ export const ExerciseUserLibraryWidget = (): JSX.Element => {
               TopicTag={TopicTag}
               key={`exInfoCard ${item._id}`}
               menuFeatures={features}
-              OnTopicDelete={removeTopic}
               AddTopicMenu={AddTopicMenu}
               onTopicFilter={onTopicFilter}
             />
           );
         })}
       </Grid>
+      {filteredExList.length === 0 && isRendered && (
+        <VStack>
+          <Icon
+            as={BsExclamationCircle}
+            w={'80px'}
+            h={'80px'}
+            color={'primary'}
+          />
+          <Text>There are no exercises matching your current filters</Text>
+          <Text fontWeight={'bold'} fontSize={'x-large'}>
+            Please choose other filtering options!
+          </Text>
+        </VStack>
+      )}
     </VStack>
   );
 };

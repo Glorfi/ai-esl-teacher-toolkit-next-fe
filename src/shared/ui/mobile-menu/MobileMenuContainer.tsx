@@ -26,7 +26,9 @@ export const MobileMenuContainer = ({
     if (
       e.target instanceof HTMLButtonElement ||
       e.target instanceof SVGElement ||
-      e.target instanceof HTMLSelectElement
+      e.target instanceof HTMLSelectElement ||
+      e.target instanceof HTMLInputElement ||
+      e.target instanceof HTMLParagraphElement
     ) {
       return;
     }
