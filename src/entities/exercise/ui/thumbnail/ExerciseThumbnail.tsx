@@ -10,11 +10,12 @@ import {
   MenuList,
   MenuItemProps,
 } from '@chakra-ui/react';
-import { useRouter } from 'next/navigation';
+import { useParams, useRouter } from 'next/navigation';
 import { APP_PATHS } from '@/shared/constants/AppPaths';
 // import { IExerciseSidbarThumbnailProps } from '../../model/models';
 import { ExThumbnailButton } from '@/shared';
 import { IExercise } from '../../model/models';
+import { useEffect, useState } from 'react';
 
 interface IExerciseSidbarThumbnailProps {
   data: IExercise;
@@ -32,7 +33,10 @@ export const ExerciseSidbarThumbnail = (
   props: IExerciseSidbarThumbnailProps
 ): JSX.Element => {
   const router = useRouter();
+  const { id } = useParams();
+
   const { data, menuFeatures } = props;
+  const [isSelected, setIsSelected] = useState<boolean>(id === data._id);
   const keywords = data.sentenceList.map((item) => {
     return item.answer;
   });
@@ -61,6 +65,10 @@ export const ExerciseSidbarThumbnail = (
     onMenuItem ? onMenuItem() : null;
     modalStates[index].onOpen();
   }
+
+  useEffect(() => {
+    setIsSelected(id === data._id);
+  }, [id]);
   return (
     <>
       <HStack
@@ -70,6 +78,7 @@ export const ExerciseSidbarThumbnail = (
         minH={'max-content'}
         padding={'8px 12px 8px 16px'}
         _hover={{ backgroundColor: 'whiteOpacity.50' }}
+        backgroundColor={isSelected ? 'whiteOpacity.50' : 'transparent'}
         cursor={'pointer'}
         borderRadius={'0.375rem'}
         onClick={handleThumbnailClick}
