@@ -27,7 +27,6 @@ interface IExerciseLibraryCard {
   TopicTag: React.ComponentType<any>;
   menuFeatures: IMenuFeatures[];
   AddTopicMenu: React.ComponentType<any>;
-  OnTopicDelete: any;
   onTopicFilter: any;
 }
 
@@ -41,14 +40,8 @@ interface IMenuFeatures extends MenuItemProps {
 export const ExerciseLibraryCard = (
   props: IExerciseLibraryCard
 ): JSX.Element => {
-  const {
-    exersice,
-    TopicTag,
-    menuFeatures,
-    AddTopicMenu,
-    OnTopicDelete,
-    onTopicFilter,
-  } = props;
+  const { exersice, TopicTag, menuFeatures, AddTopicMenu, onTopicFilter } =
+    props;
   const router = useRouter();
   const redirectPath = APP_PATHS.DASHBOARD_EXERCISE.replace('/:id', '/');
 
@@ -218,7 +211,6 @@ export const ExerciseLibraryCard = (
                 <TopicTag
                   topic={topic}
                   exerciseId={exersice._id}
-                  onDelete={OnTopicDelete}
                   key={`topic${topic._id}-exercise${exersice._id}`}
                   onFilterClick={onTopicFilter}
                 />

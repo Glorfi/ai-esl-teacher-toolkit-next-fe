@@ -79,7 +79,6 @@ export const ExerciseUserLibraryWidget = (): JSX.Element => {
               TopicTag={TopicTag}
               key={`exInfoCard ${item._id}`}
               menuFeatures={features}
-              OnTopicDelete={removeTopic}
               AddTopicMenu={AddTopicMenu}
               onTopicFilter={onTopicFilter}
             />
