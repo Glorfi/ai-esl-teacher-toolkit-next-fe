@@ -18,7 +18,7 @@ export const SentenceInput = (props: ISentenceInputProps) => {
   const parts = sentence.split(answer);
 
   function handleValidity() {
-    const isValid = value === answer;
+    const isValid = value.trim() === answer;
     setIsValid(isValid);
     onValidityChange(isValid);
   }

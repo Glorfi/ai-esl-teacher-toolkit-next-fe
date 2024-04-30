@@ -77,6 +77,7 @@ export const ExerciseSentenceInput = (props: IExerciseSentenceInput) => {
           borderColor={'highlight'}
           borderRadius={'8px'}
           p={'8px'}
+          flexWrap={"wrap"}
         >
           {hintsList.map((item, index) => {
             if (index === hintsList.length - 1) {

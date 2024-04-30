@@ -40,6 +40,11 @@ export const SentenceEditForm = (
   const token = LSHandler.getJwt();
   const isEditButtonVisible = useDisclosure();
   const isFormOpen = useDisclosure();
+  const exerciseType = useAppSelector(
+    (state) =>
+      state.exerciseList.find((exercise) => exercise._id === sentence.exercise)
+        ?.type
+  );
 
   const [rendered, setRendered] = useState<boolean>(false);
   const [formValues, setFormValues] = useState<ISentenceBodyUpdateRequest>({
@@ -47,15 +52,12 @@ export const SentenceEditForm = (
     hint: sentence.hint,
     answer: sentence.answer,
     options: sentence.options,
+    exerciseType: exerciseType ? exerciseType : 'fillInGaps',
   });
   const [isSentenceValid, setIsSentenceValid] = useState<boolean>(true);
   const [isAnswerValid, setIsAnswerValid] = useState<boolean>(true);
   const [areOptionsValid, setAreOptionsValid] = useState<boolean>(true);
-  const exerciseType = useAppSelector(
-    (state) =>
-      state.exerciseList.find((exercise) => exercise._id === sentence.exercise)
-        ?.type
-  );
+
 
   const [updateSentence, { data, isSuccess, isError }] =
     useUpdateSentenceMutation({
@@ -110,8 +112,11 @@ export const SentenceEditForm = (
   }, [formValues.answer, formValues.sentence]);
 
   useEffect(() => {
-    if (formValues.answer && formValues.options) {
+    if (formValues.answer && formValues.options && exerciseType === "multipleChoice") {
       setAreOptionsValid(formValues.options.includes(formValues.answer));
+    }
+    if (formValues.answer && formValues.options && exerciseType === "fillInGaps") {
+      setAreOptionsValid(true);
     }
   }, [formValues.answer, formValues.options]);
 
