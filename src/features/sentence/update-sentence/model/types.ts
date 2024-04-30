@@ -9,4 +9,5 @@ export interface ISentenceBodyUpdateRequest {
   answer: string | null;
   hint?: string | null;
   options?: string[] | null;
+  exerciseType: 'multipleChoice' | 'fillInGaps';
 }
