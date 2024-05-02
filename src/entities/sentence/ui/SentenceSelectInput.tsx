@@ -38,11 +38,11 @@ export const SentenceSelectInput = (props: ISentenceSelectInputProps) => {
     }
   }, [isCheckActive]);
 
-  useEffect(() => {
-    if (options) {
-      setValue(options[0]);
-    }
-  }, [options]);
+  // useEffect(() => {
+  //   if (options) {
+  //     setValue(options[0]);
+  //   }
+  // }, [options]);
 
   useEffect(() => {
     if (props.sentence.options) {
@@ -68,7 +68,7 @@ export const SentenceSelectInput = (props: ISentenceSelectInputProps) => {
               boxSizing={'border-box'}
               key={`input${index}`}
               onChange={(e) => setValue(e.target.value)}
-             // defaultValue={options ? options[0] : ''}
+              // defaultValue={options ? options[0] : ''}
               //value={value}
               isInvalid={isValid === false ? true : false}
               borderColor={isCheckActive && isValid ? 'green.500' : 'inherit'}
@@ -78,7 +78,7 @@ export const SentenceSelectInput = (props: ISentenceSelectInputProps) => {
               isDisabled={isCheckActive}
               _disabled={{ opacity: 1 }}
             >
-              <option value={""} key={`option-default`}></option>
+              <option value={''} key={`option-default`}></option>
               {options?.map((option, index) => (
                 <option value={option} key={`option${index}`}>
                   {option}
