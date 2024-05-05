@@ -17,9 +17,13 @@ export const ProfileMainBlock = (): JSX.Element => {
 
   function handleLogOut() {
     logout();
-    dispatch(clearUser());
-    dispatch(resetExerciseList());
     router.push(APP_PATHS.MAIN);
+    setTimeout(() => {
+      dispatch(clearUser());
+      dispatch(resetExerciseList());
+    }, 500);
+
+    //window.location.reload()
   }
 
   // useEffect(()=> {

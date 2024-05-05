@@ -65,19 +65,21 @@ export const AuthComponent = (props: any): JSX.Element => {
 
     // console.log(APP_PATHS.DASHBOARD_EXERCISE.replace('/:id', ''));
     //  console.log(pathname.includes(APP_PATHS.DASHBOARD));
-    console.log(protectedRoutes.some((route) => pathname.includes(route)));
 
-    console.log(protectedRoutes.includes(pathname));
+    // WORKING
+    // console.log(protectedRoutes.some((route) => pathname.includes(route)));
+
+    // console.log(protectedRoutes.includes(pathname));
 
     if (
       isError &&
       !userData?._id &&
       protectedRoutes.some((route) => pathname.includes(route))
     ) {
-      console.log('1');
+      //  console.log('1');
       router.push(APP_PATHS.SIGN_IN);
     }
-  }, [isError, pathname]);
+  }, [isError, pathname, userData]);
 
   useEffect(() => {
     if (
