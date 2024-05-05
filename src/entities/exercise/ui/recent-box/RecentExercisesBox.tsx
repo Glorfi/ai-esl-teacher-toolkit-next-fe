@@ -53,7 +53,7 @@ export const RecentExercisesBox = (
         Recent exercises:
       </Text>
       <VStack
-        maxH={'calc(100vh - 174px)'}
+        maxH={'calc(100vh - 235px)'}
         overflowY={'scroll'}
         className="thumbnailStack"
         w={'100%'}
