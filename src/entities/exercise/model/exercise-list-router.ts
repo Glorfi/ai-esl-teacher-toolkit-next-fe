@@ -72,6 +72,10 @@ const updateTimeStampByIdAction = (
   return state;
 };
 
+const resetExerciseListAction = (state: IExercise[]) => {
+  return initialState;
+};
+
 export const exerciseListRouter = createSlice({
   name: 'exerciseList',
   initialState,
@@ -82,6 +86,7 @@ export const exerciseListRouter = createSlice({
     replaceExercise: updateExerciseAction,
     replaceSentence: replaceSentenceAction,
     updateTimeStampById: updateTimeStampByIdAction,
+    resetExerciseList: resetExerciseListAction,
   },
 });
 
@@ -92,4 +97,5 @@ export const {
   replaceExercise,
   replaceSentence,
   updateTimeStampById,
+  resetExerciseList,
 } = exerciseListRouter.actions;

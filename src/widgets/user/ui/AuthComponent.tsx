@@ -30,6 +30,8 @@ export const AuthComponent = (props: any): JSX.Element => {
   const protectedRoutes = [
     APP_PATHS.DASHBOARD,
     APP_PATHS.DASHBOARD_EXERCISE.replace('/:id', ''),
+    APP_PATHS.DASHBOARD_LIBRARY,
+    APP_PATHS.DASHBOARD_PROFILE,
   ];
   const byPassRoute = [APP_PATHS.SHARED_EXERCISE.replace('/:id', '')];
 

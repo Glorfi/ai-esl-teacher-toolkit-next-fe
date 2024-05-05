@@ -16,4 +16,5 @@ export {
   replaceExercise,
   replaceSentence,
   updateTimeStampById,
+  resetExerciseList,
 } from './model/exercise-list-router';

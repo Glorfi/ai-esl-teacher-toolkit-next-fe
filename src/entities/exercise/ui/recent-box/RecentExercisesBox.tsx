@@ -41,7 +41,17 @@ export const RecentExercisesBox = (
     setRestExList(getRestExercises(exList));
   }, [exList]);
   return (
-    <VStack flexGrow={1} alignItems={'flex-start'} w={'100%'}>
+    <VStack
+      flexGrow={1}
+      alignItems={'flex-start'}
+      w={'100%'}
+      maxH={[
+        'calc(100% - 150px)',
+        'calc(100%- 150px)',
+        'calc(100% - 150px)',
+        'unset',
+      ]}
+    >
       <Text
         fontSize={'14px'}
         color={'background'}

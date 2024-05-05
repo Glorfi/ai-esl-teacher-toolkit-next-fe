@@ -7,8 +7,9 @@ import {
   DeleteExercisePopUp,
   ShareExercisePopUp,
 } from '@/features/exercise';
-import { OpenProfileThumbnail } from '@/features/user';
+import { OpenLibraryThumbnail, OpenProfileThumbnail } from '@/features/user';
 import { MobileMenuContainer } from '@/shared';
+import { Box, Divider } from '@chakra-ui/react';
 import { FaRegShareFromSquare, FaRegTrashCan } from 'react-icons/fa6';
 
 export const MobileMenuDashBoard = (): JSX.Element => {
@@ -33,7 +34,11 @@ export const MobileMenuDashBoard = (): JSX.Element => {
         ExerciseThumbNail={ExerciseSidbarThumbnail}
         ThumbNailMenuFeatures={features}
       />
-      <OpenProfileThumbnail />
+      <Box position={'fixed'} w={'100%'} bottom={0} p={'0 20px 20px'}>
+        <Divider borderColor={'#52617B'} opacity={'1'} />
+        <OpenLibraryThumbnail />
+        <OpenProfileThumbnail />
+      </Box>
     </MobileMenuContainer>
   );
 };
