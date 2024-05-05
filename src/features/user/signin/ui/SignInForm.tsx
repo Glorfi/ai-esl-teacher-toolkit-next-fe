@@ -127,7 +127,7 @@ export const SignInForm = (): JSX.Element => {
 
   useEffect(() => {
     if (userData) {
-      console.log(userData);
+      // console.log(userData);
       dispatch(setUser(userData));
       dispatch(addExerciseList(userData.exercises));
       //  router.push(APP_PATHS.DASHBOARD);

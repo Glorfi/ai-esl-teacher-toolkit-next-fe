@@ -8,12 +8,17 @@ const setUserAction = (state: UserState, action: PayloadAction<IUserData>) => {
   return action.payload;
 };
 
+const clearUserAction = (state: UserState) => {
+  return initialState;
+};
+
 export const userRouter = createSlice({
   name: 'user',
   initialState,
   reducers: {
     setUser: setUserAction,
+    clearUser: clearUserAction,
   },
 });
 
-export const { setUser } = userRouter.actions;
+export const { setUser, clearUser } = userRouter.actions;

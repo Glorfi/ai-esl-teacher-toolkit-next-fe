@@ -102,6 +102,12 @@ export const ExerciseFilterForm = (): JSX.Element => {
       w={'100%'}
       padding={'0 16px'}
       as={'form'}
+      maxH={[
+        'calc(100% - 150px)',
+        'calc(100%- 150px)',
+        'calc(100% - 150px)',
+        'unset',
+      ]}
     >
       <Text
         fontSize={'14px'}

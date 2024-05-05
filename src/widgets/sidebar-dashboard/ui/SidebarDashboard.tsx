@@ -7,8 +7,9 @@ import {
   DeleteExercisePopUp,
   ShareExercisePopUp,
 } from '@/features/exercise';
-import { OpenProfileThumbnail } from '@/features/user';
+import { OpenLibraryThumbnail, OpenProfileThumbnail } from '@/features/user';
 import { SidebarContainer } from '@/shared';
+import { Divider } from '@chakra-ui/react';
 
 import { FaRegShareFromSquare, FaRegTrashCan } from 'react-icons/fa6';
 
@@ -43,6 +44,8 @@ export const SidebarDashboardWithRecentEx = (
         ExerciseThumbNail={ExerciseSidbarThumbnail}
         ThumbNailMenuFeatures={features}
       />
+      <Divider borderColor={'#52617B'} opacity={"1"}/>
+      <OpenLibraryThumbnail />
       <OpenProfileThumbnail />
     </SidebarContainer>
   );

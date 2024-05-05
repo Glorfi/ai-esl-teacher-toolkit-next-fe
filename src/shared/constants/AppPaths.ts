@@ -5,5 +5,6 @@ export const APP_PATHS = {
   DASHBOARD: '/dashboard',
   DASHBOARD_EXERCISE: '/dashboard/e/:id',
   DASHBOARD_LIBRARY: '/dashboard/lib',
+  DASHBOARD_PROFILE: '/dashboard/profile',
   SHARED_EXERCISE: '/shared/e/:id',
 };
