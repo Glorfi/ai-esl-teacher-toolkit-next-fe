@@ -17,6 +17,7 @@ export interface IExercise {
   studentLevel?: 'A1' | 'A2' | 'B1' | 'B2' | 'C1' | string;
   studentAge?: string;
   isRandomOrderEnabled?: boolean;
+  views: number;
   __v: number;
 }
 
