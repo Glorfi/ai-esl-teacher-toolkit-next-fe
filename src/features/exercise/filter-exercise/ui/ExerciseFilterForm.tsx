@@ -9,6 +9,7 @@ import {
   Button,
 } from '@chakra-ui/react';
 import { useEffect, useState } from 'react';
+import './ExerciseFilterForm.css'
 
 import { getUniqueUserTopics } from '../model/useUsersTopics';
 import { IFilterOptions } from '../model/types';
@@ -186,7 +187,13 @@ export const ExerciseFilterForm = (): JSX.Element => {
         Topics
       </Text>
       <CheckboxGroup>
-        <HStack flexWrap={'wrap'}>
+        <HStack
+          flexWrap={'wrap'}
+          className="scroll"
+          maxH={'120px'}
+          overflowY={'scroll'}
+          gap="6px"
+        >
           {topicList.map((topic) => (
             <CheckboxButton
               {...getTopicCheckBoxProps({ value: topic._id })}
