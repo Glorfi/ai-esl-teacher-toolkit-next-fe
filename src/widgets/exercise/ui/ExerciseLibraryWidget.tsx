@@ -16,7 +16,7 @@ import {
   useRemoveTopicFromExerciseMutation,
 } from '@/features/topic';
 import { useAppDispatch, useAppSelector } from '@/shared/hooks/hooks';
-import { VStack, Text, Grid, Icon } from '@chakra-ui/react';
+import { VStack, Text, Grid, Icon, HStack } from '@chakra-ui/react';
 import { useEffect, useState } from 'react';
 import { BsExclamationCircle } from 'react-icons/bs';
 import { FaRegShareFromSquare, FaRegTrashCan } from 'react-icons/fa6';
@@ -65,10 +65,22 @@ export const ExerciseUserLibraryWidget = (): JSX.Element => {
   //   }
   // }, [exWithRemovedTopic]);
   return (
-    <VStack maxW={'800px'} w={['100%', '100%', '80%']} p={['0', '20px 0']}>
-      <Text w={'100%'} fontSize={'x-large'} fontWeight={'bold'}>
-        Your exercises:
-      </Text>
+    <VStack
+      //  maxW={'800px'}
+      w={['100%']}
+      padding={['0 36px 0 56px']}
+      mt={"80px"}
+      // p={['0', '20px 0']}
+    >
+      <HStack justifyContent={'flex-start'} w={'100%'} alignItems={'baseline'}>
+        <Text fontSize={'x-large'} fontWeight={'bold'}>
+          Your exercises
+        </Text>
+        <Text
+          color={'graySecondary'}
+          fontSize={'xs'}
+        >{`${filteredExList.length} exercises`}</Text>
+      </HStack>
       <Grid
         gridTemplateColumns={['1fr', '1fr', '1fr 1fr 1fr']}
         gap={'8px'}

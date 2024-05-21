@@ -17,7 +17,7 @@ export const SidebarContainer = (props: ISideBarMenuProps): JSX.Element => {
         display={['none', 'flex']}
         minH={'100vh'}
         height={'100%'}
-        bgColor={'primary'}
+        bgColor={'primary.base'}
         className={`sliderMenu ${
           isOpen ? 'sliderMenu_isOpened' : 'sliderMenu_isClosed'
         }`}

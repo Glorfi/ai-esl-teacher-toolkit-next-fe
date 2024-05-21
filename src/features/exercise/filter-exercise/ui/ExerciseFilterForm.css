@@ -17,3 +17,7 @@
   background: var(--sb-thumb-color);
   border-radius: 3px;
 }
+
+.selectPlaceholder {
+  color: #8c8c8c !important;
+}

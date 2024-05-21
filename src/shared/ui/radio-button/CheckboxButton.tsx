@@ -13,10 +13,14 @@ export const CheckboxButton = (props: any): JSX.Element => {
       border="1px solid"
       borderColor="background"
       backgroundColor={state.isChecked ? 'background' : 'transparent'}
-      rounded="lg"
+      fontWeight={'medium'}
+      maxH={'24px'}
+      //rounded="lg"
+      fontFamily={'alt'}
       padding={'4px 8px'}
       cursor="pointer"
       {...htmlProps}
+      borderRadius={6}
     >
       <input {...getInputProps()} hidden />
 
@@ -24,7 +28,7 @@ export const CheckboxButton = (props: any): JSX.Element => {
         color={state.isChecked ? 'primary' : 'background'}
         {...getLabelProps()}
         fontSize={'12px'}
-        fontWeight={'bold'}
+        fontWeight={'medium'}
       >
         {props.title}
       </Text>
