@@ -50,7 +50,7 @@ export const ProfileMainBlock = (): JSX.Element => {
             gap={'8px'}
             p={'12px'}
           >
-            <Icon as={IoServer} color={'primary.base'} boxSize={'20px'} />
+            <Icon as={IoServer} color={'primary.base'} boxSize={'20px'}  />
             <HStack justifyContent={'space-between'} w={'100%'}>
               <Text fontWeight={'semibold'}>Balance</Text>
               <Text>1900</Text>
