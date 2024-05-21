@@ -49,7 +49,7 @@ export const MobileMenuContainer = ({
       </Box>
       <Drawer isOpen={isOpen} placement="left" onClose={onClose} size={'full'}>
         <DrawerOverlay />
-        <DrawerContent bgColor={'primary'} padding={'0 20px'}>
+        <DrawerContent bgColor={'primary.base'} padding={'0 20px'}>
           <DrawerHeader>
             <DrawerCloseButton color={'white'} right={'28px'} />
           </DrawerHeader>

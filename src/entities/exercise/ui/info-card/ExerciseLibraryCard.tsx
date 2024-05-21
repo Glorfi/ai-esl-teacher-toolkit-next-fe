@@ -80,7 +80,7 @@ export const ExerciseLibraryCard = (
               fontWeight={'bold'}
               href={`${redirectPath}${exersice._id}`}
               _hover={{ textDecoration: 'none' }}
-              color={'primary'}
+              color={'primary.base'}
             >
               {exersice.title ? exersice.title : 'No title'}
             </Link>
@@ -113,7 +113,7 @@ export const ExerciseLibraryCard = (
             <Text
               fontSize={'14px'}
               fontWeight={'semibold'}
-              color={'primary'}
+              color={'primary.base'}
               noOfLines={2}
             >
               Keywords:{' '}
@@ -131,7 +131,7 @@ export const ExerciseLibraryCard = (
             <Text
               fontSize={'14px'}
               fontWeight={'semibold'}
-              color={'primary'}
+              color={'primary.base'}
               noOfLines={2}
             >
               Skill:{' '}
@@ -147,7 +147,7 @@ export const ExerciseLibraryCard = (
             <Text
               fontSize={'14px'}
               fontWeight={'semibold'}
-              color={'primary'}
+              color={'primary.base'}
               noOfLines={2}
             >
               Type:{' '}
@@ -167,7 +167,7 @@ export const ExerciseLibraryCard = (
             <Text
               fontSize={'14px'}
               fontWeight={'semibold'}
-              color={'primary'}
+              color={'primary.base'}
               noOfLines={2}
             >
               Level:{' '}
@@ -183,7 +183,7 @@ export const ExerciseLibraryCard = (
             <Text
               fontSize={'14px'}
               fontWeight={'semibold'}
-              color={'primary'}
+              color={'primary.base'}
               noOfLines={2}
             >
               Learner Age:{' '}
@@ -201,7 +201,7 @@ export const ExerciseLibraryCard = (
             <Text
               fontSize={'14px'}
               fontWeight={'semibold'}
-              color={'primary'}
+              color={'primary.base'}
               //  noOfLines={2}
             >
               Topics:

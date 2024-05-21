@@ -105,7 +105,7 @@ export const ExerciseUserLibraryWidget = (): JSX.Element => {
             as={BsExclamationCircle}
             w={'80px'}
             h={'80px'}
-            color={'primary'}
+            color={'primary.base'}
           />
           <Text>There are no exercises matching your current filters</Text>
           <Text fontWeight={'bold'} fontSize={'x-large'}>

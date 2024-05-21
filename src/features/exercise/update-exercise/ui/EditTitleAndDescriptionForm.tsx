@@ -65,7 +65,7 @@ export const EditTitleAndDescriptionForm = (
         placeholder="Enter the task title"
         fontWeight={'bold'}
         fontSize={'x-large'}
-        color={'primary'}
+        color={'primary.base'}
       >
         <EditablePreview />
         <EditableInput
@@ -83,7 +83,7 @@ export const EditTitleAndDescriptionForm = (
         fontSize={'16px'}
         placeholder="Enter the task description"
         fontWeight={'bold'}
-        color={'primary'}
+        color={'primary.base'}
         key={`${exercise._id}_description`}
       >
         <EditablePreview />

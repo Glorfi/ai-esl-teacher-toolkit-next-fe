@@ -62,7 +62,7 @@ export const CreateTopicPopUp = (
     <Modal isOpen={isOpen} onClose={onClose} isCentered size={'sm'}>
       <ModalOverlay bg={'blackAlpha.700'} backdropFilter="blur(1px)" />
       <ModalContent>
-        <ModalHeader color={'primary'}>Add topic to the exercise?</ModalHeader>
+        <ModalHeader color={'primary.base'}>Add topic to the exercise?</ModalHeader>
         <ModalCloseButton />
         <ModalBody
           display={'grid'}

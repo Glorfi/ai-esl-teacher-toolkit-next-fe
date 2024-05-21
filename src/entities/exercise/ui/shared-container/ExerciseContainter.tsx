@@ -15,7 +15,7 @@ export const ExerciseContainer = (props: IExerciseCardProps): JSX.Element => {
   return (
     <>
       <Skeleton isLoaded={isSuccess} height={'36px'} minW={'300px'}>
-        <Text color={'primary'} fontWeight={'bold'} fontSize={'x-large'}>
+        <Text color={'primary.base'} fontWeight={'bold'} fontSize={'x-large'}>
           {exTitle}
         </Text>
       </Skeleton>

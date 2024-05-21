@@ -51,10 +51,10 @@ export const DeleteExercisePopUp = (
     <Modal isOpen={isOpen} onClose={onClose} isCentered size={'sm'}>
       <ModalOverlay bg={'blackAlpha.700'} backdropFilter="blur(1px)" />
       <ModalContent>
-        <ModalHeader color={'primary'}>Delete exercise?</ModalHeader>
+        <ModalHeader color={'primary.base'}>Delete exercise?</ModalHeader>
         <ModalCloseButton />
         <ModalBody>
-          <Text color={'primary'}>
+          <Text color={'primary.base'}>
             Are you sure you want to delete the exercise?
           </Text>
         </ModalBody>

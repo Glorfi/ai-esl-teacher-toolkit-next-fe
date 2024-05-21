@@ -152,7 +152,7 @@ export const SignUpForm = (): JSX.Element => {
             borderRadius={'20px'}
             _placeholder={{ color: 'secondary.base' }}
             bgColor={'gray.200'}
-            color={'primary'}
+            color={'primary.base'}
             onChange={handleInputChange}
             isInvalid={isFormValid.isEmailValid === false ? true : false}
           />

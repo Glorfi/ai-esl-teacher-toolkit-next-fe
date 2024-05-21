@@ -25,7 +25,7 @@ export const CheckboxButton = (props: any): JSX.Element => {
       <input {...getInputProps()} hidden />
 
       <Text
-        color={state.isChecked ? 'primary' : 'background'}
+        color={state.isChecked ? 'primary.base' : 'background'}
         {...getLabelProps()}
         fontSize={'12px'}
         fontWeight={'medium'}

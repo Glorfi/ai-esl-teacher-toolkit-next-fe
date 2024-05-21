@@ -128,7 +128,7 @@ export const ExerciseEditCard = (props: IExerciseEditCard): JSX.Element => {
         alignItems={'flex-start'}
       >
         <Divider m={'0 0 8px'} />
-        <Text fontSize={'16px'} fontWeight={'bold'} color={'primary'}>
+        <Text fontSize={'16px'} fontWeight={'bold'} color={'primary.base'}>
           Exercise information:
         </Text>
         <Text>

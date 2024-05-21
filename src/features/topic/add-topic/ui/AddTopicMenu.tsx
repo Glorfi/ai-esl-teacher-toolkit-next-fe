@@ -114,7 +114,7 @@ export const AddTopicMenu = (props: IAddTopicMenuProps): JSX.Element => {
             p={'6px 12px'}
             placeholder="Add topics..."
             size={'sm'}
-            color={'primary'}
+            color={'primary.base'}
             name="name"
             onChange={handleInputChange}
             onFocus={() => setInputFocused(true)}

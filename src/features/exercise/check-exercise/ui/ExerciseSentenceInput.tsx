@@ -66,7 +66,7 @@ export const ExerciseSentenceInput = (props: IExerciseSentenceInput) => {
   return (
     <Card w={'100%'} maxW={'800px'}>
       <CardHeader p={'20px 20px 0'}>
-        <Text color={'primary'} fontWeight={'bold'}>
+        <Text color={'primary.base'} fontWeight={'bold'}>
           {props.taskDescription ? props.taskDescription : 'No description'}
         </Text>
         <Box
