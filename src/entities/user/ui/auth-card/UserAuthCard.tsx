@@ -27,7 +27,7 @@ export const UserAuthCard = (props: UserAuthCardProps): JSX.Element => {
       />
       <CardBody position={'relative'}>
         <Text
-          color={'primary'}
+          color={'primary.base'}
           fontSize={'36px'}
           fontWeight={900}
           maxW={'228px'}

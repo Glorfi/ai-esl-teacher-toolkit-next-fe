@@ -18,12 +18,12 @@ export default function Home() {
         mt={'80px'}
         w={'100%'}
       >
-        <Text color={'primary'} fontSize={'24px'}>
+        <Text color={'primary.base'} fontSize={'24px'}>
           Welcome to
         </Text>
         <Text
           as="h1"
-          color={'primary'}
+          color={'primary.base'}
           fontSize={'80px'}
           fontWeight={'bold'}
           lineHeight={'80px'}
