@@ -8,13 +8,14 @@ export const ExMenuCardButton = forwardRef<MenuButtonProps, 'button'>(
       <IconButton
         size={'xs'}
         aria-label="Search database"
-        icon={<HiDotsVertical  className={'thumbNailButton'} />}
-        variant={'ghost'}
-        colorScheme={'secondary'}
+        icon={<HiDotsVertical className={'thumbNailButton'} />}
+        variant={'outline'}
+        // colorScheme={'secondary'}
         isRound
         ref={ref}
         {...props}
         className="thumbNailButton"
+        color={'primary.base'}
       />
     );
   }

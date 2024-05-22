@@ -28,6 +28,9 @@ export const ExerciseUserLibraryWidget = (): JSX.Element => {
   const [filteredExList, setFilteredExList] = useState<IExercise[]>([]);
   const [isRendered, setIsRendered] = useState<boolean>(false);
 
+  const [removeTopic, { data: exWithRemovedTopic }] =
+  useRemoveTopicFromExerciseMutation();
+
   const features = [
     {
       title: 'Share',
@@ -45,9 +48,9 @@ export const ExerciseUserLibraryWidget = (): JSX.Element => {
   // const [removeTopic, { data: exWithRemovedTopic }] =
   //   useRemoveTopicFromExerciseMutation();
 
-  const onTopicFilter = (topicId: string) => {
-    dispatch(toggleTopic(topicId));
-  };
+  // const onTopicFilter = (topicId: string) => {
+  //   dispatch(toggleTopic(topicId));
+  // };
 
   useEffect(() => {
     const arr = getFilteredExerciseList(exerciseList, filterOptions);
@@ -59,11 +62,11 @@ export const ExerciseUserLibraryWidget = (): JSX.Element => {
     setIsRendered(true);
   }, [filterOptions, exerciseList]);
 
-  // useEffect(() => {
-  //   if (exWithRemovedTopic) {
-  //     dispatch(replaceExercise(exWithRemovedTopic));
-  //   }
-  // }, [exWithRemovedTopic]);
+  useEffect(() => {
+    if (exWithRemovedTopic) {
+      dispatch(replaceExercise(exWithRemovedTopic));
+    }
+  }, [exWithRemovedTopic]);
   return (
     <VStack
       //  maxW={'800px'}
@@ -82,8 +85,9 @@ export const ExerciseUserLibraryWidget = (): JSX.Element => {
         >{`${filteredExList.length} exercises`}</Text>
       </HStack>
       <Grid
-        gridTemplateColumns={['1fr', '1fr', '1fr 1fr 1fr']}
-        gap={'8px'}
+        //gridTemplateColumns={['1fr', '1fr', '1fr 1fr 1fr']}
+        gridTemplateColumns={'repeat(auto-fill, minmax(275px, 1fr))'}
+        gap={'14px'}
         w={'100%'}
       >
         {filteredExList.map((item, index) => {
@@ -94,7 +98,8 @@ export const ExerciseUserLibraryWidget = (): JSX.Element => {
               key={`exInfoCard ${item._id}`}
               menuFeatures={features}
               AddTopicMenu={AddTopicMenu}
-              onTopicFilter={onTopicFilter}
+             // onTopicFilter={onTopicFilter}
+              onTopicDelete={removeTopic}
             />
           );
         })}

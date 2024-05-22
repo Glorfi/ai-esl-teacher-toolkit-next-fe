@@ -103,9 +103,9 @@ export const AddTopicMenu = (props: IAddTopicMenuProps): JSX.Element => {
           aria-label="add tag"
           icon={<FaPlus />}
           size={'xs'}
-          isRound
-          variant={'ghost'}
-          colorScheme="secondary"
+          variant={'outline'}
+          colorScheme="primary"
+          _hover={{ backgroundColor: 'unset' }}
         />
         <MenuList>
           <Input
