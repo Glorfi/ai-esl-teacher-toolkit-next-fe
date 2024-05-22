@@ -1,5 +1,5 @@
 import { ISentence } from '@/entities/sentence';
-import { ITopic } from '@/entities/topic'
+import { ITopic } from '@/entities/topic';
 
 import { MenuItemProps } from '@chakra-ui/react';
 

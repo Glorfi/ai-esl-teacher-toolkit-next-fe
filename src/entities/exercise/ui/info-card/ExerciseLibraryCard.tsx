@@ -89,7 +89,9 @@ export const ExerciseLibraryCard = (
       >
         <CardBody p={'16px'}>
           <HStack justifyContent={'space-between'}>
-            <Tag>{capitalizeFirstLetter(exersice.skill)}</Tag>
+            <Tag fontFamily={'alt'} variant={exersice.skill} p={'4px 8px'}>
+              {capitalizeFirstLetter(exersice.skill)}
+            </Tag>
             <ButtonGroup>
               <IconButton
                 aria-label="edit"
@@ -101,9 +103,9 @@ export const ExerciseLibraryCard = (
                 size={'xs'}
                 color="primary.base"
               />
-              <Menu closeOnBlur closeOnSelect placement={'bottom'}>
+              <Menu closeOnBlur closeOnSelect placement={'bottom-end'} isLazy>
                 <MenuButton as={ExMenuCardButton}></MenuButton>
-                <MenuList bgColor={'background'} minW={'150px'}>
+                <MenuList bgColor={'background'} minW={'120px'} p={'12px'} display={"flex"} flexDir={"column"} gap={"6px"}>
                   {menuFeatures.map(
                     ({ onMenuItem, title, icon, modal, ...rest }, index) => (
                       <MenuItem
@@ -112,13 +114,23 @@ export const ExerciseLibraryCard = (
                         }
                         {...rest}
                         key={`menu-item ${exersice._id}${index} `}
-                        fontSize={'14px'}
+                        fontSize={'xs'}
+                        fontWeight={'400'}
+                        p={0}
+                        _hover={{
+                          backgroundColor: 'unset',
+                          fontWeight: 'bold',
+                        }}
                       >
                         {icon && (
                           <Icon
                             as={icon}
                             mr={'8px'}
                             key={`menu-icon ${exersice._id}${exersice._id}${index} `}
+                            // {title === 'Share' ? 
+                            //   transform: 'scale(-1,1)' : 
+                            // }
+                            transform={`scale(${title === 'Share' ? ("-1,1") : "unset"})`}
                           />
                         )}
                         {title}

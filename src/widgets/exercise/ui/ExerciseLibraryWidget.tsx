@@ -18,6 +18,7 @@ import {
 import { useAppDispatch, useAppSelector } from '@/shared/hooks/hooks';
 import { VStack, Text, Grid, Icon, HStack } from '@chakra-ui/react';
 import { useEffect, useState } from 'react';
+import { BiShare } from 'react-icons/bi';
 import { BsExclamationCircle } from 'react-icons/bs';
 import { FaRegShareFromSquare, FaRegTrashCan } from 'react-icons/fa6';
 
@@ -29,12 +30,12 @@ export const ExerciseUserLibraryWidget = (): JSX.Element => {
   const [isRendered, setIsRendered] = useState<boolean>(false);
 
   const [removeTopic, { data: exWithRemovedTopic }] =
-  useRemoveTopicFromExerciseMutation();
+    useRemoveTopicFromExerciseMutation();
 
   const features = [
     {
       title: 'Share',
-      icon: FaRegShareFromSquare,
+      icon:  BiShare,
       modal: ShareExercisePopUp,
     },
     {
@@ -72,7 +73,7 @@ export const ExerciseUserLibraryWidget = (): JSX.Element => {
       //  maxW={'800px'}
       w={['100%']}
       padding={['0 36px 0 56px']}
-      mt={"80px"}
+      mt={'80px'}
       // p={['0', '20px 0']}
     >
       <HStack justifyContent={'flex-start'} w={'100%'} alignItems={'baseline'}>
@@ -98,7 +99,7 @@ export const ExerciseUserLibraryWidget = (): JSX.Element => {
               key={`exInfoCard ${item._id}`}
               menuFeatures={features}
               AddTopicMenu={AddTopicMenu}
-             // onTopicFilter={onTopicFilter}
+              // onTopicFilter={onTopicFilter}
               onTopicDelete={removeTopic}
             />
           );
