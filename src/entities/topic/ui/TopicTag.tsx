@@ -42,6 +42,9 @@ export const TopicTag = (props: ITopicTag): JSX.Element => {
       onMouseLeave={() => setIsHovered(false)}
       onClick={hanldeTagClick}
       cursor={onFilterClick && 'pointer'}
+      fontFamily={'alt'}
+      fontSize={'12px'}
+      minH={'22px'}
     >
       <TagLabel>{topic.name}</TagLabel>
       <TagCloseButton

@@ -34,6 +34,7 @@ const LibraryDashboardLayout = ({
           w={['100%', `${isSideBarOpen ? 'calc(100% - 320px)' : '100%'}`]}
           justifyContent={['flex-start']}
           //  padding={['0 36px 0 56px']}
+          gap={0}
         >
           <MobileMenuUserLibrary />
           <WorkspaceHeader />

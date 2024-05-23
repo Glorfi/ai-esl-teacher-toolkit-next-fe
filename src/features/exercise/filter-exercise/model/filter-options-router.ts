@@ -16,11 +16,37 @@ const setOptionsAction = (
   return action.payload;
 };
 
-const resetOptionsAction = (
+const resetStringOptionAction = (
   state: IFilterOptions,
-  action: PayloadAction<IFilterOptions>
+  action: PayloadAction<'studentAge' | 'studentLevel'>
 ) => {
+  state[action.payload] = '';
+  console.log(action.payload);
+  return state;
+};
+
+const resetOptionsAction = (state: IFilterOptions) => {
   return initialState;
+};
+
+const removeTypeAction = (
+  state: IFilterOptions,
+  action: PayloadAction<string>
+) => {
+  const typeIndex = state.type.indexOf(action.payload);
+  if (typeIndex !== -1) {
+    state.type.splice(typeIndex, 1);
+  }
+};
+
+const removeSkillAction = (
+  state: IFilterOptions,
+  action: PayloadAction<string>
+) => {
+  const skillIndex = state.skill.indexOf(action.payload);
+  if (skillIndex !== -1) {
+    state.skill.splice(skillIndex, 1);
+  }
 };
 
 const toggleTopicAction = (
@@ -42,8 +68,17 @@ export const filterOptionsRouter = createSlice({
     setFilterOptions: setOptionsAction,
     resetFilterOptions: resetOptionsAction,
     toggleTopic: toggleTopicAction,
+    resetStringOption: resetStringOptionAction,
+    removeType: removeTypeAction,
+    removeSkill: removeSkillAction,
   },
 });
 
-export const { setFilterOptions, resetFilterOptions, toggleTopic } =
-  filterOptionsRouter.actions;
+export const {
+  setFilterOptions,
+  resetFilterOptions,
+  toggleTopic,
+  resetStringOption,
+  removeType,
+  removeSkill,
+} = filterOptionsRouter.actions;

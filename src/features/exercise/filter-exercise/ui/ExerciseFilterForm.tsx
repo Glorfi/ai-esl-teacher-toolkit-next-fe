@@ -8,6 +8,7 @@ import {
   Select,
   Button,
   Icon,
+  StackProps,
 } from '@chakra-ui/react';
 import { useEffect, useState } from 'react';
 import './ExerciseFilterForm.css';
@@ -18,7 +19,7 @@ import { useAppDispatch, useAppSelector } from '@/shared/hooks/hooks';
 import { setFilterOptions as setFilterConfig } from '../model/filter-options-router';
 import { BiSliderAlt } from 'react-icons/bi';
 
-export const ExerciseFilterForm = (): JSX.Element => {
+export const ExerciseFilterForm = (props: StackProps): JSX.Element => {
   const reduxFormValues = useAppSelector((state) => state.filterOptions);
   const exercisesList = useAppSelector((state) => state.exerciseList);
   const [filterOptions, setFilterOptions] =
@@ -72,7 +73,11 @@ export const ExerciseFilterForm = (): JSX.Element => {
   }, [topicValues]);
 
   useEffect(() => {
-    if (allowTopicUpdate) {
+    if (
+      allowTopicUpdate &&
+      JSON.stringify(filterOptions) !==
+        JSON.stringify(reduxFormValues)
+    ) {
       dispatch(setFilterConfig(filterOptions));
     }
   }, [filterOptions]);
@@ -90,6 +95,51 @@ export const ExerciseFilterForm = (): JSX.Element => {
     }, 100);
     return () => clearTimeout(timeout);
   }, [reduxFormValues.topicList]);
+
+  useEffect(() => {
+    if (reduxFormValues.studentLevel === '') {
+      setFilterOptions({ ...filterOptions, studentLevel: '' });
+    }
+  }, [reduxFormValues.studentLevel]);
+
+  useEffect(() => {
+    if (reduxFormValues.studentAge === '') {
+      setFilterOptions({ ...filterOptions, studentAge: '' });
+    }
+  }, [reduxFormValues.studentAge]);
+
+  useEffect(() => {
+    if (reduxFormValues.type.length !== filterOptions.type.length) {
+      setTypeValue(reduxFormValues.type);
+    }
+  }, [reduxFormValues.type]);
+
+  useEffect(() => {
+    if (reduxFormValues.skill.length !== filterOptions.skill.length) {
+      setSkillValue(reduxFormValues.skill);
+    }
+  }, [reduxFormValues.skill]);
+
+  useEffect(() => {
+    if (
+      allowTopicUpdate &&
+      JSON.stringify(reduxFormValues) ===
+        JSON.stringify({
+          studentAge: '',
+          studentLevel: '',
+          skill: [],
+          type: [],
+          topicList: [],
+        })
+    ) {
+      resetForm();
+      setAllowTopicUpdate(false);
+      const timeout = setTimeout(() => {
+        setAllowTopicUpdate(true);
+      }, 100);
+      return () => clearTimeout(timeout);
+    }
+  }, [reduxFormValues]);
 
   useEffect(() => {
     //  setFilterOptions(reduxFormValues);
@@ -111,6 +161,8 @@ export const ExerciseFilterForm = (): JSX.Element => {
         'calc(100% - 150px)',
         'unset',
       ]}
+      gap={0}
+      {...props}
     >
       <HStack w={'100%'}>
         <Icon
@@ -147,9 +199,12 @@ export const ExerciseFilterForm = (): JSX.Element => {
             placeholder="Level"
             _placeholder={{ fontWeight: 'bold' }}
           >
-            {/* <option value={''} className="selectPlaceholder" style={{color: "#8c8c8c !important"}}  hidden>
-            Level
-          </option> */}
+            <option
+              value={''}
+              // className="selectPlaceholder"
+              // style={{ color: '#8c8c8c !important' }}
+              hidden
+            ></option>
             <option value={'Beginner A1'}>Beginner A1</option>
             <option value={'Elementary A2'}>Elementary A2</option>
             <option value={'Intermediate B1'}>Intermediate B1</option>

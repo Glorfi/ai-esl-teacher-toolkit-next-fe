@@ -7,16 +7,26 @@ import {
 import { TopicTag } from '@/entities/topic';
 import {
   DeleteExercisePopUp,
+  ExerciseFilterBar,
   ShareExercisePopUp,
   getFilteredExerciseList,
   toggleTopic,
+  useIsFilterEmpty,
 } from '@/features/exercise';
 import {
   AddTopicMenu,
   useRemoveTopicFromExerciseMutation,
 } from '@/features/topic';
 import { useAppDispatch, useAppSelector } from '@/shared/hooks/hooks';
-import { VStack, Text, Grid, Icon, HStack } from '@chakra-ui/react';
+import {
+  VStack,
+  Text,
+  Grid,
+  Icon,
+  HStack,
+  Slide,
+  SlideFade,
+} from '@chakra-ui/react';
 import { useEffect, useState } from 'react';
 import { BiShare } from 'react-icons/bi';
 import { BsExclamationCircle } from 'react-icons/bs';
@@ -28,6 +38,8 @@ export const ExerciseUserLibraryWidget = (): JSX.Element => {
   const dispatch = useAppDispatch();
   const [filteredExList, setFilteredExList] = useState<IExercise[]>([]);
   const [isRendered, setIsRendered] = useState<boolean>(false);
+  const [isTransitionActive, setIsTransitionActive] = useState<boolean>(false);
+  const isFilterEmpty = useIsFilterEmpty();
 
   const [removeTopic, { data: exWithRemovedTopic }] =
     useRemoveTopicFromExerciseMutation();
@@ -35,7 +47,8 @@ export const ExerciseUserLibraryWidget = (): JSX.Element => {
   const features = [
     {
       title: 'Share',
-      icon:  BiShare,
+      icon: BiShare,
+      color: 'primary.base',
       modal: ShareExercisePopUp,
     },
     {
@@ -74,34 +87,60 @@ export const ExerciseUserLibraryWidget = (): JSX.Element => {
       w={['100%']}
       padding={['0 36px 0 56px']}
       mt={'80px'}
+      alignItems={'flex-start'}
+      gap={0}
       // p={['0', '20px 0']}
     >
       <HStack justifyContent={'flex-start'} w={'100%'} alignItems={'baseline'}>
         <Text fontSize={'x-large'} fontWeight={'bold'}>
           Your exercises
         </Text>
-        <Text
-          color={'graySecondary'}
-          fontSize={'xs'}
-        >{`${filteredExList.length} exercises`}</Text>
+        <Text color={'graySecondary'} fontSize={'xs'}>
+          {isFilterEmpty
+            ? `${filteredExList.length} exercises`
+            : `${filteredExList.length} exercises found`}
+        </Text>
       </HStack>
+      {/* <ExerciseFilterBar mt={'46px'} width={'100%'} /> */}
+      {JSON.stringify(filterOptions) !==
+        JSON.stringify({
+          studentAge: '',
+          studentLevel: '',
+          skill: [],
+          type: [],
+          topicList: [],
+        }) && (
+        <ExerciseFilterBar
+          mt={'46px'}
+          width={'100%'}
+        //  display={isFilterEmpty ? 'none' : 'flex'}
+        />
+      )}
       <Grid
         //gridTemplateColumns={['1fr', '1fr', '1fr 1fr 1fr']}
+        mt={'24px'}
         gridTemplateColumns={'repeat(auto-fill, minmax(275px, 1fr))'}
         gap={'14px'}
         w={'100%'}
       >
         {filteredExList.map((item, index) => {
           return (
-            <ExerciseLibraryCard
-              exersice={item}
-              TopicTag={TopicTag}
-              key={`exInfoCard ${item._id}`}
-              menuFeatures={features}
-              AddTopicMenu={AddTopicMenu}
-              // onTopicFilter={onTopicFilter}
-              onTopicDelete={removeTopic}
-            />
+            <SlideFade
+              offsetY="-20px"
+              in={isRendered}
+              unmountOnExit
+              key={`fader ${item._id}`}
+            >
+              <ExerciseLibraryCard
+                exersice={item}
+                TopicTag={TopicTag}
+                key={`exInfoCard ${item._id}`}
+                menuFeatures={features}
+                AddTopicMenu={AddTopicMenu}
+                // onTopicFilter={onTopicFilter}
+                onTopicDelete={removeTopic}
+              />
+            </SlideFade>
           );
         })}
       </Grid>

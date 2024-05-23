@@ -105,7 +105,14 @@ export const ExerciseLibraryCard = (
               />
               <Menu closeOnBlur closeOnSelect placement={'bottom-end'} isLazy>
                 <MenuButton as={ExMenuCardButton}></MenuButton>
-                <MenuList bgColor={'background'} minW={'120px'} p={'12px'} display={"flex"} flexDir={"column"} gap={"6px"}>
+                <MenuList
+                  bgColor={'background'}
+                  minW={'120px'}
+                  p={'12px'}
+                  display={'flex'}
+                  flexDir={'column'}
+                  gap={'6px'}
+                >
                   {menuFeatures.map(
                     ({ onMenuItem, title, icon, modal, ...rest }, index) => (
                       <MenuItem
@@ -121,16 +128,21 @@ export const ExerciseLibraryCard = (
                           backgroundColor: 'unset',
                           fontWeight: 'bold',
                         }}
+                        _focus={{
+                          backgroundColor: 'unset',
+                        }}
                       >
                         {icon && (
                           <Icon
                             as={icon}
                             mr={'8px'}
                             key={`menu-icon ${exersice._id}${exersice._id}${index} `}
-                            // {title === 'Share' ? 
-                            //   transform: 'scale(-1,1)' : 
+                            // {title === 'Share' ?
+                            //   transform: 'scale(-1,1)' :
                             // }
-                            transform={`scale(${title === 'Share' ? ("-1,1") : "unset"})`}
+                            transform={`scale(${
+                              title === 'Share' ? '-1,1' : 'unset'
+                            })`}
                           />
                         )}
                         {title}
