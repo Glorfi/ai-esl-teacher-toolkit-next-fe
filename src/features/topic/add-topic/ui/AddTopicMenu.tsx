@@ -104,8 +104,11 @@ export const AddTopicMenu = (props: IAddTopicMenuProps): JSX.Element => {
           icon={<FaPlus />}
           size={'xs'}
           variant={'outline'}
-          colorScheme="primary"
-          _hover={{ backgroundColor: 'unset' }}
+          color="primary.base"
+          borderColor={'primary.base'}
+          // colorScheme="primary"
+          // _hover={{ backgroundColor: 'secondary.50' }}
+          // _active={{ backgroundColor: 'secondary.50' }}
         />
         <MenuList>
           <Input

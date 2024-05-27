@@ -15,6 +15,11 @@ export { EditExerciseSettingsForm } from './update-exercise/ui/EditExerciseSetti
 
 export { ExerciseFilterForm } from './filter-exercise/ui/ExerciseFilterForm';
 export { ExerciseFilterBar } from './filter-exercise/ui/ExerciseFilterBar';
+
+export { SortExerciseDropDown } from './sort-exercise/ui/SortExerciseDropDown';
+export { getSortedExerciseList } from './sort-exercise/model/getSortedExerciseList';
+export { sortingOptionsRouter } from './sort-exercise/model/sorting-options-router';
+export { sortBy } from './sort-exercise/model/sorting-options-router';
 //Actions
 export { filterOptionsRouter } from './filter-exercise/model/filter-options-router';
 export { ExerciseFormRouter } from './generate-exercise/model/exercise-form-router';

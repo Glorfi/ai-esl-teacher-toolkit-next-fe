@@ -9,7 +9,9 @@ import {
   DeleteExercisePopUp,
   ExerciseFilterBar,
   ShareExercisePopUp,
+  SortExerciseDropDown,
   getFilteredExerciseList,
+  getSortedExerciseList,
   toggleTopic,
   useIsFilterEmpty,
 } from '@/features/exercise';
@@ -35,6 +37,7 @@ import { FaRegShareFromSquare, FaRegTrashCan } from 'react-icons/fa6';
 export const ExerciseUserLibraryWidget = (): JSX.Element => {
   const exerciseList = useAppSelector((state) => state.exerciseList);
   const filterOptions = useAppSelector((state) => state.filterOptions);
+  const sortBy = useAppSelector((state) => state.sortingOption.sortby);
   const dispatch = useAppDispatch();
   const [filteredExList, setFilteredExList] = useState<IExercise[]>([]);
   const [isRendered, setIsRendered] = useState<boolean>(false);
@@ -59,22 +62,12 @@ export const ExerciseUserLibraryWidget = (): JSX.Element => {
     },
   ];
 
-  // const [removeTopic, { data: exWithRemovedTopic }] =
-  //   useRemoveTopicFromExerciseMutation();
-
-  // const onTopicFilter = (topicId: string) => {
-  //   dispatch(toggleTopic(topicId));
-  // };
-
   useEffect(() => {
     const arr = getFilteredExerciseList(exerciseList, filterOptions);
-    arr.sort(
-      (a, b) =>
-        new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime()
-    );
-    setFilteredExList(arr);
+    const sortedArr = getSortedExerciseList(arr, sortBy);
+    setFilteredExList(sortedArr);
     setIsRendered(true);
-  }, [filterOptions, exerciseList]);
+  }, [filterOptions, exerciseList, sortBy]);
 
   useEffect(() => {
     if (exWithRemovedTopic) {
@@ -91,17 +84,23 @@ export const ExerciseUserLibraryWidget = (): JSX.Element => {
       gap={0}
       // p={['0', '20px 0']}
     >
-      <HStack justifyContent={'flex-start'} w={'100%'} alignItems={'baseline'}>
-        <Text fontSize={'x-large'} fontWeight={'bold'}>
-          Your exercises
-        </Text>
-        <Text color={'graySecondary'} fontSize={'xs'}>
-          {isFilterEmpty
-            ? `${filteredExList.length} exercises`
-            : `${filteredExList.length} exercises found`}
-        </Text>
+      <HStack
+        justifyContent={'space-between'}
+        w={'100%'}
+        alignItems={'baseline'}
+      >
+        <HStack alignItems={'baseline'}>
+          <Text fontSize={'x-large'} fontWeight={'bold'}>
+            Your exercises
+          </Text>
+          <Text color={'graySecondary'} fontSize={'xs'}>
+            {isFilterEmpty
+              ? `${filteredExList.length} exercises`
+              : `${filteredExList.length} exercises found`}
+          </Text>
+        </HStack>
+        <SortExerciseDropDown />
       </HStack>
-      {/* <ExerciseFilterBar mt={'46px'} width={'100%'} /> */}
       {JSON.stringify(filterOptions) !==
         JSON.stringify({
           studentAge: '',
@@ -109,15 +108,8 @@ export const ExerciseUserLibraryWidget = (): JSX.Element => {
           skill: [],
           type: [],
           topicList: [],
-        }) && (
-        <ExerciseFilterBar
-          mt={'46px'}
-          width={'100%'}
-        //  display={isFilterEmpty ? 'none' : 'flex'}
-        />
-      )}
+        }) && <ExerciseFilterBar mt={'46px'} width={'100%'} />}
       <Grid
-        //gridTemplateColumns={['1fr', '1fr', '1fr 1fr 1fr']}
         mt={'24px'}
         gridTemplateColumns={'repeat(auto-fill, minmax(275px, 1fr))'}
         gap={'14px'}

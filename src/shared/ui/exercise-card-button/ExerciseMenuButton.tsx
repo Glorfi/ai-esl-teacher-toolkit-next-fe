@@ -15,7 +15,7 @@ export const ExMenuCardButton = forwardRef<MenuButtonProps, 'button'>(
         ref={ref}
         {...props}
         className="thumbNailButton"
-        color={'primary.base'}
+        color={'secondary.base'}
       />
     );
   }

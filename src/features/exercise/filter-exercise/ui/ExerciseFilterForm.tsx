@@ -75,8 +75,7 @@ export const ExerciseFilterForm = (props: StackProps): JSX.Element => {
   useEffect(() => {
     if (
       allowTopicUpdate &&
-      JSON.stringify(filterOptions) !==
-        JSON.stringify(reduxFormValues)
+      JSON.stringify(filterOptions) !== JSON.stringify(reduxFormValues)
     ) {
       dispatch(setFilterConfig(filterOptions));
     }
@@ -196,8 +195,6 @@ export const ExerciseFilterForm = (props: StackProps): JSX.Element => {
             size={'sm'}
             value={filterOptions.studentLevel}
             borderRadius={6}
-            placeholder="Level"
-            _placeholder={{ fontWeight: 'bold' }}
           >
             <option
               value={''}

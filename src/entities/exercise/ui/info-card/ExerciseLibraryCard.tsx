@@ -101,7 +101,7 @@ export const ExerciseLibraryCard = (
                 href={`${redirectPath}${exersice._id}`}
                 variant={'outline'}
                 size={'xs'}
-                color="primary.base"
+                color="secondary.base"
               />
               <Menu closeOnBlur closeOnSelect placement={'bottom-end'} isLazy>
                 <MenuButton as={ExMenuCardButton}></MenuButton>
