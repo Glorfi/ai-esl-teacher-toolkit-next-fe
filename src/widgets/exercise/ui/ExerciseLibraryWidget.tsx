@@ -4,6 +4,7 @@ import {
   IExercise,
   replaceExercise,
 } from '@/entities/exercise';
+
 import { TopicTag } from '@/entities/topic';
 import {
   DeleteExercisePopUp,
@@ -12,7 +13,6 @@ import {
   SortExerciseDropDown,
   getFilteredExerciseList,
   getSortedExerciseList,
-  toggleTopic,
   useIsFilterEmpty,
 } from '@/features/exercise';
 import {
@@ -20,6 +20,7 @@ import {
   useRemoveTopicFromExerciseMutation,
 } from '@/features/topic';
 import { useAppDispatch, useAppSelector } from '@/shared/hooks/hooks';
+import RenderOnViewportEntry from '@/shared/ui/render-on-view-port-entry/RenderOnViewPortEntry';
 import {
   VStack,
   Text,
@@ -29,7 +30,7 @@ import {
   Slide,
   SlideFade,
 } from '@chakra-ui/react';
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { BiShare } from 'react-icons/bi';
 import { BsExclamationCircle } from 'react-icons/bs';
 import { FaRegShareFromSquare, FaRegTrashCan } from 'react-icons/fa6';
@@ -39,8 +40,14 @@ export const ExerciseUserLibraryWidget = (): JSX.Element => {
   const filterOptions = useAppSelector((state) => state.filterOptions);
   const sortBy = useAppSelector((state) => state.sortingOption.sortby);
   const dispatch = useAppDispatch();
-  const [filteredExList, setFilteredExList] = useState<IExercise[]>([]);
+
   const [isRendered, setIsRendered] = useState<boolean>(false);
+  
+  const filteredExList = useMemo(() => {
+    const arr = getFilteredExerciseList(exerciseList, filterOptions);
+    setIsRendered(true);
+    return getSortedExerciseList(arr, sortBy);
+  }, [exerciseList, filterOptions, sortBy]);
   const [isTransitionActive, setIsTransitionActive] = useState<boolean>(false);
   const isFilterEmpty = useIsFilterEmpty();
 
@@ -62,12 +69,12 @@ export const ExerciseUserLibraryWidget = (): JSX.Element => {
     },
   ];
 
-  useEffect(() => {
-    const arr = getFilteredExerciseList(exerciseList, filterOptions);
-    const sortedArr = getSortedExerciseList(arr, sortBy);
-    setFilteredExList(sortedArr);
-    setIsRendered(true);
-  }, [filterOptions, exerciseList, sortBy]);
+  // useEffect(() => {
+  //   const arr = getFilteredExerciseList(exerciseList, filterOptions);
+  //   const sortedArr = getSortedExerciseList(arr, sortBy);
+  //   setFilteredExList(sortedArr);
+  //   setIsRendered(true);
+  // }, [filterOptions, exerciseList, sortBy]);
 
   useEffect(() => {
     if (exWithRemovedTopic) {
@@ -117,22 +124,28 @@ export const ExerciseUserLibraryWidget = (): JSX.Element => {
       >
         {filteredExList.map((item, index) => {
           return (
-            <SlideFade
-              offsetY="-20px"
-              in={isRendered}
-              unmountOnExit
-              key={`fader ${item._id}`}
+            <RenderOnViewportEntry
+              threshold={0.25}
+              style={{ minHeight: '240px' }}
+              key={`renderwrapper ${item._id}`}
             >
-              <ExerciseLibraryCard
-                exersice={item}
-                TopicTag={TopicTag}
-                key={`exInfoCard ${item._id}`}
-                menuFeatures={features}
-                AddTopicMenu={AddTopicMenu}
-                // onTopicFilter={onTopicFilter}
-                onTopicDelete={removeTopic}
-              />
-            </SlideFade>
+              <SlideFade
+                offsetY="-20px"
+                in={isRendered}
+                unmountOnExit
+                key={`fader ${item._id}`}
+              >
+                <ExerciseLibraryCard
+                  exersice={item}
+                  TopicTag={TopicTag}
+                  key={`exInfoCard ${item._id}`}
+                  menuFeatures={features}
+                  AddTopicMenu={AddTopicMenu}
+                  // onTopicFilter={onTopicFilter}
+                  onTopicDelete={removeTopic}
+                />
+              </SlideFade>
+            </RenderOnViewportEntry>
           );
         })}
       </Grid>

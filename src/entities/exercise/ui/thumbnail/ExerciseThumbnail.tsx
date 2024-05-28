@@ -29,7 +29,7 @@ interface IMenuFeatures extends MenuItemProps {
   modal?: React.ComponentType<any>;
 }
 
-export const ExerciseSidbarThumbnail = (
+const ExerciseSidbarThumbnail = (
   props: IExerciseSidbarThumbnailProps
 ): JSX.Element => {
   const router = useRouter();
@@ -176,3 +176,5 @@ export const ExerciseSidbarThumbnail = (
     </>
   );
 };
+
+export default ExerciseSidbarThumbnail;

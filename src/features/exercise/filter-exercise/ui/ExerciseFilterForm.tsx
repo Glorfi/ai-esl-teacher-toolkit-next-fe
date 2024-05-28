@@ -13,11 +13,12 @@ import {
 import { useEffect, useState } from 'react';
 import './ExerciseFilterForm.css';
 
-import { getUniqueUserTopics } from '../model/useUsersTopics';
+import { getUniqueUserTopics, userTopicsSelector } from '../model/useUsersTopics';
 import { IFilterOptions } from '../model/types';
 import { useAppDispatch, useAppSelector } from '@/shared/hooks/hooks';
 import { setFilterOptions as setFilterConfig } from '../model/filter-options-router';
 import { BiSliderAlt } from 'react-icons/bi';
+import { useSelector } from 'react-redux';
 
 export const ExerciseFilterForm = (props: StackProps): JSX.Element => {
   const reduxFormValues = useAppSelector((state) => state.filterOptions);
@@ -42,8 +43,8 @@ export const ExerciseFilterForm = (props: StackProps): JSX.Element => {
 
   const [allowTopicUpdate, setAllowTopicUpdate] = useState<boolean>(true);
 
-  //const topicList = useSelector(userTopicsSelector); // MEMOIZED VARIANT
-  const topicList = getUniqueUserTopics(exercisesList); // NO MEMO VARIANT
+  const topicList = useSelector(userTopicsSelector); // MEMOIZED VARIANT
+  //const topicList = getUniqueUserTopics(exercisesList); // NO MEMO VARIANT
 
   const dispatch = useAppDispatch();
 

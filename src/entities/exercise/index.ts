@@ -1,9 +1,16 @@
+import dynamic from 'next/dynamic';
+
 // COMPONENTS
 export { RecentExercisesBox } from './ui/recent-box/RecentExercisesBox';
 export { ExerciseContainer } from './ui/shared-container/ExerciseContainter';
-export { ExerciseSidbarThumbnail } from './ui/thumbnail/ExerciseThumbnail';
 export { ExerciseEditCard } from './ui/edit-card/ExerciseEditCard';
-export { ExerciseLibraryCard } from './ui/info-card/ExerciseLibraryCard';
+
+export const ExerciseSidbarThumbnail = dynamic(
+  () => import('./ui/thumbnail/ExerciseThumbnail')
+);
+export const ExerciseLibraryCard = dynamic(
+  () => import('./ui/info-card/ExerciseLibraryCard')
+);
 //TYPES
 export type { IExercise } from './model/models';
 

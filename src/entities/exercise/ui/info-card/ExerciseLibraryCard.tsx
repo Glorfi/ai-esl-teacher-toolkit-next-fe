@@ -44,7 +44,7 @@ interface IMenuFeatures extends MenuItemProps {
   modal?: React.ComponentType<any>;
 }
 
-export const ExerciseLibraryCard = (
+const ExerciseLibraryCard = (
   props: IExerciseLibraryCard
 ): JSX.Element => {
   const {
@@ -288,3 +288,5 @@ export const ExerciseLibraryCard = (
     </>
   );
 };
+
+export default ExerciseLibraryCard
