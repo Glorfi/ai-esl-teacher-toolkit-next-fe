@@ -1,5 +1,5 @@
 import { useFirstViewPortEntry } from '@/shared/hooks/useFirstViewPortEntry';
-import React, { Suspense, useRef, ReactNode } from 'react';
+import React, { Suspense, useRef, ReactNode, useEffect, useState } from 'react';
 
 interface RenderOnViewportEntryProps {
   children: ReactNode;
@@ -19,9 +19,19 @@ const RenderOnViewportEntry = ({
   const ref = useRef<HTMLDivElement>(null);
   const entered = useFirstViewPortEntry(ref, { threshold, root, rootMargin });
 
+  const [forceRender, setForceRender] = useState(false);
+
+  useEffect(() => {
+    const isMobile = window.innerWidth <= 768;
+    if (isMobile) {
+      // Принудительно рендерим несколько первых элементов на мобильных устройствах
+      setForceRender(true);
+    }
+  }, []);
+
   return (
     <div {...wrapperDivProps} ref={ref}>
-      {entered ? (
+      {entered || forceRender ? (
         <Suspense fallback={<div>Loading...</div>}>{children}</Suspense>
       ) : null}
     </div>
