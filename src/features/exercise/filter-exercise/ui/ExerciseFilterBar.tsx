@@ -33,7 +33,7 @@ export const ExerciseFilterBar = (props: StackProps): JSX.Element => {
   const userTopicList = getUniqueUserTopics(exerciseList);
 
   return (
-    <HStack {...props} flexWrap={'wrap'}>
+    <HStack {...props} flexWrap={'wrap'} display={['none', 'flex']}>
       <Text fontWeight={'bold'} mr={'18px'} minH={'28px'}>
         Filtered by:
       </Text>

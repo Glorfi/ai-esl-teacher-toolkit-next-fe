@@ -36,8 +36,7 @@ const LibraryDashboardLayout = ({
           //  padding={['0 36px 0 56px']}
           gap={0}
         >
-          <MobileMenuUserLibrary />
-          <WorkspaceHeader />
+          <WorkspaceHeader mobileMenu={<MobileMenuUserLibrary />} />
           {children}
         </HStack>
       </HStack>

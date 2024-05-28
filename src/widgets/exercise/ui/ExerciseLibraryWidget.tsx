@@ -42,7 +42,7 @@ export const ExerciseUserLibraryWidget = (): JSX.Element => {
   const dispatch = useAppDispatch();
 
   const [isRendered, setIsRendered] = useState<boolean>(false);
-  
+
   const filteredExList = useMemo(() => {
     const arr = getFilteredExerciseList(exerciseList, filterOptions);
     setIsRendered(true);
@@ -83,24 +83,23 @@ export const ExerciseUserLibraryWidget = (): JSX.Element => {
   }, [exWithRemovedTopic]);
   return (
     <VStack
-      //  maxW={'800px'}
       w={['100%']}
-      padding={['0 36px 0 56px']}
-      mt={'80px'}
+      padding={['0 26px', '0 36px 0 56px']}
+      mt={['64px', '80px']}
       alignItems={'flex-start'}
       gap={0}
-      // p={['0', '20px 0']}
     >
       <HStack
         justifyContent={'space-between'}
         w={'100%'}
         alignItems={'baseline'}
+        flexDirection={['column', 'row']}
       >
         <HStack alignItems={'baseline'}>
-          <Text fontSize={'x-large'} fontWeight={'bold'}>
+          <Text fontSize={['lg', 'x-large']} fontWeight={'bold'}>
             Your exercises
           </Text>
-          <Text color={'graySecondary'} fontSize={'xs'}>
+          <Text color={'graySecondary'} fontSize={['10px', 'xs']}>
             {isFilterEmpty
               ? `${filteredExList.length} exercises`
               : `${filteredExList.length} exercises found`}

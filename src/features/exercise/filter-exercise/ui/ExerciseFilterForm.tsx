@@ -9,16 +9,21 @@ import {
   Button,
   Icon,
   StackProps,
+  ButtonGroup,
 } from '@chakra-ui/react';
 import { useEffect, useState } from 'react';
 import './ExerciseFilterForm.css';
 
-import { getUniqueUserTopics, userTopicsSelector } from '../model/useUsersTopics';
+import {
+  getUniqueUserTopics,
+  userTopicsSelector,
+} from '../model/useUsersTopics';
 import { IFilterOptions } from '../model/types';
 import { useAppDispatch, useAppSelector } from '@/shared/hooks/hooks';
 import { setFilterOptions as setFilterConfig } from '../model/filter-options-router';
 import { BiSliderAlt } from 'react-icons/bi';
 import { useSelector } from 'react-redux';
+import { DeleteIcon } from '@/shared/ui/icons/DeleteIcon';
 
 export const ExerciseFilterForm = (props: StackProps): JSX.Element => {
   const reduxFormValues = useAppSelector((state) => state.filterOptions);
@@ -180,7 +185,12 @@ export const ExerciseFilterForm = (props: StackProps): JSX.Element => {
           Filter Exercise
         </Text>
       </HStack>
-      <VStack width={'100%'} alignItems={'flex-start'} gap="18px" mt={'22px'}>
+      <VStack
+        width={'100%'}
+        alignItems={'flex-start'}
+        gap={['14px', '18px']}
+        mt={['14px', '22px']}
+      >
         <VStack alignItems={'flex-start'} w={'100%'} gap={'6px'}>
           <Text color={'background'} fontSize={'14px'} fontWeight={'semibold'}>
             Learner Level
@@ -274,7 +284,7 @@ export const ExerciseFilterForm = (props: StackProps): JSX.Element => {
             <HStack
               flexWrap={'wrap'}
               className="scroll"
-              maxH={'120px'}
+              maxH={['80px', '120px']}
               overflowY={'scroll'}
               gap="6px"
             >
@@ -288,6 +298,25 @@ export const ExerciseFilterForm = (props: StackProps): JSX.Element => {
             </HStack>
           </CheckboxGroup>
         </VStack>
+        <ButtonGroup
+          fontFamily={'alt'}
+          w={'100%'}
+          display={['inline-flex', 'none']}
+          justifyContent={'space-between'}
+        >
+          <Button w={'100%'} size={'xs'} as={'div'} colorScheme="secondary">
+            Find exercises
+          </Button>
+          <Button
+            w={'100%'}
+            size={'xs'}
+            colorScheme="error"
+            leftIcon={<DeleteIcon />}
+            onClick={resetForm}
+          >
+            Reset filters{' '}
+          </Button>
+        </ButtonGroup>
         {/* <Button
           mt={'auto'}
           w={'100%'}
