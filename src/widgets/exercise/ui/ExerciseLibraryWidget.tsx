@@ -20,6 +20,7 @@ import {
   useRemoveTopicFromExerciseMutation,
 } from '@/features/topic';
 import { useAppDispatch, useAppSelector } from '@/shared/hooks/hooks';
+import { DeleteIcon } from '@/shared/ui/icons/DeleteIcon';
 import RenderOnViewportEntry from '@/shared/ui/render-on-view-port-entry/RenderOnViewPortEntry';
 import {
   VStack,
@@ -62,7 +63,7 @@ export const ExerciseUserLibraryWidget = (): JSX.Element => {
       modal: ShareExercisePopUp,
     },
     {
-      icon: FaRegTrashCan,
+      icon: DeleteIcon,
       title: 'Delete',
       color: 'error.base',
       modal: DeleteExercisePopUp,
