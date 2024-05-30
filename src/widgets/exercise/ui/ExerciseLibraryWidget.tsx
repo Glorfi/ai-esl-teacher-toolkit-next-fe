@@ -32,6 +32,7 @@ import {
   SlideFade,
 } from '@chakra-ui/react';
 import { useEffect, useMemo, useState } from 'react';
+import { AiOutlineFrown } from 'react-icons/ai';
 import { BiShare } from 'react-icons/bi';
 import { BsExclamationCircle } from 'react-icons/bs';
 import { FaRegShareFromSquare, FaRegTrashCan } from 'react-icons/fa6';
@@ -87,7 +88,7 @@ export const ExerciseUserLibraryWidget = (): JSX.Element => {
       w={['100%']}
       padding={['0 26px', '0 36px 0 56px']}
       mt={['64px', '80px']}
-      alignItems={'flex-start'}
+      alignItems={'center'}
       gap={0}
     >
       <HStack
@@ -155,16 +156,19 @@ export const ExerciseUserLibraryWidget = (): JSX.Element => {
         })}
       </Grid>
       {filteredExList.length === 0 && isRendered && (
-        <VStack>
+        <VStack maxW={'508px'} backgroundColor="gray.100" p={['36px']}>
           <Icon
-            as={BsExclamationCircle}
-            w={'80px'}
-            h={'80px'}
+            as={AiOutlineFrown}
+            w={'64px'}
+            h={'64px'}
             color={'primary.base'}
           />
-          <Text>There are no exercises matching your current filters</Text>
-          <Text fontWeight={'bold'} fontSize={'x-large'}>
-            Please choose other filtering options!
+          <Text fontSize={'2xl'} fontWeight={'semibold'}>
+            No results found
+          </Text>
+          <Text fontWeight={'400'} fontSize={'sm'} color={'graySecondary'} textAlign={"center"} maxW="310px">
+            Select different filtering options or create a new exercise with
+            these options.
           </Text>
         </VStack>
       )}
