@@ -4,14 +4,14 @@ import { createMultiStyleConfigHelpers, defineStyle } from '@chakra-ui/react';
 const { definePartsStyle, defineMultiStyleConfig } =
   createMultiStyleConfigHelpers(tagAnatomy.keys);
 
-const vocabulary = definePartsStyle({
+const grammar = definePartsStyle({
   container: {
     bg: 'secondary.50',
     color: 'secondary.base',
   },
 });
 
-const grammar = definePartsStyle({
+const vocabulary = definePartsStyle({
   container: {
     bg: 'violet.50',
     color: 'violet.base',

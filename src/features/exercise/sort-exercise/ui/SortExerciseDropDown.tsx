@@ -49,9 +49,11 @@ export const SortExerciseDropDown = (): JSX.Element => {
         variant={'outline'}
         color="primary.base"
         size={'xs'}
+        fontSize={"sm"}
         borderColor={'primary.base'}
         _hover={{ background: 'unset' }}
         _active={{ background: 'unset' }}
+        fontFamily={'alt'}
       >
         {`Sort by: ${sortingState}`}
       </MenuButton>
@@ -66,14 +68,14 @@ export const SortExerciseDropDown = (): JSX.Element => {
         borderTopColor={'yellow'}
         borderTopWidth={0}
         borderTopRadius={0}
-
+        fontFamily={'alt'}
         // borderTopLeftRadius={0}
         // borderTopRightRadius={0}
       >
         {menuItems.map((item, index) => (
           <MenuItem
-            fontSize={'xs'}
-            fontWeight={item === sortingState ? 'bold' : '400'}
+            fontSize={'sm'}
+            fontWeight={item === sortingState ? 'bold' : 'medium'}
             color={'primary.base'}
             bgColor={'white'}
             p={0}
@@ -90,26 +92,6 @@ export const SortExerciseDropDown = (): JSX.Element => {
             {item}
           </MenuItem>
         ))}
-        {/* <MenuItem
-          fontSize={'xs'}
-          fontWeight={'400'}
-          color={'primary.base'}
-          p={0}
-          _hover={{
-            backgroundColor: 'unset',
-            fontWeight: 'bold',
-          }}
-          _focus={{
-            backgroundColor: 'unset',
-          }}
-        >
-          Update
-        </MenuItem>
-        <MenuItem>Popularity</MenuItem>
-        <MenuItem>Newest to oldest</MenuItem>
-        <MenuItem>Oldest to newest</MenuItem>
-        <MenuItem>A-Z</MenuItem>
-        <MenuItem>Z-A</MenuItem> */}
       </MenuList>
     </Menu>
   );

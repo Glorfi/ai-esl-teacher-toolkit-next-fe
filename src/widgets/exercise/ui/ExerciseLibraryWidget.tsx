@@ -134,6 +134,11 @@ export const ExerciseUserLibraryWidget = (): JSX.Element => {
                 in={isRendered}
                 unmountOnExit
                 key={`fader ${item._id}`}
+                style={{
+                  display: 'flex',
+                  flexDirection: 'column',
+                  height: '100%',
+                }}
               >
                 <ExerciseLibraryCard
                   exersice={item}
