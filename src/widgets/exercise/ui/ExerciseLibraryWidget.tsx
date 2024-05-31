@@ -147,7 +147,7 @@ export const ExerciseUserLibraryWidget = (): JSX.Element => {
                   key={`exInfoCard ${item._id}`}
                   menuFeatures={features}
                   AddTopicMenu={AddTopicMenu}
-                    // onTopicFilter={onTopicFilter}
+                      // onTopicFilter={onTopicFilter}
                   onTopicDelete={removeTopic}
                 />
               </SlideFade>
