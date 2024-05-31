@@ -147,7 +147,7 @@ export const ExerciseUserLibraryWidget = (): JSX.Element => {
                   key={`exInfoCard ${item._id}`}
                   menuFeatures={features}
                   AddTopicMenu={AddTopicMenu}
-                      // onTopicFilter={onTopicFilter}
+                  // onTopicFilter={onTopicFilter}
                   onTopicDelete={removeTopic}
                 />
               </SlideFade>
@@ -166,7 +166,13 @@ export const ExerciseUserLibraryWidget = (): JSX.Element => {
           <Text fontSize={'2xl'} fontWeight={'semibold'}>
             No results found
           </Text>
-          <Text fontWeight={'400'} fontSize={'sm'} color={'graySecondary'} textAlign={"center"} maxW="310px">
+          <Text
+            fontWeight={'400'}
+            fontSize={'sm'}
+            color={'graySecondary'}
+            textAlign={'center'}
+            maxW="310px"
+          >
             Select different filtering options or create a new exercise with
             these options.
           </Text>
