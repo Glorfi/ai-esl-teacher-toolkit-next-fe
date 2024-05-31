@@ -45,10 +45,10 @@ export const ShareExercisePopUp = (
     <Modal isOpen={isOpen} onClose={onClose} isCentered size={'sm'}>
       <ModalOverlay bg={'blackAlpha.700'} backdropFilter="blur(1px)" />
       <ModalContent>
-        <ModalHeader color={'primary'}>Share link to Exercise</ModalHeader>
+        <ModalHeader color={'primary.base'}>Share link to Exercise</ModalHeader>
         <ModalCloseButton />
         <ModalBody>
-          <Text color={'primary'}>
+          <Text color={'primary.base'}>
             This link will open the exercise in a student view
           </Text>
           <InputGroup mt={'8px'}>

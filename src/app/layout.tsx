@@ -16,7 +16,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={fonts.lato.className}>
+      <body className={`${fonts.lato.variable}`}>
         <Providers>
           {children}
           <AuthComponent />

@@ -103,9 +103,12 @@ export const AddTopicMenu = (props: IAddTopicMenuProps): JSX.Element => {
           aria-label="add tag"
           icon={<FaPlus />}
           size={'xs'}
-          isRound
-          variant={'ghost'}
-          colorScheme="secondary"
+          variant={'outline'}
+          color="primary.base"
+          borderColor={'primary.base'}
+          // colorScheme="primary"
+          // _hover={{ backgroundColor: 'secondary.50' }}
+          // _active={{ backgroundColor: 'secondary.50' }}
         />
         <MenuList>
           <Input
@@ -114,7 +117,7 @@ export const AddTopicMenu = (props: IAddTopicMenuProps): JSX.Element => {
             p={'6px 12px'}
             placeholder="Add topics..."
             size={'sm'}
-            color={'primary'}
+            color={'primary.base'}
             name="name"
             onChange={handleInputChange}
             onFocus={() => setInputFocused(true)}

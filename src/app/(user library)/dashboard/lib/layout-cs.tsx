@@ -1,5 +1,6 @@
 'use client';
 
+import { WorkspaceHeader } from '@/widgets/header';
 import { MobileMenuUserLibrary } from '@/widgets/mobile-menu';
 import {
   SidebarDashboardWithRecentEx,
@@ -32,9 +33,10 @@ const LibraryDashboardLayout = ({
           transition={'width 0.2s ease-in'}
           w={['100%', `${isSideBarOpen ? 'calc(100% - 320px)' : '100%'}`]}
           justifyContent={['flex-start']}
-          padding={['20px', '0']}
+          //  padding={['0 36px 0 56px']}
+          gap={0}
         >
-          <MobileMenuUserLibrary />
+          <WorkspaceHeader mobileMenu={<MobileMenuUserLibrary />} />
           {children}
         </HStack>
       </HStack>

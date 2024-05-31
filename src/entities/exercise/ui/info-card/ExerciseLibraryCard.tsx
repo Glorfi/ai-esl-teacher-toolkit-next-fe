@@ -17,17 +17,24 @@ import {
   MenuList,
   MenuItemProps,
   useDisclosure,
+  Tag,
+  Divider,
+  IconButton,
+  ButtonGroup,
 } from '@chakra-ui/react';
 import NextLink from 'next/link';
 import { Link } from '@chakra-ui/react';
 import { ExMenuCardButton } from '@/shared/ui/exercise-card-button/ExerciseMenuButton';
+import { capitalizeFirstLetter } from '@/shared/utils/capitalizeFirstLetter';
+import { AiFillEdit } from 'react-icons/ai';
 
 interface IExerciseLibraryCard {
   exersice: IExercise;
   TopicTag: React.ComponentType<any>;
   menuFeatures: IMenuFeatures[];
   AddTopicMenu: React.ComponentType<any>;
-  onTopicFilter: any;
+  onTopicFilter?: any;
+  onTopicDelete?: any;
 }
 
 interface IMenuFeatures extends MenuItemProps {
@@ -37,11 +44,15 @@ interface IMenuFeatures extends MenuItemProps {
   modal?: React.ComponentType<any>;
 }
 
-export const ExerciseLibraryCard = (
-  props: IExerciseLibraryCard
-): JSX.Element => {
-  const { exersice, TopicTag, menuFeatures, AddTopicMenu, onTopicFilter } =
-    props;
+const ExerciseLibraryCard = (props: IExerciseLibraryCard): JSX.Element => {
+  const {
+    exersice,
+    TopicTag,
+    menuFeatures,
+    AddTopicMenu,
+    onTopicFilter,
+    onTopicDelete,
+  } = props;
   const router = useRouter();
   const redirectPath = APP_PATHS.DASHBOARD_EXERCISE.replace('/:id', '/');
 
@@ -71,91 +82,164 @@ export const ExerciseLibraryCard = (
   return (
     <>
       <Card
-      //onClick={handleCardClick}
+        //onClick={handleCardClick}
+        variant={'outline'}
+        flex={1}
       >
-        <CardBody p={'8px'}>
+        <CardBody p={'16px'}>
           <HStack justifyContent={'space-between'}>
-            <Link
-              as={NextLink}
-              fontWeight={'bold'}
-              href={`${redirectPath}${exersice._id}`}
-              _hover={{ textDecoration: 'none' }}
-              color={'primary'}
-            >
-              {exersice.title ? exersice.title : 'No title'}
-            </Link>
-            <Menu closeOnBlur closeOnSelect placement={'bottom'}>
-              <MenuButton as={ExMenuCardButton}></MenuButton>
-              <MenuList bgColor={'background'} minW={'150px'}>
-                {menuFeatures.map(
-                  ({ onMenuItem, title, icon, modal, ...rest }, index) => (
-                    <MenuItem
-                      onClick={(e) => handleMenuItemClick(e, index, onMenuItem)}
-                      {...rest}
-                      key={`menu-item ${exersice._id}${index} `}
-                      fontSize={'14px'}
-                    >
-                      {icon && (
-                        <Icon
-                          as={icon}
-                          mr={'8px'}
-                          key={`menu-icon ${exersice._id}${exersice._id}${index} `}
-                        />
-                      )}
-                      {title}
-                    </MenuItem>
-                  )
-                )}
-              </MenuList>
-            </Menu>
+            <Tag fontFamily={'alt'} variant={exersice.skill} p={'4px 8px'}>
+              {capitalizeFirstLetter(exersice.skill)}
+            </Tag>
+            <ButtonGroup>
+              <IconButton
+                aria-label="edit"
+                isRound
+                icon={<AiFillEdit />}
+                as={NextLink}
+                href={`${redirectPath}${exersice._id}`}
+                variant={'outline'}
+                size={'xs'}
+                color="secondary.base"
+              />
+              <Menu closeOnBlur closeOnSelect placement={'bottom-end'} isLazy>
+                <MenuButton as={ExMenuCardButton}></MenuButton>
+                <MenuList
+                  bgColor={'background'}
+                  minW={'120px'}
+                  p={'12px'}
+                  display={'flex'}
+                  flexDir={'column'}
+                  gap={'6px'}
+                >
+                  {menuFeatures.map(
+                    ({ onMenuItem, title, icon, modal, ...rest }, index) => (
+                      <MenuItem
+                        onClick={(e) =>
+                          handleMenuItemClick(e, index, onMenuItem)
+                        }
+                        {...rest}
+                        key={`menu-item ${exersice._id}${index} `}
+                        fontSize={'xs'}
+                        fontWeight={'400'}
+                        p={0}
+                        _hover={{
+                          backgroundColor: 'unset',
+                          fontWeight: 'bold',
+                        }}
+                        _focus={{
+                          backgroundColor: 'unset',
+                        }}
+                      >
+                        {icon && (
+                          <Icon
+                            as={icon}
+                            mr={'8px'}
+                            key={`menu-icon ${exersice._id}${exersice._id}${index} `}
+                            // {title === 'Share' ?
+                            //   transform: 'scale(-1,1)' :
+                            // }
+                            transform={`scale(${
+                              title === 'Share' ? '-1,1' : 'unset'
+                            })`}
+                          />
+                        )}
+                        {title}
+                      </MenuItem>
+                    )
+                  )}
+                </MenuList>
+              </Menu>
+            </ButtonGroup>
           </HStack>
-          <HStack mt={'8px'}>
+          <VStack mt={'14px'} alignItems={'flex-start'} gap={'8px'}>
+            <Text fontWeight={'bold'} color={'secondary.base'} fontSize={'lg'}>
+              {exersice.title ? exersice.title : 'No title'}
+            </Text>
             <Text
               fontSize={'14px'}
               fontWeight={'semibold'}
-              color={'primary'}
+              //color={'primary.base'}
               noOfLines={2}
             >
               Keywords:{' '}
               <Text
                 as={'span'}
                 fontSize={'14px'}
-                fontWeight={'light'}
-                color={'secondary.base'}
+                fontWeight={'400'}
+                // color={'secondary.base'}
               >
                 {keywords.join(', ')}
               </Text>
             </Text>
-          </HStack>
-          <Box mt={'8px'} alignItems={'flex-start'}>
-            <Text
+          </VStack>
+          <Divider m={'12px 0'} />
+          <VStack alignItems={'flex-start'} gap={'6px'}>
+            {/* <Text
               fontSize={'14px'}
               fontWeight={'semibold'}
-              color={'primary'}
+              color={'primary.base'}
               noOfLines={2}
             >
               Skill:{' '}
               <Text
                 as={'span'}
                 fontSize={'14px'}
-                fontWeight={'light'}
-                color={'secondary.base'}
+                fontWeight={'400'}
+                color={'primary.base'}
               >
                 {exersice.skill}
+              </Text>
+            </Text> */}
+            <Text
+              fontSize={'sm'}
+              fontWeight={'semibold'}
+              color={'primary.base'}
+              lineHeight={'129%'}
+            >
+              Learner level:{' '}
+              <Text
+                as={'span'}
+                fontSize={'sm'}
+                fontWeight={'400'}
+                color={'primary.base'}
+                lineHeight={'129%'}
+              >
+                {exersice.studentLevel}
+              </Text>
+            </Text>
+            <Text
+              fontSize={'sm'}
+              fontWeight={'semibold'}
+              color={'primary.base'}
+              noOfLines={2}
+              lineHeight={'129%'}
+            >
+              Learner Age:{' '}
+              <Text
+                as={'span'}
+                fontSize={'sm'}
+                fontWeight={'400'}
+                color={'primary.base'}
+                lineHeight={'129%'}
+              >
+                {exersice.studentAge}
               </Text>
             </Text>
             <Text
               fontSize={'14px'}
               fontWeight={'semibold'}
-              color={'primary'}
+              color={'primary.base'}
               noOfLines={2}
+              lineHeight={'129%'}
             >
               Type:{' '}
               <Text
                 as={'span'}
                 fontSize={'14px'}
-                fontWeight={'light'}
-                color={'secondary.base'}
+                fontWeight={'400'}
+                color={'primary.base'}
+                lineHeight={'129%'}
               >
                 {exersice.type === 'fillInGaps'
                   ? 'Fill-in gaps'
@@ -164,44 +248,12 @@ export const ExerciseLibraryCard = (
                   : ''}
               </Text>
             </Text>
+          </VStack>
+          <HStack flexWrap={'wrap'} gap={'4px'} mt={'6px'}>
             <Text
               fontSize={'14px'}
               fontWeight={'semibold'}
-              color={'primary'}
-              noOfLines={2}
-            >
-              Level:{' '}
-              <Text
-                as={'span'}
-                fontSize={'14px'}
-                fontWeight={'light'}
-                color={'secondary.base'}
-              >
-                {exersice.studentLevel}
-              </Text>
-            </Text>
-            <Text
-              fontSize={'14px'}
-              fontWeight={'semibold'}
-              color={'primary'}
-              noOfLines={2}
-            >
-              Learner Age:{' '}
-              <Text
-                as={'span'}
-                fontSize={'14px'}
-                fontWeight={'light'}
-                color={'secondary.base'}
-              >
-                {exersice.studentAge}
-              </Text>
-            </Text>
-          </Box>
-          <HStack flexWrap={'wrap'} gap={'4px'}>
-            <Text
-              fontSize={'14px'}
-              fontWeight={'semibold'}
-              color={'primary'}
+              color={'primary.base'}
               //  noOfLines={2}
             >
               Topics:
@@ -213,6 +265,7 @@ export const ExerciseLibraryCard = (
                   exerciseId={exersice._id}
                   key={`topic${topic._id}-exercise${exersice._id}`}
                   onFilterClick={onTopicFilter}
+                  onDelete={onTopicDelete}
                 />
               );
             })}
@@ -234,3 +287,5 @@ export const ExerciseLibraryCard = (
     </>
   );
 };
+
+export default ExerciseLibraryCard;

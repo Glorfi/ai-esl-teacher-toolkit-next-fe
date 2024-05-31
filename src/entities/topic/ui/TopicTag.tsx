@@ -34,18 +34,21 @@ export const TopicTag = (props: ITopicTag): JSX.Element => {
 
   return (
     <Tag
-      colorScheme="secondary"
+      colorScheme="primary"
       variant={'outline'}
       onMouseEnter={() => {
         setIsHovered(true);
       }}
       onMouseLeave={() => setIsHovered(false)}
       onClick={hanldeTagClick}
-      cursor={onFilterClick && "pointer"}
+      cursor={onFilterClick && 'pointer'}
+      fontFamily={'alt'}
+      fontSize={'12px'}
+      minH={'22px'}
     >
       <TagLabel>{topic.name}</TagLabel>
       <TagCloseButton
-        display={isHovered && onDelete ? 'inline-flex' : 'none'}
+        display={onDelete ? 'inline-flex' : 'none'}
         onClick={handleDelete}
       />
     </Tag>

@@ -6,7 +6,7 @@ import { PiNotePencil } from 'react-icons/pi';
 export const CreateExerciseButton = (): JSX.Element => {
   return (
     <Button
-      w={'100%'}
+      w={['calc(100% - 32px)']}
       rightIcon={<PiNotePencil />}
       variant={'ghost'}
       colorScheme={'whiteOpacity'}

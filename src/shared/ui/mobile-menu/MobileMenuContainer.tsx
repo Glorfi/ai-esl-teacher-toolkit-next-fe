@@ -41,15 +41,16 @@ export const MobileMenuContainer = ({
         <IconButton
           aria-label=""
           colorScheme="secondary"
-          variant={'outline'}
-          borderRadius={'40px'}
+          variant={'ghost'}
+          color={'primary.base'}
+          isRound
           onClick={onOpen}
-          icon={<HamburgerIcon />}
+          icon={<HamburgerIcon viewBox="0 0 24 24" w={'24px'} h={'24px'} />}
         />
       </Box>
       <Drawer isOpen={isOpen} placement="left" onClose={onClose} size={'full'}>
         <DrawerOverlay />
-        <DrawerContent bgColor={'primary'} padding={'0 20px'}>
+        <DrawerContent bgColor={'primary.base'} padding={'0 20px'}>
           <DrawerHeader>
             <DrawerCloseButton color={'white'} right={'28px'} />
           </DrawerHeader>

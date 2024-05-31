@@ -1,6 +1,7 @@
 // 1. Import the extendTheme function
 import { extendTheme } from '@chakra-ui/react';
-import { textTheme } from './fonts';
+import { fonts, textTheme } from './fonts';
+import { tagTheme } from './tag/Tag';
 
 // 2. Extend the theme to include custom colors, fonts, etc
 const colors = {
@@ -17,7 +18,19 @@ const colors = {
     800: 'rgba(255, 254, 250, 0.8)',
     900: 'rgba(255, 254, 250, 0.9)',
   }, // '#fffefa', //(White)
-  primary: '#1d345a', // (Navy Blue)
+  primary: {
+    base: '#1d345a',
+    50: '#e2e5ec',
+    100: '#b7bdd2',
+    200: '#8c94b6',
+    300: '#616b99',
+    400: '#3b4a82',
+    500: '#1d345a',
+    600: '#172b4d',
+    700: '#122340',
+    800: '#0c1a32',
+    900: '#061224',
+  }, // (Navy Blue)
   secondary: {
     base: '#0066a2',
     50: '#daf8ff',
@@ -45,6 +58,20 @@ const colors = {
     800: '#035e83',
     900: '#014469',
   },
+  violet: {
+    base: '#6355CA',
+    50: '#ebe9f8',
+    100: '#cdc9f0',
+    200: '#aca7e8',
+    300: '#8b85df',
+    400: '#726bda',
+    500: '#6355CA',
+    600: '#574bb2',
+    700: '#4a4099',
+    800: '#3d3581',
+    900: '#312b6a',
+  },
+
   error: {
     base: '#D9534F',
     50: '#fde6e5',
@@ -58,6 +85,7 @@ const colors = {
     800: '#671e1e',
     900: '#401515',
   },
+  graySecondary: '#8C8C8C',
 };
 
 const breakboints = {
@@ -71,13 +99,20 @@ const breakboints = {
   },
 };
 
-const fonts = {
+const customFonts = {
   heading: 'var(--font-lato)',
-  body: 'var(--font-lato)',
+  body: fonts.lato.style.fontFamily,
+  alt: fonts.inter.style.fontFamily,
 };
 
 const components = {
   Text: textTheme,
+  Tag: tagTheme,
 };
 
-export const theme = extendTheme({ colors, breakboints, fonts, components });
+export const theme = extendTheme({
+  colors,
+  breakboints,
+  fonts: customFonts,
+  components,
+});

@@ -14,6 +14,7 @@ import {
   IExerciseSidbarThumbnailProps,
   IMenuFeatures,
 } from '../../model/models';
+import RenderOnViewportEntry from '@/shared/ui/render-on-view-port-entry/RenderOnViewPortEntry';
 
 interface RecentExercisesBoxProps {
   ExerciseThumbNail: React.ComponentType<IExerciseSidbarThumbnailProps>;
@@ -82,11 +83,17 @@ export const RecentExercisesBox = (
             </Text>
             {todayExList?.map((ex) => {
               return (
-                <ExerciseThumbNail
-                  data={ex}
-                  key={ex._id}
-                  menuFeatures={ThumbNailMenuFeatures}
-                />
+                <RenderOnViewportEntry
+                  threshold={0.25}
+                  style={{ minHeight: '60px', width: '100%' }}
+                  key={`renderwrapper thumbnail ${ex._id}`}
+                >
+                  <ExerciseThumbNail
+                    data={ex}
+                    key={ex._id}
+                    menuFeatures={ThumbNailMenuFeatures}
+                  />
+                </RenderOnViewportEntry>
               );
             })}
           </>
@@ -105,11 +112,17 @@ export const RecentExercisesBox = (
             </Text>
             {yesterdayExList?.map((ex) => {
               return (
-                <ExerciseThumbNail
-                  data={ex}
-                  key={ex._id}
-                  menuFeatures={ThumbNailMenuFeatures}
-                />
+                <RenderOnViewportEntry
+                  threshold={0.25}
+                  style={{ minHeight: '60px', width: '100%' }}
+                  key={`renderwrapper thumbnail ${ex._id}`}
+                >
+                  <ExerciseThumbNail
+                    data={ex}
+                    key={ex._id}
+                    menuFeatures={ThumbNailMenuFeatures}
+                  />
+                </RenderOnViewportEntry>
               );
             })}
           </>
@@ -128,11 +141,17 @@ export const RecentExercisesBox = (
             </Text>
             {sevenDaysExList?.map((ex) => {
               return (
-                <ExerciseThumbNail
-                  data={ex}
-                  key={ex._id}
-                  menuFeatures={ThumbNailMenuFeatures}
-                />
+                <RenderOnViewportEntry
+                  threshold={0.25}
+                  style={{ minHeight: '60px', width: '100%' }}
+                  key={`renderwrapper thumbnail ${ex._id}`}
+                >
+                  <ExerciseThumbNail
+                    data={ex}
+                    key={ex._id}
+                    menuFeatures={ThumbNailMenuFeatures}
+                  />
+                </RenderOnViewportEntry>
               );
             })}
           </>
@@ -151,11 +170,17 @@ export const RecentExercisesBox = (
             </Text>
             {restExList?.map((ex) => {
               return (
-                <ExerciseThumbNail
-                  data={ex}
-                  key={ex._id}
-                  menuFeatures={ThumbNailMenuFeatures}
-                />
+                <RenderOnViewportEntry
+                  threshold={0.25}
+                  style={{ minHeight: '60px', width: '100%' }}
+                  key={`renderwrapper thumbnail ${ex._id}`}
+                >
+                  <ExerciseThumbNail
+                    data={ex}
+                    key={ex._id}
+                    menuFeatures={ThumbNailMenuFeatures}
+                  />
+                </RenderOnViewportEntry>
               );
             })}
           </>
