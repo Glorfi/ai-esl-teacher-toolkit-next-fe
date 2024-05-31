@@ -150,7 +150,7 @@ export const ExerciseUserLibraryWidget = (): JSX.Element => {
                   // onTopicFilter={onTopicFilter}
                   onTopicDelete={removeTopic}
                 />
-              </SlideFade>
+              </SlideFade>  
             </RenderOnViewportEntry>
           );
         })}
