@@ -10,7 +10,7 @@ import { LSHandler } from '@/shared/hooks/handleLocalStorage';
 import { useAppDispatch, useAppSelector } from '@/shared/hooks/hooks';
 import { Spinner, Text } from '@chakra-ui/react';
 import { useRouter, useSearchParams } from 'next/navigation';
-import { useEffect, useState } from 'react';
+import { Suspense, useEffect, useState } from 'react';
 
 export const MagicAuthResolver = (): JSX.Element => {
   const queryParams = useSearchParams();
@@ -51,7 +51,7 @@ export const MagicAuthResolver = (): JSX.Element => {
     }
   }, [user]);
   return (
-    <>
+    <Suspense>
       {!email || !token ? (
         <Text>Token or email is absent in the link</Text>
       ) : null}
@@ -73,6 +73,6 @@ export const MagicAuthResolver = (): JSX.Element => {
           Something went wrong with a token
         </Text>
       )}
-    </>
+    </Suspense>
   );
 };
