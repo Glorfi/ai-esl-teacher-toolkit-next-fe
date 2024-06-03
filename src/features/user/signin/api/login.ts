@@ -1,12 +1,16 @@
 import { mainApi } from '@/shared';
 import { API_PATH } from '@/shared';
-import { IAuthMagicRequest, ISignInResponse } from '../model';
+import {
+  IAuthMagicRequest,
+  ILoginMagicRequest,
+  ISignInResponse,
+} from '../model';
 
 const mainApiEndpoint = mainApi.injectEndpoints({
   endpoints: (builder) => ({
-    magicAuth: builder.mutation<ISignInResponse, IAuthMagicRequest>({
+    magicLogin: builder.mutation<ISignInResponse, ILoginMagicRequest>({
       query: (body) => ({
-        url: API_PATH.MAGIC_VERIFICATION,
+        url: API_PATH.SIGN_IN_MAGIC,
         headers: {
           'Content-Type': 'application/json',
         },
@@ -17,4 +21,4 @@ const mainApiEndpoint = mainApi.injectEndpoints({
   }),
 });
 
-export const { useMagicAuthMutation } = mainApiEndpoint;
+export const { useMagicLoginMutation } = mainApiEndpoint;

@@ -11,3 +11,7 @@ export interface IAuthMagicRequest {
   email: string;
   token: string;
 }
+
+export interface ILoginMagicRequest {
+  email: string;
+}
