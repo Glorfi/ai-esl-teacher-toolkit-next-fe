@@ -1,6 +1,6 @@
 'use client';
 
-import { useMagicLoginMutation } from '@/features/user';
+import { useMagicSignOnMutation } from '@/features/user';
 import { useDebounce } from '@/shared/utils/useDebounce';
 import {
   Button,
@@ -15,14 +15,14 @@ import {
 import { useEffect, useState } from 'react';
 import validator from 'validator';
 
-export const LoginWidget = (): JSX.Element => {
+export const SignonWidget = (): JSX.Element => {
   const { isOpen, onClose, onOpen } = useDisclosure();
   const [email, setEmail] = useState<string>('');
   const [isEmailValid, setIsEmailValid] = useState<boolean | null>(null);
   const debounceEmail = useDebounce(email, 1000);
 
   const [sendEmail, { isSuccess, isError, isLoading }] =
-    useMagicLoginMutation();
+    useMagicSignOnMutation();
 
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -73,7 +73,7 @@ export const LoginWidget = (): JSX.Element => {
           </FormControl>
           <Button
             w={'100%'}
-            colorScheme="primary"
+            colorScheme="secondary"
             isDisabled={!isEmailValid}
             type="submit"
             form="loginform"

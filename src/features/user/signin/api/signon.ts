@@ -8,9 +8,9 @@ import {
 
 const mainApiEndpoint = mainApi.injectEndpoints({
   endpoints: (builder) => ({
-    magicLogin: builder.mutation<ISignInResponse, ILoginMagicRequest>({
+    magicSignOn: builder.mutation<ISignInResponse, ILoginMagicRequest>({
       query: (body) => ({
-        url: API_PATH.SIGN_IN_MAGIC,
+        url: API_PATH.MAGIC_AUTH,
         headers: {
           'Content-Type': 'application/json',
         },
@@ -21,4 +21,4 @@ const mainApiEndpoint = mainApi.injectEndpoints({
   }),
 });
 
-export const { useMagicLoginMutation } = mainApiEndpoint;
+export const { useMagicSignOnMutation } = mainApiEndpoint;

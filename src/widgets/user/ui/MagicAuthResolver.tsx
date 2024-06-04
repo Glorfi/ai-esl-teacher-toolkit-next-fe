@@ -16,8 +16,11 @@ export const MagicAuthResolver = (): JSX.Element => {
   const queryParams = useSearchParams();
   const dispatch = useAppDispatch();
   const user = useAppSelector((state) => state.user);
-  const email = queryParams.get('email');
-  const token = queryParams.get('token');
+  const emailParam = queryParams.get('email');
+  const tokenParam = queryParams.get('token');
+  
+  const email = emailParam ? emailParam.replace(/ /g, '+') : null;
+  const token = tokenParam ? tokenParam.replace(/ /g, '+') : null;
   const router = useRouter();
   const [login, logInResponse] = useMagicAuthMutation();
   const [auth, authResponse] = useLazyGetCurrentUserQuery();

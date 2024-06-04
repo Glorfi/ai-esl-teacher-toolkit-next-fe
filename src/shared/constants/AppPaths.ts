@@ -1,7 +1,7 @@
 export const APP_PATHS = {
   MAIN: '/',
   SIGN_IN: '/auth/login', // old '/signin'
-  SIGN_UP: '/signup',
+  SIGN_UP: '/auth/signup', // old '/signup',
   MAGIC_VERIFICATION: '/auth/magic',
   DASHBOARD: '/dashboard',
   DASHBOARD_EXERCISE: '/dashboard/e/:id',
