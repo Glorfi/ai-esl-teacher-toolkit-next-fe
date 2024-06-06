@@ -10,7 +10,6 @@ import {
   useDisclosure,
 } from '@chakra-ui/react';
 
-
 import { FaPlus, FaRegShareFromSquare, FaRegTrashCan } from 'react-icons/fa6';
 import {
   ExerciseEditCard,
@@ -28,13 +27,18 @@ import {
   useUpdateExerciseMutation,
   useDeleteExerciseMutation,
   EditExerciseSettingsForm,
+  regenerateExercise,
 } from '@/features/exercise';
 import { SentenceEditForm } from '@/features/sentence';
-import { AddTopicMenu, useRemoveTopicFromExerciseMutation } from '@/features/topic';
+import {
+  AddTopicMenu,
+  useRemoveTopicFromExerciseMutation,
+} from '@/features/topic';
 import { APP_PATHS } from '@/shared';
 import { useAppDispatch, useAppSelector } from '@/shared/hooks/hooks';
 import { useParams, useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
+import { RegenerateIcon } from '@/shared/ui/icons/RegenerateIcon';
 
 export const ExerciseEditorWidget = (): JSX.Element => {
   const { id } = useParams();
@@ -59,12 +63,14 @@ export const ExerciseEditorWidget = (): JSX.Element => {
 
   const headerFeatures = [
     {
-      onClick: () => null,
+      onClick: () => {
+        ex && regenerateExercise(ex, dispatch, router);
+      },
       'aria-label': '3',
-      icon: <FaPlus />,
+      icon: <RegenerateIcon />,
       colorScheme: 'secondary',
-      toolTipTitle: 'Available in future release!',
-      isDisabled: true,
+     // toolTipTitle: 'Available in future release!',
+      isDisabled: false,
     },
     {
       onClick: () => shareHandler.onOpen(),

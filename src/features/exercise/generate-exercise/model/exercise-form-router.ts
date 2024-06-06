@@ -17,10 +17,14 @@ const AddValuesAction = (
   return { ...state, ...action.payload };
 };
 
+const resetFormAction = (state: IFormValues) => {
+  return initialState;
+};
+
 export const ExerciseFormRouter = createSlice({
   name: 'exerciseForm',
   initialState,
-  reducers: { addValues: AddValuesAction },
+  reducers: { addValues: AddValuesAction, resetForm: resetFormAction },
 });
 
-export const { addValues } = ExerciseFormRouter.actions;
+export const { addValues, resetForm } = ExerciseFormRouter.actions;

@@ -22,7 +22,10 @@ import { useDispatch } from 'react-redux';
 import { customError } from '../../../../shared/constants/customError';
 import { useRouter } from 'next/navigation';
 
-import { addValues } from '@/features/exercise/generate-exercise/model/exercise-form-router';
+import {
+  addValues,
+  resetForm,
+} from '@/features/exercise/generate-exercise/model/exercise-form-router';
 import { addExercise } from '@/entities/exercise';
 import { APP_PATHS } from '@/shared';
 
@@ -34,8 +37,6 @@ import { IFormValues } from '../model/types';
 import { useGeneratePrompt } from '../lib/generatePrompt';
 import { getStudentAgeMapped } from '../lib/getStudentAgeMapped';
 import { getStudentLevelMapped } from '../lib/getStudentLevelMapped';
-
-
 
 export const GenerateExerciseForm = (): JSX.Element => {
   const initialFormValues = useAppSelector((state) => state.exerciseForm);
@@ -124,6 +125,12 @@ export const GenerateExerciseForm = (): JSX.Element => {
     setToken(LSHandler.getJwt());
   }, []);
 
+  // useEffect(() => {
+  //   return () => {
+  //     dispatch(resetForm());
+  //   };
+  // }, []);
+
   return (
     <Card bgColor={'background'}>
       <CardBody display="flex" gap={'8px'} flexDirection={'column'}>
@@ -167,13 +174,15 @@ export const GenerateExerciseForm = (): JSX.Element => {
         </VStack>
         <Textarea
           colorScheme="secondary"
+          value={formValues.wordList}
           onChange={(e) =>
             setFormValues({ ...formValues, wordList: e.target.value })
           }
         />
         <Text fontSize={'lg'}>Learner's level</Text>
         <Select
-          defaultValue={'B1'}
+        // defaultValue={'B1'}
+          value={formValues.learnerLevel}
           onChange={(e) =>
             setFormValues({ ...formValues, learnerLevel: e.target.value })
           }
@@ -186,7 +195,8 @@ export const GenerateExerciseForm = (): JSX.Element => {
         </Select>
         <Text fontSize={'lg'}>Learner's age</Text>
         <Select
-          defaultValue={'adults'}
+        //  defaultValue={'adults'}
+          value={formValues.learnerAge}
           onChange={(e) =>
             setFormValues({ ...formValues, learnerAge: e.target.value })
           }
@@ -215,6 +225,7 @@ export const GenerateExerciseForm = (): JSX.Element => {
           <Switch
             colorScheme="secondary"
             defaultChecked
+            checked={formValues.isStrictChecking}
             onChange={(e) =>
               setFormValues({
                 ...formValues,
