@@ -96,6 +96,7 @@ export const GenerateExerciseForm = (): JSX.Element => {
   useEffect(() => {
     if (createdExercise) {
       dispatch(addExercise(createdExercise));
+      dispatch(resetForm());
       router.push(
         `${APP_PATHS.DASHBOARD_EXERCISE.replace(':id', '')}${
           createdExercise._id
@@ -125,11 +126,11 @@ export const GenerateExerciseForm = (): JSX.Element => {
     setToken(LSHandler.getJwt());
   }, []);
 
-  // useEffect(() => {
-  //   return () => {
-  //     dispatch(resetForm());
-  //   };
-  // }, []);
+  useEffect(() => {
+    return () => {
+      dispatch(resetForm());
+    };
+  }, []);
 
   return (
     <Card bgColor={'background'}>
@@ -181,7 +182,7 @@ export const GenerateExerciseForm = (): JSX.Element => {
         />
         <Text fontSize={'lg'}>Learner's level</Text>
         <Select
-        // defaultValue={'B1'}
+          // defaultValue={'B1'}
           value={formValues.learnerLevel}
           onChange={(e) =>
             setFormValues({ ...formValues, learnerLevel: e.target.value })
@@ -195,7 +196,7 @@ export const GenerateExerciseForm = (): JSX.Element => {
         </Select>
         <Text fontSize={'lg'}>Learner's age</Text>
         <Select
-        //  defaultValue={'adults'}
+          //  defaultValue={'adults'}
           value={formValues.learnerAge}
           onChange={(e) =>
             setFormValues({ ...formValues, learnerAge: e.target.value })
