@@ -69,7 +69,7 @@ export const ExerciseEditorWidget = (): JSX.Element => {
       'aria-label': '3',
       icon: <RegenerateIcon />,
       colorScheme: 'secondary',
-     // toolTipTitle: 'Available in future release!',
+      // toolTipTitle: 'Available in future release!',
       isDisabled: false,
     },
     {
@@ -112,31 +112,37 @@ export const ExerciseEditorWidget = (): JSX.Element => {
   return (
     <>
       <Tabs
-        mt={'40px'}
+        mt={'80px'}
         isFitted
-        variant="enclosed"
-        size="md"
-        minW={['unset', '600px']}
-        colorScheme="secondary"
+        variant="unstyled"
+        size="lg"
+        minW={['unset', 'unset', 'unset', 'unset', '680px']}
+        colorScheme="primary"
       >
-        <TabList>
-          <Tab>Edit</Tab>
-          <Tab>Preview</Tab>
+        <TabList color={'graySecondary'}>
+          <Tab
+            fontSize={'2xl'}
+            fontWeight={'bold'}
+            _selected={{ color: 'primary.base' }}
+            justifyContent={'flex-end'}
+          >
+            Edit exercise
+          </Tab>
+          <Tab
+            fontSize={'2xl'}
+            fontWeight={'bold'}
+            _selected={{ color: 'primary.base' }}
+            justifyContent={'flex-start'}
+          >
+            Preview
+          </Tab>
         </TabList>
         <TabPanels
           w={'100%'}
-          minW={['unset', '600px']}
-          maxW={['unset', '600px']}
+          // minW={['unset', '600px']}
+          // maxW={['unset', '600px']}
         >
-          <TabPanel
-            p={0}
-            borderTop={'none'}
-            borderRight={'1px solid'}
-            borderLeft={'1px solid'}
-            borderColor={'gray.200'}
-            borderBottomEndRadius={'20px'}
-            position={'relative'}
-          >
+          <TabPanel p={0} position={'relative'}>
             {ex ? (
               <ExerciseEditCard
                 exercise={ex}

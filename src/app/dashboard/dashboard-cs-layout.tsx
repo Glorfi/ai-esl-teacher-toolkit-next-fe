@@ -1,6 +1,7 @@
 'use client';
 
-import { MobileMenuDashBoard } from '@/widgets/mobile-menu';
+import { WorkspaceHeader } from '@/widgets/header';
+import { MobileMenuDashBoard, MobileMenuUserLibrary } from '@/widgets/mobile-menu';
 import { SidebarDashboardWithRecentEx } from '@/widgets/sidebar-dashboard';
 
 import { Box, HStack } from '@chakra-ui/react';
@@ -34,7 +35,7 @@ const ClientDashboardLayout = ({
           justifyContent={['flex-start']}
           padding={['20px', '0']}
         >
-          <MobileMenuDashBoard />
+          <WorkspaceHeader mobileMenu={<MobileMenuUserLibrary />} />
           {children}
         </HStack>
       </HStack>

@@ -13,9 +13,11 @@ import {
   CardFooter,
   Box,
   IconButtonProps,
+  Tag,
 } from '@chakra-ui/react';
 import { useState } from 'react';
 import { IExercise } from '../../model/models';
+import { capitalizeFirstLetter } from '@/shared/utils/capitalizeFirstLetter';
 
 interface IExerciseEditCard {
   exercise: IExercise;
@@ -50,13 +52,41 @@ export const ExerciseEditCard = (props: IExerciseEditCard): JSX.Element => {
   const [exData, setExData] = useState<IExercise>(exercise);
 
   return (
-    <Card>
+    <Card variant={'outline'}>
       <CardHeader
-        p={'20px 20px 0'}
+        p={'34px 28px 0'}
         position={'relative'}
         display={'flex'}
         justifyContent={'space-between'}
         alignItems={'center'}
+      >
+        <Tag fontFamily={'alt'} variant={exercise.skill} p={'4px 8px'}>
+          {capitalizeFirstLetter(exercise.skill)}
+        </Tag>
+        <VStack gap={0} alignItems={'flex-end'}>
+          <UpdatingBadge exercise={exercise} />
+        </VStack>
+      </CardHeader>
+      <CardBody display={'flex'} flexDirection={'column'} p={'0 28px 0'}>
+        <Divider m={'8px 0'} />
+        <TitleDescriptionForm exercise={exercise} />
+        <Box display={'flex'} flexDirection={'column'} pt={'20px'}>
+          {exercise.sentenceList.map((item, index) => {
+            return (
+              <SentenceEditForm
+                sentence={item}
+                key={`${item._id}editform-${index}`}
+              />
+            );
+          })}
+        </Box>
+      </CardBody>
+      <CardFooter
+        display={'flex'}
+        flexDirection={'column'}
+        justifyContent={'flex-start'}
+        alignItems={'flex-start'}
+        p={'0 28px 0'}
       >
         <ButtonGroup spacing={'0.1rem'}>
           {headerIconFeatures.map(
@@ -95,38 +125,6 @@ export const ExerciseEditCard = (props: IExerciseEditCard): JSX.Element => {
               )
           )}
         </ButtonGroup>
-        <VStack gap={0} alignItems={'flex-end'}>
-          <HStack alignItems={'flex-end'} gap={0}>
-            <UpdatingBadge />
-          </HStack>
-          <Text fontSize={'8px'} color={'secondary.200'}>
-            Updated: {formatDate(exercise.updatedAt)}
-          </Text>
-          <Text fontSize={'8px'} color={'secondary.200'}>
-            Created: {formatDate(exercise.createdAt)}
-          </Text>
-        </VStack>
-      </CardHeader>
-      <CardBody display={'flex'} flexDirection={'column'} p={'0 20px 0'}>
-        <Divider m={'8px 0'} />
-        <TitleDescriptionForm exercise={exercise} />
-        <Box display={'flex'} flexDirection={'column'} pt={'20px'}>
-          {exercise.sentenceList.map((item, index) => {
-            return (
-              <SentenceEditForm
-                sentence={item}
-                key={`${item._id}editform-${index}`}
-              />
-            );
-          })}
-        </Box>
-      </CardBody>
-      <CardFooter
-        display={'flex'}
-        flexDirection={'column'}
-        justifyContent={'flex-start'}
-        alignItems={'flex-start'}
-      >
         <Divider m={'0 0 8px'} />
         <Text fontSize={'16px'} fontWeight={'bold'} color={'primary.base'}>
           Exercise information:
