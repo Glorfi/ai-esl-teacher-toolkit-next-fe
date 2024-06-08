@@ -1,7 +1,10 @@
 'use client';
 
 import { WorkspaceHeader } from '@/widgets/header';
-import { MobileMenuDashBoard, MobileMenuUserLibrary } from '@/widgets/mobile-menu';
+import {
+  MobileMenuDashBoard,
+  MobileMenuUserLibrary,
+} from '@/widgets/mobile-menu';
 import { SidebarDashboardWithRecentEx } from '@/widgets/sidebar-dashboard';
 
 import { Box, HStack } from '@chakra-ui/react';
@@ -25,6 +28,7 @@ const ClientDashboardLayout = ({
           isOpen={isSideBarOpen}
           onToggle={toggleSideBar}
         />
+
         <HStack
           marginLeft={'auto'}
           flexDirection={['column', 'column']}
@@ -33,9 +37,10 @@ const ClientDashboardLayout = ({
           transition={'width 0.2s ease-in'}
           w={['100%', `${isSideBarOpen ? 'calc(100% - 320px)' : '100%'}`]}
           justifyContent={['flex-start']}
-          padding={['20px', '0']}
+          //  padding={['20px', '0']}
+          gap={0}
         >
-          <WorkspaceHeader mobileMenu={<MobileMenuUserLibrary />} />
+          <WorkspaceHeader mobileMenu={<MobileMenuDashBoard />} />
           {children}
         </HStack>
       </HStack>

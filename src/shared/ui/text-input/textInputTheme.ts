@@ -26,10 +26,28 @@ const secondary = definePartsStyle({
   },
 });
 
-// const success = {
+const secondaryForced = definePartsStyle({
+  field: {
+    border: '1px solid',
+    borderColor: 'secondary.base',
+    background: 'secondaryOpacity.50',
 
-// }
+    _focus: {
+      borderColor: 'secondary.base',
+      background: 'secondaryOpacity.50',
+    },
+    _invalid: {
+      borderColor: 'error.base',
+      background: 'error.50',
+      color: 'error.base',
+    },
+    _dark: {
+      borderColor: 'gray.600',
+      background: 'gray.800',
+    },
+  },
+});
 
 export const textInputTheme = defineMultiStyleConfig({
-  variants: { secondary },
+  variants: { secondary, secondaryForced },
 });

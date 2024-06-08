@@ -71,8 +71,6 @@ export const ExerciseEditCard = (props: IExerciseEditCard): JSX.Element => {
         {/* <Divider m={'8px 0'} /> */}
         <VStack mt={'34px'} w={'100%'} gap={'16px'}>
           <TitleDescriptionForm exercise={exercise} />
-        </VStack>
-        <Box display={'flex'} flexDirection={'column'} pt={'20px'}>
           {exercise.sentenceList.map((item, index) => {
             return (
               <SentenceEditForm
@@ -81,7 +79,10 @@ export const ExerciseEditCard = (props: IExerciseEditCard): JSX.Element => {
               />
             );
           })}
-        </Box>
+        </VStack>
+        {/* <Box display={'flex'} flexDirection={'column'} pt={'20px'}>
+
+        </Box> */}
       </CardBody>
       <CardFooter
         display={'flex'}

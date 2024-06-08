@@ -116,15 +116,17 @@ export const ExerciseEditorWidget = (): JSX.Element => {
         isFitted
         variant="unstyled"
         size="lg"
-        minW={['unset', 'unset', 'unset', 'unset', '680px']}
+        minW={['unset', 'unset', 'unset', '680px']}
         colorScheme="primary"
+        w={['100%', '100%', '100%', 'unset']}
+        padding={['0 26px', '0 26px', '0 26px', 0]}
       >
         <TabList color={'graySecondary'}>
           <Tab
             fontSize={'2xl'}
             fontWeight={'bold'}
             _selected={{ color: 'primary.base' }}
-            justifyContent={'flex-end'}
+            justifyContent={['center', 'flex-end']}
           >
             Edit exercise
           </Tab>
@@ -132,17 +134,22 @@ export const ExerciseEditorWidget = (): JSX.Element => {
             fontSize={'2xl'}
             fontWeight={'bold'}
             _selected={{ color: 'primary.base' }}
-            justifyContent={'flex-start'}
+            justifyContent={['center', 'flex-start']}
           >
             Preview
           </Tab>
         </TabList>
         <TabPanels
           w={'100%'}
-          // minW={['unset', '600px']}
+
+          //  minW={['unset', 'unset','unset','unset','680px']}
           // maxW={['unset', '600px']}
         >
-          <TabPanel p={0} position={'relative'}>
+          <TabPanel
+            p={0}
+            position={'relative'}
+            maxW={['unset', 'unset', 'unset', '680px']}
+          >
             {ex ? (
               <ExerciseEditCard
                 exercise={ex}
@@ -165,6 +172,7 @@ export const ExerciseEditorWidget = (): JSX.Element => {
             borderLeft={'1px solid'}
             borderColor={'gray.200'}
             borderBottomEndRadius={'20px'}
+            maxW={['unset', '680px']}
           >
             {isNotFound ? (
               <Text>Ooops! Seems The exercise isn't found</Text>

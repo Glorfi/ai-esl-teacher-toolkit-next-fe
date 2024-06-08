@@ -14,12 +14,14 @@ import { CheckboxIcon } from '../icons/CheckBox';
 
 interface TextInputWithUpdateFieldProps extends GridProps {
   inputProps?: TextInputProps;
+  fakeFocus?: boolean;
   title: string;
 }
 
 export const TextInputWithUpdateField = ({
   inputProps,
   title,
+  fakeFocus,
   ...gridProps
 }: TextInputWithUpdateFieldProps): JSX.Element => {
   const [isFocused, setIsFocused] = useState<boolean>(false);
@@ -45,11 +47,11 @@ export const TextInputWithUpdateField = ({
         {!inputProps?.isSuccess ? (
           <Icon
             as={
-              isEditing && !inputProps?.isInvalid
+              isEditing || (fakeFocus && !inputProps?.isInvalid)
                 ? UpdatingCircleIcon
                 : AiFillEdit
             }
-            color={isFocused ? 'secondary.base' : 'graySecondary'}
+            color={isFocused || fakeFocus ? 'secondary.base' : 'graySecondary'}
             boxSize={'10px'}
           />
         ) : (
@@ -61,7 +63,7 @@ export const TextInputWithUpdateField = ({
         )}
         <Text
           color={
-            isFocused && !inputProps?.isSuccess
+            (isEditing || fakeFocus) && !inputProps?.isSuccess
               ? 'secondary.base'
               : inputProps?.isSuccess
               ? 'greenOpacity.base'
@@ -69,7 +71,11 @@ export const TextInputWithUpdateField = ({
           }
           fontSize={'xs'}
         >
-          {isEditing ? 'Editing' : inputProps?.isSuccess ? 'Saved' : 'Edit'}
+          {!inputProps?.isSuccess && (isEditing || fakeFocus)
+            ? 'Editing'
+            : inputProps?.isSuccess
+            ? 'Saved'
+            : 'Edit'}
         </Text>
       </HStack>
       <TextInput
