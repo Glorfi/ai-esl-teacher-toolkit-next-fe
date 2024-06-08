@@ -68,8 +68,10 @@ export const ExerciseEditCard = (props: IExerciseEditCard): JSX.Element => {
         </VStack>
       </CardHeader>
       <CardBody display={'flex'} flexDirection={'column'} p={'0 28px 0'}>
-        <Divider m={'8px 0'} />
-        <TitleDescriptionForm exercise={exercise} />
+        {/* <Divider m={'8px 0'} /> */}
+        <VStack mt={'34px'} w={'100%'} gap={'16px'}>
+          <TitleDescriptionForm exercise={exercise} />
+        </VStack>
         <Box display={'flex'} flexDirection={'column'} pt={'20px'}>
           {exercise.sentenceList.map((item, index) => {
             return (

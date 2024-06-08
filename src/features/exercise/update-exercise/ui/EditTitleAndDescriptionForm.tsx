@@ -1,13 +1,24 @@
 import { IExercise, replaceExercise } from '@/entities/exercise';
 import { LSHandler } from '@/shared/hooks/handleLocalStorage';
-import { Editable, EditablePreview, EditableInput } from '@chakra-ui/react';
+import {
+  Editable,
+  EditablePreview,
+  EditableInput,
+  Grid,
+  Text,
+  HStack,
+  Icon,
+  Input,
+} from '@chakra-ui/react';
 import { ChangeEvent, useEffect, useState } from 'react';
 import { useUpdateExerciseMutation } from '../api/updateExercise';
 import { useDispatch } from 'react-redux';
 import { useAppSelector } from '@/shared/hooks/hooks';
 import { useDebounce } from '@/shared/utils/useDebounce';
 import { setIsEditing } from '@/shared';
-
+import { AiFillEdit } from 'react-icons/ai';
+import { TextInput } from '@/shared/ui/text-input/TextInput';
+import { TextInputWithUpdateField } from '@/shared/ui/text-input/TextInputUpdatable';
 
 interface IEditTitleAndDescriptionForm {
   exercise: IExercise;
@@ -18,13 +29,18 @@ export const EditTitleAndDescriptionForm = (
 ): JSX.Element => {
   const { exercise } = props;
   const [formValues, setFormValues] = useState({
-    title: '',
-    taskDescription: '',
+    title: exercise.title || '',
+    taskDescription: exercise.taskDescription || '',
     isRandomOrderEnabled: exercise.isRandomOrderEnabled,
   });
+
   const token = LSHandler.getJwt();
   const [updateExercise, { isError, isSuccess, data }] =
     useUpdateExerciseMutation({ fixedCacheKey: `exupdate` });
+
+  const [isSuccessTitleUpdate, setIsSuccessTitleUpdate] = useState(false);
+  const [isSuccessTaskDescriptionUpdate, setIsSuccessTaskDescriptionUpdate] =
+    useState(false);
 
   const dispatch = useDispatch();
   const debounceTitle = useDebounce(formValues.title, 1500);
@@ -42,57 +58,74 @@ export const EditTitleAndDescriptionForm = (
   }, [data]);
 
   useEffect(() => {
-    if (debounceTitle.length > 0) {
-      updateExercise({ token, id: exercise._id, body: formValues });
+    if (debounceTitle.length > 0 && debounceTitle !== exercise.title) {
+      updateExercise({
+        token,
+        id: exercise._id,
+        body: { title: formValues.title },
+      })
+        .then(() => setIsSuccessTitleUpdate(true))
+        .catch(() => setIsSuccessTitleUpdate(false));
     }
   }, [debounceTitle]);
 
   useEffect(() => {
-    if (debounceDescription.length > 0) {
-      updateExercise({ token, id: exercise._id, body: formValues });
+    if (
+      debounceDescription.length > 0 &&
+      debounceDescription !== exercise.taskDescription
+    ) {
+      updateExercise({
+        token,
+        id: exercise._id,
+        body: { taskDescription: formValues.taskDescription },
+      })
+        .then(() => {
+          setIsSuccessTaskDescriptionUpdate(true);
+        })
+        .catch(() => setIsSuccessTaskDescriptionUpdate(false));
     }
   }, [debounceDescription]);
 
   useEffect(() => {
     dispatch(setIsEditing(false));
+    if (isSuccess) {
+      setTimeout(() => {
+        setIsSuccessTitleUpdate(false);
+        setIsSuccessTaskDescriptionUpdate(false);
+      }, 2000);
+    }
   }, [isSuccess, isError]);
 
   return (
     <>
-      <Editable
-        key={`${exercise._id}_title`}
-        defaultValue={exercise.title ? exercise.title : 'Enter the task title'}
-        placeholder="Enter the task title"
-        fontWeight={'bold'}
-        fontSize={'x-large'}
-        color={'primary.base'}
-      >
-        <EditablePreview />
-        <EditableInput
-          _focusVisible={{ style: { boxShadow: 'none' } }}
-          name="title"
-          onChange={handleInputChange}
-        />
-      </Editable>
-      <Editable
-        defaultValue={
-          exercise.taskDescription
-            ? exercise.taskDescription
-            : 'Enter the task description'
-        }
-        fontSize={'16px'}
-        placeholder="Enter the task description"
-        fontWeight={'bold'}
-        color={'primary.base'}
-        key={`${exercise._id}_description`}
-      >
-        <EditablePreview />
-        <EditableInput
-          _focusVisible={{ style: { boxShadow: 'none' } }}
-          name="taskDescription"
-          onChange={handleInputChange}
-        />
-      </Editable>
+      <TextInputWithUpdateField
+        title="Title"
+        inputProps={{
+          defaultValue: exercise.title,
+          name: 'title',
+          variant: 'secondary',
+          color: 'primary.base',
+          placeholder: 'Enter the task title',
+          onChange: handleInputChange,
+          onBlur: () => dispatch(setIsEditing(false)),
+          isSuccess: isSuccessTitleUpdate,
+          isInvalid: isError,
+        }}
+      />
+      <TextInputWithUpdateField
+        title="Description"
+        inputProps={{
+          defaultValue: exercise.taskDescription,
+          name: 'taskDescription',
+          variant: 'secondary',
+          color: 'primary.base',
+          placeholder: 'Enter the task description',
+          onChange: handleInputChange,
+          onBlur: () => dispatch(setIsEditing(false)),
+          isSuccess: isSuccessTaskDescriptionUpdate,
+          isInvalid: isError,
+        }}
+      />
     </>
   );
 };
