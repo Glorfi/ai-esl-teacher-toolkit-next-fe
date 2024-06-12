@@ -128,7 +128,7 @@ export const ExerciseSentenceInput = (props: IExerciseSentenceInput) => {
         <ButtonGroup>
           <Button
             colorScheme={'secondary'}
-            size={'md'}
+            size={['sm','md']}
             variant={'solid'}
             onClick={() => setIsCheckActive(true)}
             leftIcon={<CheckboxIcon />}
@@ -138,7 +138,7 @@ export const ExerciseSentenceInput = (props: IExerciseSentenceInput) => {
           <Button
             leftIcon={<ResetIcon />}
             colorScheme={'secondary'}
-            size={'md'}
+            size={['sm','md']}
             variant={'outline'}
             onClick={() => setIsCheckActive(false)}
             aria-label={''}

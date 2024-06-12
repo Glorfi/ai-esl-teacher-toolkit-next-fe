@@ -55,7 +55,7 @@ export const SentenceInput = (props: ISentenceInputProps) => {
               isSuccess={isCheckActive && isValid ? isValid : false}
               color={'primary.base'}
               // borderColor={isCheckActive && isValid ? 'green.500' : 'inherit'}
-              //borderRadius={'40px'}
+              borderRadius={'8px'}
               // boxShadow={
               //   isCheckActive && isValid ? '0 0 0 1px #38A169' : 'inherit'
               // }

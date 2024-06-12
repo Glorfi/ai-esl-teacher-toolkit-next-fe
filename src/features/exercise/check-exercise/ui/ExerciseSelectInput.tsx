@@ -103,7 +103,7 @@ export const ExerciseSelectInput = (props: IExerciseSelectInput) => {
         <ButtonGroup>
           <Button
             colorScheme={'secondary'}
-            size={'md'}
+            size={['sm','md']}
             variant={'solid'}
             onClick={() => setIsCheckActive(true)}
             leftIcon={<CheckboxIcon />}
@@ -113,7 +113,7 @@ export const ExerciseSelectInput = (props: IExerciseSelectInput) => {
           <Button
             leftIcon={<ResetIcon />}
             colorScheme={'secondary'}
-            size={'md'}
+            size={['sm','md']}
             variant={'outline'}
             onClick={() => setIsCheckActive(false)}
             aria-label={''}

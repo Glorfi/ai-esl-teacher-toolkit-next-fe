@@ -132,7 +132,7 @@ export const ExerciseEditCard = (props: IExerciseEditCard): JSX.Element => {
       </CardBody>
       <CardFooter
         display={'flex'}
-        flexDirection={'row'}
+        flexDirection={['column','row']}
         justifyContent={'space-between'}
         alignItems={'flex-start'}
         p={'34px 28px'}
@@ -174,7 +174,7 @@ export const ExerciseEditCard = (props: IExerciseEditCard): JSX.Element => {
             <AddTopicMenu exercise={exercise} />
           </HStack>
         </Box>
-        <Box>
+        <Box mt={['16px', 0]}>
           <Text fontSize={'16px'} fontWeight={'bold'}>
             Exercise settings:
           </Text>
