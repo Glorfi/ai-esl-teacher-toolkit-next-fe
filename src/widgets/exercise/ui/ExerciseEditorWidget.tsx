@@ -171,12 +171,12 @@ export const ExerciseEditorWidget = (): JSX.Element => {
           </TabPanel>
           <TabPanel
             p={0}
-            borderTop={'none'}
-            borderRight={'1px solid'}
-            borderLeft={'1px solid'}
-            borderColor={'gray.200'}
-            borderBottomEndRadius={'20px'}
-            maxW={['unset', '680px']}
+            // borderTop={'none'}
+            // borderRight={'1px solid'}
+            // borderLeft={'1px solid'}
+            // borderColor={'gray.200'}
+            // borderBottomEndRadius={'20px'}
+            maxW={['unset', 'unset', 'unset', '680px']}
           >
             {isNotFound ? (
               <Text>Ooops! Seems The exercise isn't found</Text>

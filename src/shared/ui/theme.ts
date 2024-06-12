@@ -3,6 +3,7 @@ import { extendTheme } from '@chakra-ui/react';
 import { fonts, textTheme } from './fonts';
 import { tagTheme } from './tag/Tag';
 import { textInputTheme } from './text-input/textInputTheme';
+import { selectTheme } from './select-input/selectTheme';
 
 // 2. Extend the theme to include custom colors, fonts, etc
 const colors = {
@@ -137,6 +138,7 @@ const components = {
   Text: textTheme,
   Tag: tagTheme,
   Input: textInputTheme,
+  Select: selectTheme,
 };
 
 export const theme = extendTheme({

@@ -1,7 +1,7 @@
 import { Input, Text } from '@chakra-ui/react';
 import React, { useEffect, useState } from 'react';
 import { ISentence } from '../model/models';
-
+import { TextInput } from '@/shared/ui/text-input/TextInput';
 
 interface ISentenceInputProps {
   sentence: ISentence;
@@ -40,22 +40,25 @@ export const SentenceInput = (props: ISentenceInputProps) => {
             {part}
           </Text>
           {index < parts.length - 1 && (
-            <Input
+            <TextInput
               type="text"
               size={'sm'}
               // placeholder={answer}
               maxW={`calc(${answer.length + 1}ch + 16px)`}
+              variant={'secondary'}
               m={'0 8px 0 0'}
-              boxSizing={'border-box'}
+              //boxSizing={'border-box'}
               key={`input${index}`}
               onChange={(e) => setValue(e.target.value)}
               value={value}
               isInvalid={isValid === false ? true : false}
-              borderColor={isCheckActive && isValid ? 'green.500' : 'inherit'}
-              borderRadius={'40px'}
-              boxShadow={
-                isCheckActive && isValid ? '0 0 0 1px #38A169' : 'inherit'
-              }
+              isSuccess={isCheckActive && isValid ? isValid : false}
+              color={'primary.base'}
+              // borderColor={isCheckActive && isValid ? 'green.500' : 'inherit'}
+              //borderRadius={'40px'}
+              // boxShadow={
+              //   isCheckActive && isValid ? '0 0 0 1px #38A169' : 'inherit'
+              // }
               isDisabled={isCheckActive}
               _disabled={{ opacity: 1 }}
             />
