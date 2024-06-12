@@ -11,10 +11,13 @@ import { TextInput, TextInputProps } from './TextInput';
 import { ChangeEvent, useEffect, useState } from 'react';
 import { UpdatingCircleIcon } from '../icons/UpdatingCircle';
 import { CheckboxIcon } from '../icons/CheckBox';
+import { CloseIcon } from '@chakra-ui/icons';
+import { IoClose } from 'react-icons/io5';
 
 interface TextInputWithUpdateFieldProps extends GridProps {
   inputProps?: TextInputProps;
   fakeFocus?: boolean;
+  isInvalid?: boolean;
   title: string;
 }
 
@@ -22,6 +25,7 @@ export const TextInputWithUpdateField = ({
   inputProps,
   title,
   fakeFocus,
+  isInvalid,
   ...gridProps
 }: TextInputWithUpdateFieldProps): JSX.Element => {
   const [isFocused, setIsFocused] = useState<boolean>(false);
@@ -37,7 +41,7 @@ export const TextInputWithUpdateField = ({
 
   useEffect(() => {
     setIsEditing(false);
-  }, [inputProps?.isSuccess]);
+  }, [inputProps?.isSuccess, inputProps?.isInvalid]);
   return (
     <Grid templateColumns={'1fr 1fr'} w={'100%'} {...gridProps}>
       <Text color={'graySecondary'} fontSize={'xs'}>
@@ -47,11 +51,21 @@ export const TextInputWithUpdateField = ({
         {!inputProps?.isSuccess ? (
           <Icon
             as={
-              isEditing || (fakeFocus && !inputProps?.isInvalid)
+              (isFocused && !inputProps?.isInvalid) ||
+              (fakeFocus && !inputProps?.isInvalid)
                 ? UpdatingCircleIcon
+                : inputProps?.isInvalid
+                ? CloseIcon
                 : AiFillEdit
             }
-            color={isFocused || fakeFocus ? 'secondary.base' : 'graySecondary'}
+            color={
+              (isFocused && !inputProps?.isInvalid) ||
+              (fakeFocus && !inputProps?.isInvalid)
+                ? 'secondary.base'
+                : inputProps?.isInvalid
+                ? 'error.base'
+                : 'graySecondary'
+            }
             boxSize={'10px'}
           />
         ) : (
@@ -63,18 +77,26 @@ export const TextInputWithUpdateField = ({
         )}
         <Text
           color={
-            (isEditing || fakeFocus) && !inputProps?.isSuccess
+            (isEditing || fakeFocus || isFocused) &&
+            !inputProps?.isSuccess &&
+            !inputProps?.isInvalid
               ? 'secondary.base'
               : inputProps?.isSuccess
               ? 'greenOpacity.base'
+              : inputProps?.isInvalid
+              ? 'error.base'
               : 'graySecondary'
           }
           fontSize={'xs'}
         >
-          {!inputProps?.isSuccess && (isEditing || fakeFocus)
+          {!inputProps?.isSuccess &&
+          !inputProps?.isInvalid &&
+          (isEditing || fakeFocus)
             ? 'Editing'
             : inputProps?.isSuccess
             ? 'Saved'
+            : inputProps?.isInvalid
+            ? 'Error'
             : 'Edit'}
         </Text>
       </HStack>
@@ -82,6 +104,7 @@ export const TextInputWithUpdateField = ({
         mt={'4px'}
         gridColumn={'1/3'}
         {...inputProps}
+        isInvalid={isInvalid || inputProps?.isInvalid}
         onFocus={() => setIsFocused(true)}
         onBlur={(e) => {
           inputProps?.onBlur ? inputProps?.onBlur(e) : null;

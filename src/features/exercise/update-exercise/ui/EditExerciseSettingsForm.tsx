@@ -46,7 +46,9 @@ export const EditExerciseSettingsForm = (
   return (
     <>
       <FormControl display="flex" alignItems="center">
-        <FormLabel mb="0">Enable random sentence order?</FormLabel>
+        <FormLabel mb="0" fontWeight={'semibold'} color={'primary.base'}>
+          Enable random sentence order?
+        </FormLabel>
         <Switch
           name="isRandomOrderEnabled"
           colorScheme="secondary"
@@ -57,7 +59,9 @@ export const EditExerciseSettingsForm = (
       </FormControl>
       <FormControl display="flex" alignItems="center">
         <Tooltip hasArrow label="Available in future release!" placement="top">
-          <FormLabel mb="0">Make exercise private?</FormLabel>
+          <FormLabel mb="0" fontWeight={'semibold'} color={'primary.base'}>
+            Make exercise private?
+          </FormLabel>
         </Tooltip>
         <Switch
           name="isPrivate"

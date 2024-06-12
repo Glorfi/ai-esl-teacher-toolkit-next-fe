@@ -21,7 +21,7 @@ import { capitalizeFirstLetter } from '@/shared/utils/capitalizeFirstLetter';
 
 interface IExerciseEditCard {
   exercise: IExercise;
-  headerIconFeatures: IHeaderIconFeatures[];
+  cardFeatures: ICardFeatures[];
   UpdatingBadge: React.ComponentType<any>;
   TitleDescriptionForm: React.ComponentType<any>;
   SentenceEditForm: React.ComponentType<any>;
@@ -31,7 +31,7 @@ interface IExerciseEditCard {
   EditExerciseSettingsForm: React.ComponentType<any>;
 }
 
-interface IHeaderIconFeatures extends IconButtonProps {
+interface ICardFeatures extends IconButtonProps {
   onClick: () => void;
   modal?: React.ComponentType<any>;
   toolTipTitle?: string;
@@ -40,7 +40,7 @@ interface IHeaderIconFeatures extends IconButtonProps {
 export const ExerciseEditCard = (props: IExerciseEditCard): JSX.Element => {
   const {
     exercise,
-    headerIconFeatures,
+    cardFeatures,
     UpdatingBadge,
     TitleDescriptionForm,
     SentenceEditForm,
@@ -50,6 +50,12 @@ export const ExerciseEditCard = (props: IExerciseEditCard): JSX.Element => {
     EditExerciseSettingsForm,
   } = props;
   const [exData, setExData] = useState<IExercise>(exercise);
+
+  const typeMap = {
+    fillInGaps: 'Fill-in-gaps',
+    multipleChoice: 'Multiple choice',
+  };
+  const type = typeMap[exercise.type];
 
   return (
     <Card variant={'outline'}>
@@ -68,7 +74,6 @@ export const ExerciseEditCard = (props: IExerciseEditCard): JSX.Element => {
         </VStack>
       </CardHeader>
       <CardBody display={'flex'} flexDirection={'column'} p={'0 28px 0'}>
-        {/* <Divider m={'8px 0'} /> */}
         <VStack mt={'34px'} w={'100%'} gap={'16px'}>
           <TitleDescriptionForm exercise={exercise} />
           {exercise.sentenceList.map((item, index) => {
@@ -76,34 +81,40 @@ export const ExerciseEditCard = (props: IExerciseEditCard): JSX.Element => {
               <SentenceEditForm
                 sentence={item}
                 key={`${item._id}editform-${index}`}
+                orderNumber={index}
               />
             );
           })}
-        </VStack>
-        {/* <Box display={'flex'} flexDirection={'column'} pt={'20px'}>
-
-        </Box> */}
-      </CardBody>
-      <CardFooter
-        display={'flex'}
-        flexDirection={'column'}
-        justifyContent={'flex-start'}
-        alignItems={'flex-start'}
-        p={'0 28px 0'}
-      >
-        <ButtonGroup spacing={'0.1rem'}>
-          {headerIconFeatures.map(
-            (
-              { 'aria-label': area, icon, colorScheme, toolTipTitle, ...rest },
-              index
-            ) =>
-              toolTipTitle ? (
-                <Tooltip
-                  hasArrow
-                  label={toolTipTitle}
-                  placement="top"
-                  key={`icon-button-${index}`}
-                >
+          <ButtonGroup spacing={'0.1rem'} alignSelf={'flex-start'}>
+            {cardFeatures.map(
+              (
+                {
+                  'aria-label': area,
+                  icon,
+                  colorScheme,
+                  toolTipTitle,
+                  ...rest
+                },
+                index
+              ) =>
+                toolTipTitle ? (
+                  <Tooltip
+                    hasArrow
+                    label={toolTipTitle}
+                    placement="top"
+                    key={`icon-button-${index}`}
+                  >
+                    <IconButton
+                      aria-label={area}
+                      icon={icon}
+                      size={'sm'}
+                      colorScheme={colorScheme}
+                      variant={'ghost'}
+                      isRound
+                      {...rest}
+                    />
+                  </Tooltip>
+                ) : (
                   <IconButton
                     aria-label={area}
                     icon={icon}
@@ -112,63 +123,63 @@ export const ExerciseEditCard = (props: IExerciseEditCard): JSX.Element => {
                     variant={'ghost'}
                     isRound
                     {...rest}
+                    key={`header-icon-button-${index}`}
                   />
-                </Tooltip>
-              ) : (
-                <IconButton
-                  aria-label={area}
-                  icon={icon}
-                  size={'sm'}
-                  colorScheme={colorScheme}
-                  variant={'ghost'}
-                  isRound
-                  {...rest}
-                  key={`header-icon-button-${index}`}
+                )
+            )}
+          </ButtonGroup>
+        </VStack>
+      </CardBody>
+      <CardFooter
+        display={'flex'}
+        flexDirection={'row'}
+        justifyContent={'space-between'}
+        alignItems={'flex-start'}
+        p={'34px 28px'}
+      >
+        <Box>
+          <Text fontSize={'md'} fontWeight={'bold'} color={'primary.base'}>
+            Exercise information:
+          </Text>
+          <Text fontWeight={'semibold'}>
+            Learner Level:{' '}
+            <Text as={'span'} fontWeight={'400'}>
+              {exData.studentLevel}
+            </Text>
+          </Text>
+          <Text fontWeight={'semibold'}>
+            Learner Age:{' '}
+            <Text as={'span'} fontWeight={'400'}>
+              {exercise.studentAge}
+            </Text>
+          </Text>
+          <Text fontWeight={'semibold'}>
+            Type:{' '}
+            <Text as={'span'} fontWeight={'400'}>
+              {type}
+            </Text>
+          </Text>
+          <HStack>
+            <Text fontWeight={'semibold'}>Topics: </Text>
+            {exercise.topicList.map((topic) => {
+              return (
+                <TopicTag
+                  topic={topic}
+                  exerciseId={exercise._id}
+                  onDelete={OnTopicDelete}
+                  key={topic._id}
                 />
-              )
-          )}
-        </ButtonGroup>
-        <Divider m={'0 0 8px'} />
-        <Text fontSize={'16px'} fontWeight={'bold'} color={'primary.base'}>
-          Exercise information:
-        </Text>
-        <Text>
-          Skill:{' '}
-          <Text as={'span'} color={'secondary.base'}>
-            {exData.skill}
+              );
+            })}
+            <AddTopicMenu exercise={exercise} />
+          </HStack>
+        </Box>
+        <Box>
+          <Text fontSize={'16px'} fontWeight={'bold'}>
+            Exercise settings:
           </Text>
-        </Text>
-        <Text>
-          Level:{' '}
-          <Text as={'span'} color={'secondary.base'}>
-            {exData.studentLevel}
-          </Text>
-        </Text>
-        <Text>
-          Learner's age:{' '}
-          <Text as={'span'} color={'secondary.base'}>
-            {exercise.studentAge}
-          </Text>
-        </Text>
-        <HStack>
-          <Text>Topics: </Text>
-          {exercise.topicList.map((topic) => {
-            return (
-              <TopicTag
-                topic={topic}
-                exerciseId={exercise._id}
-                onDelete={OnTopicDelete}
-                key={topic._id}
-              />
-            );
-          })}
-          <AddTopicMenu exercise={exercise} />
-        </HStack>
-        <Divider m={'20px 0 8px'} />
-        <Text fontSize={'16px'} fontWeight={'bold'}>
-          Exercise settings:
-        </Text>
-        <EditExerciseSettingsForm exercise={exercise} />
+          <EditExerciseSettingsForm exercise={exercise} />
+        </Box>
       </CardFooter>
     </Card>
   );
