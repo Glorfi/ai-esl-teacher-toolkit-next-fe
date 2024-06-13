@@ -87,9 +87,10 @@ const ExerciseSidbarThumbnail = (
           <HStack width={'100%'}>
             {data.title ? (
               <Text
-                fontSize={'12px'}
+                fontSize={'sm'}
                 color={'background'}
-                fontWeight={'semibold'}
+                fontWeight={'bold'}
+                noOfLines={1}
               >
                 {data.title}
               </Text>
@@ -114,39 +115,56 @@ const ExerciseSidbarThumbnail = (
             )}
           </HStack>
           <HStack w={'100%'}>
-            <Text fontSize={'12px'} color={'background'} fontWeight={'light'}>
+            <Text fontSize={'10px'} color={'background'} fontWeight={'400'}>
               Skill:
             </Text>
             <Text
-              fontSize={'12px'}
+              fontSize={'10px'}
               color={'background'}
-              fontWeight={'semibold'}
+              fontWeight={'bold'}
               noOfLines={1}
             >
               {data.skill}
             </Text>
-            <Text fontSize={'12px'} color={'background'} fontWeight={'light'}>
+            <Text fontSize={'10px'} color={'background'} fontWeight={'400'}>
               Type:
             </Text>
             <Text
-              fontSize={'12px'}
+              fontSize={'10px'}
               color={'background'}
-              fontWeight={'semibold'}
+              fontWeight={'bold'}
               noOfLines={1}
             >
               {type}
             </Text>
           </HStack>
         </VStack>
-        <Menu closeOnBlur closeOnSelect placement={'bottom'}>
+        <Menu closeOnBlur closeOnSelect placement={'bottom-end'}>
           <MenuButton as={ExThumbnailButton}></MenuButton>
-          <MenuList bgColor={'background'}>
+          <MenuList
+            bgColor={'background'}
+            minW={'120px'}
+            p={'12px'}
+            display={'flex'}
+            flexDir={'column'}
+            gap={'6px'}
+          >
             {menuFeatures.map(
               ({ onMenuItem, title, icon, modal, ...rest }, index) => (
                 <MenuItem
                   onClick={(e) => handleMenuItemClick(e, index, onMenuItem)}
                   {...rest}
                   key={`menu-item ${data._id}${index} `}
+                  fontSize={'md'}
+                  fontWeight={'400'}
+                  p={0}
+                  _hover={{
+                    backgroundColor: 'unset',
+                    fontWeight: 'bold',
+                  }}
+                  _focus={{
+                    backgroundColor: 'unset',
+                  }}
                 >
                   {icon && (
                     <Icon
