@@ -110,6 +110,7 @@ export const EditTitleAndDescriptionForm = (
           onBlur: () => dispatch(setIsEditing(false)),
           isSuccess: isSuccessTitleUpdate,
           isInvalid: isError,
+          errorMessage: 'Something went wrong',
         }}
       />
       <TextInputWithUpdateField
@@ -124,6 +125,7 @@ export const EditTitleAndDescriptionForm = (
           onBlur: () => dispatch(setIsEditing(false)),
           isSuccess: isSuccessTaskDescriptionUpdate,
           isInvalid: isError,
+          errorMessage: 'Something went wrong',
         }}
       />
     </>

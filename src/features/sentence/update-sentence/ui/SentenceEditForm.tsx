@@ -115,8 +115,8 @@ export const SentenceEditForm = (
 
   useEffect(() => {
     if (formValues.answer && formValues.sentence) {
-    //  console.log("here");
-      
+      //  console.log("here");
+
       setIsAnswerValid(formValues.sentence?.includes(formValues.answer));
     }
     // if (
@@ -156,7 +156,7 @@ export const SentenceEditForm = (
   }, [isError, isSaved]);
 
   return (
-    <VStack gap={'6px'} w={'100%'}>
+    <VStack gap={0} w={'100%'}>
       <TextInputWithUpdateField
         title={`Sentence ${orderNumber + 1}`}
         fakeFocus={isFormOpen.isOpen && !isSuccess}
@@ -168,8 +168,12 @@ export const SentenceEditForm = (
           onChange: handleInputChange,
           isInvalid: !isSentenceValid,
           isSuccess: isSuccess && data && data._id === sentence._id,
+          errorMessage: !isAnswerValid
+            ? 'The sentence must include the answer'
+            : !areOptionsValid
+            ? 'The options must include the answer'
+            : 'Something went wrong',
         }}
-        
         onClick={() => isFormOpen.onOpen()}
       />
       <Box w={'100%'}>
@@ -178,6 +182,7 @@ export const SentenceEditForm = (
             alignItems={'flex-start'}
             w={'100%'}
             display={isFormOpen.isOpen ? 'flex' : 'none'}
+            gap={0}
           >
             <HStack w={'100%'} flexDirection={['column', 'row']}>
               <TextInputWithUpdateField
@@ -192,6 +197,7 @@ export const SentenceEditForm = (
                   // onBlur: () => dispatch(setIsEditing(false)),
                   // isSuccess: isSuccessTitleUpdate,
                   isSuccess: isSuccess && data && data._id === sentence._id,
+                  errorMessage: 'Something went wrong',
                 }}
               />
               <TextInputWithUpdateField
@@ -205,6 +211,8 @@ export const SentenceEditForm = (
                   onChange: handleInputChange,
                   isSuccess: isSuccess && data && data._id === sentence._id,
                   isInvalid: !isAnswerValid,
+                  errorMessage: 'The sentence must include the answer',
+                  textProps: { gridColumn: '1/3' },
                 }}
               />
             </HStack>
@@ -229,6 +237,8 @@ export const SentenceEditForm = (
                       variant: 'secondaryForced',
                       color: 'primary.base',
                       isSuccess: isSuccess && data && data._id === sentence._id,
+                      errorMessage: 'The options must include the answer',
+                      textProps: { gridColumn: '1/3' },
                     }}
                     key={`${option}option${index}`}
                     // width={'fit-content'}
@@ -238,6 +248,7 @@ export const SentenceEditForm = (
             ) : null}
             <Button
               mt={'12px'}
+              mb={'12px'}
               ml={'auto'}
               leftIcon={<CloseIcon />}
               variant={'outline'}
