@@ -17,6 +17,8 @@ import {
 import { FaRegCopy } from 'react-icons/fa6';
 import { useState } from 'react';
 import { APP_PATHS } from '@/shared';
+import { MdOutlineContentCopy } from 'react-icons/md';
+import { CheckboxIcon } from '@/shared/ui/icons/CheckBox';
 
 interface IShareExercisePopUpProps {
   isOpen: boolean;
@@ -45,30 +47,36 @@ export const ShareExercisePopUp = (
     <Modal isOpen={isOpen} onClose={onClose} isCentered size={'sm'}>
       <ModalOverlay bg={'blackAlpha.700'} backdropFilter="blur(1px)" />
       <ModalContent>
-        <ModalHeader color={'primary.base'}>Share link to Exercise</ModalHeader>
+        <ModalHeader color={'primary.base'}>Share link to exercise</ModalHeader>
         <ModalCloseButton />
         <ModalBody>
           <Text color={'primary.base'}>
             This link will open the exercise in a student view
           </Text>
-          <InputGroup mt={'8px'}>
-            <Input value={publicLink} readOnly textOverflow={'ellipsis'} />
+          <InputGroup mt={'8px'} borderRadius={'14px'}>
+            <Input
+              value={publicLink}
+              readOnly
+              textOverflow={'ellipsis'}
+              borderRadius={'14px'}
+            />
             <InputRightElement>
               <IconButton
                 aria-label=""
                 variant={'ghost'}
-                colorScheme="secondary"
+                colorScheme="primary"
                 onClick={handleCopyButton}
-                icon={<FaRegCopy />}
+                icon={<MdOutlineContentCopy />}
+                borderRadius={'14px'}
               ></IconButton>
             </InputRightElement>
           </InputGroup>
         </ModalBody>
-        <ModalFooter justifyContent={'center'}>
+        <ModalFooter justifyContent={'flex-end'}>
           <Button
             colorScheme="secondary"
             onClick={handleCopyButton}
-            leftIcon={<FaRegCopy />}
+            leftIcon={!isCopied ? <MdOutlineContentCopy /> : <CheckboxIcon />}
           >
             {!isCopied ? 'Copy link' : 'Copied!'}
           </Button>

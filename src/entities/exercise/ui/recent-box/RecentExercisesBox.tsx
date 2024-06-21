@@ -73,6 +73,7 @@ export const RecentExercisesBox = (
         {todayExList && todayExList.length > 0 ? (
           <>
             <Text
+              className="paragraphMargin"
               fontSize={'xs'}
               color={'background'}
               fontWeight={'400'}
@@ -102,7 +103,7 @@ export const RecentExercisesBox = (
         {yesterdayExList && yesterdayExList.length > 0 ? (
           <>
             <Text
-              mt={todayExList ? '32px' : '0'}
+              className="paragraphMargin"
               fontSize={'xs'}
               color={'background'}
               fontWeight={'400'}
@@ -131,7 +132,7 @@ export const RecentExercisesBox = (
         {sevenDaysExList && sevenDaysExList.length > 0 ? (
           <>
             <Text
-              mt={yesterdayExList ? '32px' : '0'}
+              className="paragraphMargin"
               fontSize={'xs'}
               color={'background'}
               fontWeight={'400'}
@@ -160,7 +161,7 @@ export const RecentExercisesBox = (
         {restExList && restExList.length > 0 ? (
           <>
             <Text
-              mt={sevenDaysExList ? '32px' : '0'}
+              className="paragraphMargin"
               fontSize={'xs'}
               color={'background'}
               fontWeight={'400'}
