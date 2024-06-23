@@ -2,6 +2,8 @@
 import { extendTheme } from '@chakra-ui/react';
 import { fonts, textTheme } from './fonts';
 import { tagTheme } from './tag/Tag';
+import { textInputTheme } from './text-input/textInputTheme';
+import { selectTheme } from './select-input/selectTheme';
 
 // 2. Extend the theme to include custom colors, fonts, etc
 const colors = {
@@ -44,6 +46,20 @@ const colors = {
     800: '#003050',
     900: '#001120',
   }, // (Dark Cyan)
+  secondaryOpacity: {
+    base: 'rgba(0, 102, 162, 1)',
+    50: 'rgba(0, 102, 162, 0.1)',
+    100: 'rgba(0, 102, 162, 0.2)',
+    200: 'rgba(0, 102, 162, 0.3)',
+    300: 'rgba(0, 102, 162, 0.4)',
+    400: 'rgba(0, 102, 162, 0.5)',
+    500: 'rgba(0, 102, 162, 0.6)',
+    600: 'rgba(0, 102, 162, 0.7)',
+    700: 'rgba(0, 102, 162, 0.8)',
+    800: 'rgba(0, 102, 162, 0.9)',
+    900: 'rgba(0, 102, 162, 1)',
+  },
+
   // highlight: '#09abd2', //  (Light Cyan)
   highlight: {
     base: '#09abd2',
@@ -70,6 +86,19 @@ const colors = {
     700: '#4a4099',
     800: '#3d3581',
     900: '#312b6a',
+  },
+  greenOpacity: {
+    base: 'rgba(0, 157, 19, 1)',
+    50: 'rgba(0, 157, 19, 0.1)',
+    100: 'rgba(0, 157, 19, 0.2)',
+    200: 'rgba(0, 157, 19, 0.3)',
+    300: 'rgba(0, 157, 19, 0.4)',
+    400: 'rgba(0, 157, 19, 0.5)',
+    500: 'rgba(0, 157, 19, 0.6)',
+    600: 'rgba(0, 157, 19, 0.7)',
+    700: 'rgba(0, 157, 19, 0.8)',
+    800: 'rgba(0, 157, 19, 0.9)',
+    900: 'rgba(0, 157, 19, 1)',
   },
 
   error: {
@@ -108,6 +137,8 @@ const customFonts = {
 const components = {
   Text: textTheme,
   Tag: tagTheme,
+  Input: textInputTheme,
+  Select: selectTheme,
 };
 
 export const theme = extendTheme({

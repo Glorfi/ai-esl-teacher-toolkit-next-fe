@@ -39,6 +39,10 @@ import { useAppDispatch, useAppSelector } from '@/shared/hooks/hooks';
 import { useParams, useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { RegenerateIcon } from '@/shared/ui/icons/RegenerateIcon';
+import { color } from 'framer-motion';
+import { BiShare } from 'react-icons/bi';
+import { DeleteIcon } from '@/shared/ui/icons/DeleteIcon';
+import { PiShareFat, PiShareFatBold } from 'react-icons/pi';
 
 export const ExerciseEditorWidget = (): JSX.Element => {
   const { id } = useParams();
@@ -68,21 +72,20 @@ export const ExerciseEditorWidget = (): JSX.Element => {
       },
       'aria-label': '3',
       icon: <RegenerateIcon />,
-      colorScheme: 'secondary',
-     // toolTipTitle: 'Available in future release!',
+      color: 'primary.base',
       isDisabled: false,
     },
     {
       onClick: () => shareHandler.onOpen(),
-      icon: <FaRegShareFromSquare />,
+      icon: <PiShareFatBold />, // <BiShare />,
       'aria-label': '1',
-      colorScheme: 'secondary',
+      color: 'primary.base',
     },
     {
       onClick: () => deleteHandler.onOpen(),
-      icon: <FaRegTrashCan />,
+      icon: <DeleteIcon />,
       'aria-label': '2',
-      colorScheme: 'error',
+      color: 'error.base',
     },
   ];
 
@@ -112,36 +115,50 @@ export const ExerciseEditorWidget = (): JSX.Element => {
   return (
     <>
       <Tabs
-        mt={'40px'}
+        mt={'80px'}
+        mb={'20px'}
         isFitted
-        variant="enclosed"
-        size="md"
-        minW={['unset', '600px']}
-        colorScheme="secondary"
+        variant="unstyled"
+        size="lg"
+        minW={['unset', 'unset', '400px', '680px']}
+        colorScheme="primary"
+        w={['100%', '100%', '100%', 'unset']}
+        padding={['0 26px', '0 26px', '0 26px', 0]}
       >
-        <TabList>
-          <Tab>Edit</Tab>
-          <Tab>Preview</Tab>
+        <TabList color={'graySecondary'}>
+          <Tab
+            fontSize={'2xl'}
+            fontWeight={'bold'}
+            _selected={{ color: 'primary.base' }}
+            justifyContent={['center', 'flex-end']}
+          >
+            Edit exercise
+          </Tab>
+          <Tab
+            fontSize={'2xl'}
+            fontWeight={'bold'}
+            _selected={{ color: 'primary.base' }}
+            justifyContent={['center', 'flex-start']}
+          >
+            Preview
+          </Tab>
         </TabList>
         <TabPanels
           w={'100%'}
-          minW={['unset', '600px']}
-          maxW={['unset', '600px']}
+
+          //  minW={['unset', 'unset','unset','unset','680px']}
+          // maxW={['unset', '600px']}
         >
           <TabPanel
             p={0}
-            borderTop={'none'}
-            borderRight={'1px solid'}
-            borderLeft={'1px solid'}
-            borderColor={'gray.200'}
-            borderBottomEndRadius={'20px'}
             position={'relative'}
+            maxW={['unset', 'unset', 'unset', '680px']}
           >
             {ex ? (
               <ExerciseEditCard
                 exercise={ex}
                 key={`${ex._id}_editForm`}
-                headerIconFeatures={headerFeatures}
+                cardFeatures={headerFeatures}
                 UpdatingBadge={BadgeUpdating}
                 TitleDescriptionForm={EditTitleAndDescriptionForm}
                 SentenceEditForm={SentenceEditForm}
@@ -154,11 +171,12 @@ export const ExerciseEditorWidget = (): JSX.Element => {
           </TabPanel>
           <TabPanel
             p={0}
-            borderTop={'none'}
-            borderRight={'1px solid'}
-            borderLeft={'1px solid'}
-            borderColor={'gray.200'}
-            borderBottomEndRadius={'20px'}
+            // borderTop={'none'}
+            // borderRight={'1px solid'}
+            // borderLeft={'1px solid'}
+            // borderColor={'gray.200'}
+            // borderBottomEndRadius={'20px'}
+            maxW={['unset', 'unset', 'unset', '680px']}
           >
             {isNotFound ? (
               <Text>Ooops! Seems The exercise isn't found</Text>

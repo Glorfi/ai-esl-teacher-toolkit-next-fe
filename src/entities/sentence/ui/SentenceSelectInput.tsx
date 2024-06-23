@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 
 import { shuffleArray } from '../../../features/exercise/check-exercise/lib/shuffleArray';
 import { ISentence } from '../model/models';
+import { SelectInput } from '@/shared/ui/select-input/SelectInput';
 
 interface ISentenceSelectInputProps {
   sentence: ISentence;
@@ -59,22 +60,24 @@ export const SentenceSelectInput = (props: ISentenceSelectInputProps) => {
             {part}
           </Text>
           {index < parts.length - 1 && (
-            <Select
+            <SelectInput
               size={'sm'}
               display={'inline-block'}
-              borderRadius={'40px'}
               w={'max-content'}
               m={'0 8px 0 0'}
               boxSizing={'border-box'}
               key={`input${index}`}
               onChange={(e) => setValue(e.target.value)}
+              variant={'secondary'}
               // defaultValue={options ? options[0] : ''}
               //value={value}
+              color={'primary.base'}
               isInvalid={isValid === false ? true : false}
-              borderColor={isCheckActive && isValid ? 'green.500' : 'inherit'}
-              boxShadow={
-                isCheckActive && isValid ? '0 0 0 1px #38A169' : 'inherit'
-              }
+              isSuccess={isCheckActive && isValid ? isValid : false}
+              // borderColor={isCheckActive && isValid ? 'green.500' : 'inherit'}
+              // boxShadow={
+              //   isCheckActive && isValid ? '0 0 0 1px #38A169' : 'inherit'
+              // }
               isDisabled={isCheckActive}
               _disabled={{ opacity: 1 }}
             >
@@ -84,7 +87,7 @@ export const SentenceSelectInput = (props: ISentenceSelectInputProps) => {
                   {option}
                 </option>
               ))}
-            </Select>
+            </SelectInput>
           )}
         </React.Fragment>
       ))}

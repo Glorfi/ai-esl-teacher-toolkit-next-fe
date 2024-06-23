@@ -9,8 +9,9 @@ export const ExThumbnailButton = forwardRef<MenuButtonProps, 'button'>(
         size={'xs'}
         aria-label="Search database"
         icon={<HiDotsHorizontal className={'thumbNailButton'} />}
-        variant={'ghost'}
+        variant={'outline'}
         colorScheme={'whiteOpacity'}
+        //color={'background'}
         isRound
         ref={ref}
         {...props}

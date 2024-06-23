@@ -1,4 +1,4 @@
-import { Icon, Text } from '@chakra-ui/react';
+import { Icon, Stack, Text, VStack } from '@chakra-ui/react';
 import { IoMdCheckmarkCircleOutline } from 'react-icons/io';
 
 import { useEffect, useState } from 'react';
@@ -7,8 +7,18 @@ import { customError } from '../../../../shared/constants/customError';
 import { useUpdateExerciseMutation } from '@/features/exercise';
 import { useUpdateSentenceMutation } from '@/features/sentence';
 import { useAppSelector } from '@/shared/hooks/hooks';
+import { CheckboxIcon } from '@/shared/ui/icons/CheckBox';
+import formatDate from '@/shared/utils/formatDate';
+import { IExercise } from '@/entities/exercise';
+import { UpdatingCircleIcon } from '@/shared/ui/icons/UpdatingCircle';
+import { CloseIcon } from '@chakra-ui/icons';
 
-export const BadgeUpdating = (): JSX.Element => {
+interface IBadgeUpdating {
+  exercise: IExercise;
+}
+
+export const BadgeUpdating = (props: IBadgeUpdating): JSX.Element => {
+  const { exercise } = props;
   const [, exerciseResult] = useUpdateExerciseMutation({
     fixedCacheKey: 'exupdate',
   });
@@ -46,27 +56,53 @@ export const BadgeUpdating = (): JSX.Element => {
   }, [exerciseResult.isError, sentenceResult.isError]);
 
   useEffect(() => {
-    if (exerciseResult.isSuccess || sentenceResult.isSuccess) {
+    if (exerciseResult.isSuccess || sentenceResult.isSuccess || isUpdating) {
       setErrorMessage(null);
     }
-  }, [exerciseResult.isSuccess, sentenceResult.isSuccess]);
+  }, [exerciseResult.isSuccess, sentenceResult.isSuccess, isUpdating]);
 
   return (
     <>
-      <Text
-        color={!errorMessage ? 'secondary.200' : 'error.base'}
-        fontSize={'8px'}
+      <Stack
+        w={'100%'}
+        flexDirection={'row'}
+        gap={'2px'}
+        justifyContent={'flex-end'}
       >
-        {!errorMessage ? message : errorMessage}
-      </Text>
-      {!isUpdating && !errorMessage ? (
-        <Icon
-          as={IoMdCheckmarkCircleOutline}
-          ml={'4px'}
-          boxSize={'12px'}
-          color={'secondary.200'}
-        />
-      ) : null}
+        {!errorMessage && (
+          <Icon
+            as={isUpdating && !errorMessage ? UpdatingCircleIcon : CheckboxIcon}
+            boxSize={'12px'}
+            color={'primary.base'}
+          />
+        )}
+        {errorMessage && !isUpdating ? (
+          <Icon as={CloseIcon} boxSize={'12px'} color={'error.base'} />
+        ) : null}
+        <Text
+          color={!errorMessage ? 'primary.base' : 'error.base'}
+          fontSize={'10px'}
+          fontWeight={'semibold'}
+        >
+          {!errorMessage || isUpdating ? message : errorMessage}
+        </Text>
+        {!isUpdating && !errorMessage ? (
+          <Text fontSize={'10px'}>{formatDate(exercise.updatedAt)}</Text>
+        ) : null}
+      </Stack>
+      <Stack
+        w={'100%'}
+        flexDirection={'row'}
+        gap={'2px'}
+        justifyContent={'flex-end'}
+      >
+        <Text color={'graySecondary'} fontSize={'10px'} fontWeight={'semibold'}>
+          Created:
+        </Text>
+        <Text fontSize={'10px'} color={'graySecondary'}>
+          {formatDate(exercise.createdAt)}
+        </Text>
+      </Stack>
     </>
   );
 };

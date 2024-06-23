@@ -12,11 +12,12 @@ import {
 } from '@chakra-ui/react';
 import { useEffect, useState } from 'react';
 
-
 import { GrPowerReset } from 'react-icons/gr';
 import { IoMdCheckmarkCircleOutline } from 'react-icons/io';
 import { ISentence, SentenceSelectInput } from '@/entities/sentence';
 import { shuffleArray } from '../lib/shuffleArray';
+import { CheckboxIcon } from '@/shared/ui/icons/CheckBox';
+import { ResetIcon } from '@/shared/ui/icons/ResetIcon';
 
 interface IExerciseSelectInput {
   sentenceList: ISentence[];
@@ -70,7 +71,7 @@ export const ExerciseSelectInput = (props: IExerciseSelectInput) => {
   }, []);
 
   return (
-    <Card w={'100%'} maxW={'800px'}>
+    <Card w={'100%'} maxW={'800px'} variant={'outline'}>
       <CardHeader p={'20px 20px 0'}>
         <Text color={'primary.base'} fontWeight={'bold'}>
           {props.taskDescription ? props.taskDescription : 'No description'}
@@ -95,31 +96,34 @@ export const ExerciseSelectInput = (props: IExerciseSelectInput) => {
       </CardBody>
       <CardFooter
         display={'flex'}
+        flexWrap={'wrap'}
         justifyContent={'space-between'}
         alignItems={'center'}
       >
         <ButtonGroup>
           <Button
-            colorScheme={'highlight'}
-            size={'sm'}
-            variant={'outline'}
+            colorScheme={'secondary'}
+            size={['sm','md']}
+            variant={'solid'}
             onClick={() => setIsCheckActive(true)}
-            rightIcon={<IoMdCheckmarkCircleOutline />}
+            leftIcon={<CheckboxIcon />}
           >
-            Check Answers
+            Check answers
           </Button>
           <Button
-            rightIcon={<GrPowerReset />}
-            colorScheme={'highlight'}
-            size={'sm'}
+            leftIcon={<ResetIcon />}
+            colorScheme={'secondary'}
+            size={['sm','md']}
             variant={'outline'}
             onClick={() => setIsCheckActive(false)}
             aria-label={''}
           >
-            Reset Checking
+            Reset checking
           </Button>
         </ButtonGroup>
-        <Text display={isCheckActive ? 'block' : 'none'}>Score: {score}</Text>
+        <Text mt={['16px', 0]} display={isCheckActive ? 'block' : 'none'}>
+          Score: {score}
+        </Text>
       </CardFooter>
     </Card>
   );

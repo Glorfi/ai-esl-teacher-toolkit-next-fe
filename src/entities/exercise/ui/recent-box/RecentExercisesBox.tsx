@@ -54,7 +54,7 @@ export const RecentExercisesBox = (
       ]}
     >
       <Text
-        fontSize={'14px'}
+        fontSize={'md'}
         color={'background'}
         fontWeight={'medium'}
         textAlign={'left'}
@@ -64,7 +64,8 @@ export const RecentExercisesBox = (
         Recent exercises:
       </Text>
       <VStack
-        maxH={'calc(100vh - 235px)'}
+        maxH={'calc(100vh - 267px)'}
+        mt={'32px'}
         overflowY={'scroll'}
         className="thumbnailStack"
         w={'100%'}
@@ -72,10 +73,11 @@ export const RecentExercisesBox = (
         {todayExList && todayExList.length > 0 ? (
           <>
             <Text
-              fontSize={'10px'}
+              className="paragraphMargin"
+              fontSize={'xs'}
               color={'background'}
-              fontWeight={'medium'}
-              textAlign={'right'}
+              fontWeight={'400'}
+              //textAlign={'right'}
               w={'100%'}
               padding={'0 16px'}
             >
@@ -101,10 +103,10 @@ export const RecentExercisesBox = (
         {yesterdayExList && yesterdayExList.length > 0 ? (
           <>
             <Text
-              fontSize={'10px'}
+              className="paragraphMargin"
+              fontSize={'xs'}
               color={'background'}
-              fontWeight={'medium'}
-              textAlign={'right'}
+              fontWeight={'400'}
               w={'100%'}
               padding={'0 16px'}
             >
@@ -130,10 +132,10 @@ export const RecentExercisesBox = (
         {sevenDaysExList && sevenDaysExList.length > 0 ? (
           <>
             <Text
-              fontSize={'10px'}
+              className="paragraphMargin"
+              fontSize={'xs'}
               color={'background'}
-              fontWeight={'medium'}
-              textAlign={'right'}
+              fontWeight={'400'}
               w={'100%'}
               padding={'0 16px'}
             >
@@ -159,10 +161,10 @@ export const RecentExercisesBox = (
         {restExList && restExList.length > 0 ? (
           <>
             <Text
-              fontSize={'10px'}
+              className="paragraphMargin"
+              fontSize={'xs'}
               color={'background'}
-              fontWeight={'medium'}
-              textAlign={'right'}
+              fontWeight={'400'}
               w={'100%'}
               padding={'0 16px'}
             >

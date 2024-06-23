@@ -17,3 +17,11 @@
   background: var(--sb-thumb-color);
   border-radius: 3px;
 }
+
+.paragraphMargin {
+  margin-top: 32px;
+}
+
+.paragraphMargin:first-of-type {
+  margin-top: 0;
+}
