@@ -12,6 +12,7 @@ import {
   MenuOptionGroup,
   useDisclosure,
   Button,
+  Box,
 } from '@chakra-ui/react';
 import { ChangeEvent, useEffect, useRef, useState } from 'react';
 import { FaPlus } from 'react-icons/fa6';
@@ -110,7 +111,7 @@ export const AddTopicMenu = (props: IAddTopicMenuProps): JSX.Element => {
           // _hover={{ backgroundColor: 'secondary.50' }}
           // _active={{ backgroundColor: 'secondary.50' }}
         />
-        <MenuList>
+        <MenuList p={0}>
           <Input
             ref={initialFocusRef}
             variant={'unstyled'}
@@ -125,7 +126,7 @@ export const AddTopicMenu = (props: IAddTopicMenuProps): JSX.Element => {
           />
           {topicOptions && topicOptions.length > 0 ? (
             <>
-              <MenuDivider />
+              {/* <MenuDivider /> */}
               <MenuOptionGroup type="checkbox">
                 {topicOptions.map((topic) => {
                   if (
@@ -134,16 +135,17 @@ export const AddTopicMenu = (props: IAddTopicMenuProps): JSX.Element => {
                     return null;
                   }
                   return (
-                    <MenuItemOption
+                    <MenuItem
                       key={topic._id}
                       fontSize={'0.875rem'}
-                      fontWeight={'semibold'}
+                      fontWeight={'400'}
                       color={'secondary.base'}
-                      isChecked={exercise.topicList.some(
-                        (item) => item._id === topic._id
-                      )}
+                      // isChecked={exercise.topicList.some(
+                      //   (item) => item._id === topic._id
+                      // )}
                       value={topic._id}
-                      _hover={{ backgroundColor: 'secondary.50' }}
+                      //icon={<Box marginLeft={"-10px"}></Box>}
+                      _hover={{ fontWeight: 'bold', backgroundColor: 'unset' }}
                       onClick={() =>
                         addTopic({
                           token,
@@ -155,7 +157,7 @@ export const AddTopicMenu = (props: IAddTopicMenuProps): JSX.Element => {
                       }
                     >
                       {topic.name}
-                    </MenuItemOption>
+                    </MenuItem>
                   );
                 })}
               </MenuOptionGroup>
@@ -173,8 +175,8 @@ export const AddTopicMenu = (props: IAddTopicMenuProps): JSX.Element => {
                 >
                   <Button
                     type="button"
-                    variant={'ghost'}
-                    colorScheme="secondary"
+                    variant={'unstyled'}
+                    color="secondary"
                     leftIcon={<FaPlus />}
                     size={'sm'}
                     display={'flex'}
@@ -182,6 +184,8 @@ export const AddTopicMenu = (props: IAddTopicMenuProps): JSX.Element => {
                     justifyContent={'flex-start'}
                     width={'100%'}
                     onClick={() => topicPopUp.onOpen()}
+                    fontWeight={'400'}
+                    _hover={{ fontWeight: 'bold', backgroundColor: 'unset' }}
                   >
                     Create new topic: "{formValues?.name}"
                   </Button>
@@ -200,6 +204,7 @@ export const AddTopicMenu = (props: IAddTopicMenuProps): JSX.Element => {
                     closeOnSelect={false}
                     justifyContent={'flex-start'}
                     p={0}
+                    bgColor={'transparent'}
                   >
                     <Button
                       type="button"
@@ -210,9 +215,13 @@ export const AddTopicMenu = (props: IAddTopicMenuProps): JSX.Element => {
                       display={'flex'}
                       alignItems={'center'}
                       justifyContent={'flex-start'}
-                      width={'100%'}
                       isDisabled={formValues?.name?.length === 0}
                       onClick={() => topicPopUp.onOpen()}
+                      fontWeight={'400'}
+                      _hover={{
+                        fontWeight: 'bold',
+                        backgroundColor: 'transparent',
+                      }}
                     >
                       Create new topic: "{formValues?.name}"
                     </Button>
