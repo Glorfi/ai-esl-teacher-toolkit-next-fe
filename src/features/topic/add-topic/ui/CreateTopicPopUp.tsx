@@ -62,7 +62,9 @@ export const CreateTopicPopUp = (
     <Modal isOpen={isOpen} onClose={onClose} isCentered size={'sm'}>
       <ModalOverlay bg={'blackAlpha.700'} backdropFilter="blur(1px)" />
       <ModalContent>
-        <ModalHeader color={'primary.base'}>Add topic to the exercise?</ModalHeader>
+        <ModalHeader color={'primary.base'}>
+          Add topic to the exercise?
+        </ModalHeader>
         <ModalCloseButton />
         <ModalBody
           display={'grid'}
@@ -95,7 +97,10 @@ export const CreateTopicPopUp = (
             }
           />
         </ModalBody>
-        <ModalFooter>
+        <ModalFooter gap={'0.5rem'}>
+          <Button variant="ghost" onClick={onClose} colorScheme="secondary">
+            No
+          </Button>
           <Button
             colorScheme="secondary"
             mr={3}
@@ -105,9 +110,6 @@ export const CreateTopicPopUp = (
             onClick={handleConfirmClick}
           >
             Yes
-          </Button>
-          <Button variant="ghost" onClick={onClose} colorScheme="secondary">
-            No
           </Button>
         </ModalFooter>
       </ModalContent>

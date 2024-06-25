@@ -10,6 +10,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { APP_PATHS } from '@/shared';
 import { useAppSelector } from '@/shared/hooks/hooks';
 import { useLazyGetCurrentUserQuery } from '@/features/user';
+import { trimIdFromPath } from '@/shared/utils/trimIdFromPathname';
 
 interface IAuthComponentProps {
   isPrivate?: boolean;
@@ -33,18 +34,24 @@ export const AuthComponent = (props: any): JSX.Element => {
     APP_PATHS.DASHBOARD_LIBRARY,
     APP_PATHS.DASHBOARD_PROFILE,
   ];
-  const byPassRoute = [APP_PATHS.SHARED_EXERCISE.replace('/:id', '')];
+  const byPassRoutes = [
+    APP_PATHS.SHARED_EXERCISE.replace('/:id', ''),
+    APP_PATHS.MAGIC_VERIFICATION,
+    APP_PATHS.SIGN_IN,
+    APP_PATHS.SIGN_UP
+  ];
 
   useEffect(() => {
-    // if (byPassRoute.includes(trimIdFromPath(pathname))) {
-    //   console.log('You got here');
+    if (
+      isRendered &&
+      !userData &&
+      !byPassRoutes.some((route) => pathname.includes(route))
+    ) {
+      // console.log(byPassRoutes.some((route) => route !== pathname));
 
-    //   return;
-    // }
-    if (isRendered && !userData) {
       auth(LSHandler.getJwt());
     }
-  }, [isRendered]);
+  }, [isRendered, pathname]);
 
   useEffect(() => {
     setIsRendered(true);

@@ -10,3 +10,5 @@ export {
   useGetCurrentUserQuery,
   useLazyGetCurrentUserQuery,
 } from './signin/api/auth';
+export { useMagicAuthMutation } from './signin/api/authMagic';
+export { useMagicSignOnMutation } from './signin/api/signon';

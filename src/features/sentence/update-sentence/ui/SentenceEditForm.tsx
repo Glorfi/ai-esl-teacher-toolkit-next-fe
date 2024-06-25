@@ -8,6 +8,8 @@ import {
   ButtonGroup,
   SlideFade,
   Box,
+  Button,
+  Stack,
 } from '@chakra-ui/react';
 
 import { GrEdit } from 'react-icons/gr';
@@ -28,15 +30,18 @@ import { useUpdateSentenceMutation } from '../api/updateSentence';
 import { LSHandler } from '@/shared/hooks/handleLocalStorage';
 import { useDebounce } from '@/shared/utils/useDebounce';
 import { useAppSelector } from '@/shared/hooks/hooks';
+import { TextInputWithUpdateField } from '@/shared/ui/text-input/TextInputUpdatable';
+import { CloseIcon } from '@chakra-ui/icons';
 
 interface ISentenceEditFormProps {
   sentence: ISentence;
+  orderNumber: number;
 }
 
 export const SentenceEditForm = (
   props: ISentenceEditFormProps
 ): JSX.Element => {
-  const { sentence } = props;
+  const { sentence, orderNumber } = props;
   const token = LSHandler.getJwt();
   const isEditButtonVisible = useDisclosure();
   const isFormOpen = useDisclosure();
@@ -57,9 +62,9 @@ export const SentenceEditForm = (
   const [isSentenceValid, setIsSentenceValid] = useState<boolean>(true);
   const [isAnswerValid, setIsAnswerValid] = useState<boolean>(true);
   const [areOptionsValid, setAreOptionsValid] = useState<boolean>(true);
+  const [isSuccess, setIsSuccess] = useState<boolean>(false);
 
-
-  const [updateSentence, { data, isSuccess, isError }] =
+  const [updateSentence, { data, isSuccess: isSaved, isError }] =
     useUpdateSentenceMutation({
       fixedCacheKey: 'sentenceupd',
     });
@@ -84,7 +89,9 @@ export const SentenceEditForm = (
 
   useEffect(() => {
     if (rendered) {
-      updateSentence({ token, id: sentence._id, body: formValues });
+      updateSentence({ token, id: sentence._id, body: formValues })
+        .then(() => setIsSuccess(true))
+        .catch(() => setIsSuccess(false));
     } else {
       setRendered(true);
     }
@@ -102,31 +109,159 @@ export const SentenceEditForm = (
       setIsSentenceValid(
         validator.contains(formValues.sentence, formValues.answer)
       );
+      console.log(`Sentence validity: ${isSentenceValid}`);
     }
-  }, [formValues.sentence, formValues.answer]);
+  }, [formValues.sentence, formValues.answer, isError]);
 
   useEffect(() => {
     if (formValues.answer && formValues.sentence) {
+      //  console.log("here");
+
       setIsAnswerValid(formValues.sentence?.includes(formValues.answer));
     }
-  }, [formValues.answer, formValues.sentence]);
+    // if (
+    //   exerciseType === 'multipleChoice' &&
+    //   formValues.answer &&
+    //   formValues.options
+    // ) {
+    //   setIsAnswerValid(formValues.options.includes(formValues.answer));
+    // }
+  }, [formValues.answer, formValues.sentence, isError]);
 
   useEffect(() => {
-    if (formValues.answer && formValues.options && exerciseType === "multipleChoice") {
+    if (
+      formValues.answer &&
+      formValues.options &&
+      exerciseType === 'multipleChoice'
+    ) {
       setAreOptionsValid(formValues.options.includes(formValues.answer));
+      setIsSentenceValid(formValues.options.includes(formValues.answer));
     }
-    if (formValues.answer && formValues.options && exerciseType === "fillInGaps") {
+    if (
+      formValues.answer &&
+      formValues.options &&
+      exerciseType === 'fillInGaps'
+    ) {
       setAreOptionsValid(true);
     }
-  }, [formValues.answer, formValues.options]);
+  }, [formValues.answer, formValues.options, isError]);
 
   useEffect(() => {
     dispatch(setIsEditing(false));
-  }, [isError, isSuccess]);
+    if (isSuccess) {
+      setTimeout(() => {
+        setIsSuccess(false);
+      }, 2000);
+    }
+  }, [isError, isSaved]);
 
   return (
-    <>
-      <HStack
+    <VStack gap={0} w={'100%'}>
+      <TextInputWithUpdateField
+        title={`Sentence ${orderNumber + 1}`}
+        fakeFocus={isFormOpen.isOpen && !isSuccess}
+        inputProps={{
+          defaultValue: sentence.sentence,
+          name: 'sentence',
+          variant: isFormOpen.isOpen ? 'secondaryForced' : 'secondary',
+          color: 'primary.base',
+          onChange: handleInputChange,
+          isInvalid: !isSentenceValid || !isAnswerValid,
+          isSuccess: isSuccess && data && data._id === sentence._id,
+          errorMessage: !isAnswerValid
+            ? 'The sentence must include the answer'
+            : !areOptionsValid
+            ? 'The options must include the answer'
+            : 'Something went wrong',
+        }}
+        onClick={() => isFormOpen.onOpen()}
+      />
+      <Box w={'100%'}>
+        <SlideFade in={isFormOpen.isOpen}>
+          <VStack
+            alignItems={'flex-start'}
+            w={'100%'}
+            display={isFormOpen.isOpen ? 'flex' : 'none'}
+            gap={0}
+          >
+            <HStack w={'100%'} flexDirection={['column', 'row']}>
+              <TextInputWithUpdateField
+                title="Hint"
+                fakeFocus={isFormOpen.isOpen && !isSuccess}
+                inputProps={{
+                  defaultValue: sentence.hint,
+                  name: 'hint',
+                  variant: 'secondaryForced',
+                  color: 'primary.base',
+                  onChange: handleInputChange,
+                  // onBlur: () => dispatch(setIsEditing(false)),
+                  // isSuccess: isSuccessTitleUpdate,
+                  isSuccess: isSuccess && data && data._id === sentence._id,
+                  errorMessage: 'Something went wrong',
+                }}
+              />
+              <TextInputWithUpdateField
+                title="Answer"
+                fakeFocus={isFormOpen.isOpen && !isSuccess}
+                inputProps={{
+                  defaultValue: sentence.answer,
+                  name: 'answer',
+                  variant: 'secondaryForced',
+                  color: 'primary.base',
+                  onChange: handleInputChange,
+                  isSuccess: isSuccess && data && data._id === sentence._id,
+                  isInvalid: !isAnswerValid,
+                  errorMessage: 'The sentence must include the answer',
+                  textProps: { gridColumn: '1/3' },
+                }}
+              />
+            </HStack>
+            {exerciseType === 'multipleChoice' && sentence.options ? (
+              <Stack
+                w={'100%'}
+                justifyContent={'center'}
+                alignItems={['flex-start', 'center']}
+                flexDirection={['column', 'row']}
+              >
+                {sentence.options.map((option, index) => (
+                  <TextInputWithUpdateField
+                    title="Option"
+                    fakeFocus={isFormOpen.isOpen && !isSuccess}
+                    inputProps={{
+                      type: 'text',
+                      name: index.toString(),
+                      placeholder: 'option',
+                      defaultValue: option,
+                      onChange: handleOptionsChange,
+                      isInvalid: !areOptionsValid,
+                      variant: 'secondaryForced',
+                      color: 'primary.base',
+                      isSuccess: isSuccess && data && data._id === sentence._id,
+                      errorMessage: 'The options must include the answer',
+                      textProps: { gridColumn: '1/3' },
+                    }}
+                    key={`${option}option${index}`}
+                    // width={'fit-content'}
+                  />
+                ))}
+              </Stack>
+            ) : null}
+            <Button
+              mt={'12px'}
+              mb={'12px'}
+              ml={'auto'}
+              leftIcon={<CloseIcon />}
+              variant={'outline'}
+              colorScheme="secondary"
+              size={'sm'}
+              onClick={isFormOpen.onClose}
+            >
+              Close
+            </Button>
+          </VStack>
+        </SlideFade>
+      </Box>
+      {/* <HStack
         onMouseEnter={isEditButtonVisible.onOpen}
         onMouseLeave={isEditButtonVisible.onClose}
         minH={'32px'}
@@ -236,7 +371,7 @@ export const SentenceEditForm = (
             ) : null}
           </VStack>
         </VStack>
-      </SlideFade>
-    </>
+      </SlideFade>*/}
+    </VStack>
   );
 };

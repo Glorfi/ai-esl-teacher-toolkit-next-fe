@@ -8,6 +8,7 @@ import {
   ModalFooter,
   Button,
   Text,
+  ButtonGroup,
 } from '@chakra-ui/react';
 import { LSHandler } from '../../../../shared/hooks/handleLocalStorage';
 
@@ -15,8 +16,7 @@ import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import { removeExercise } from '@/entities/exercise';
 import { useDeleteExerciseMutation } from '../api/deleteExercise';
-
-
+import { DeleteIcon } from '@/shared/ui/icons/DeleteIcon';
 
 interface IDeleteExercisePopUpProps {
   isOpen: boolean;
@@ -55,22 +55,25 @@ export const DeleteExercisePopUp = (
         <ModalCloseButton />
         <ModalBody>
           <Text color={'primary.base'}>
-            Are you sure you want to delete the exercise?
+            Are you sure? You can't undo this action.
           </Text>
         </ModalBody>
         <ModalFooter>
-          <Button
-            colorScheme="error"
-            mr={3}
-            onClick={handleDeleteExercise}
-            isLoading={isLoading}
-            loadingText={'Deleting...'}
-          >
-            Delete
-          </Button>
-          <Button variant="ghost" onClick={onClose} colorScheme="secondary">
-            Cancel
-          </Button>
+          <ButtonGroup>
+            <Button variant="outline" onClick={onClose} colorScheme="secondary">
+              Cancel
+            </Button>
+            <Button
+              leftIcon={<DeleteIcon />}
+              colorScheme="error"
+              mr={3}
+              onClick={handleDeleteExercise}
+              isLoading={isLoading}
+              loadingText={'Deleting...'}
+            >
+              Delete
+            </Button>
+          </ButtonGroup>
         </ModalFooter>
       </ModalContent>
     </Modal>

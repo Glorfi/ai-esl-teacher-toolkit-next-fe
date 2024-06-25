@@ -9,18 +9,21 @@ import {
 } from '@/features/exercise';
 import { OpenLibraryThumbnail, OpenProfileThumbnail } from '@/features/user';
 import { MobileMenuContainer } from '@/shared';
+import { DeleteIcon } from '@/shared/ui/icons/DeleteIcon';
 import { Box, Divider } from '@chakra-ui/react';
 import { FaRegShareFromSquare, FaRegTrashCan } from 'react-icons/fa6';
+import { PiShareFatBold } from 'react-icons/pi';
 
 export const MobileMenuDashBoard = (): JSX.Element => {
   const features = [
     {
       title: 'Share',
-      icon: FaRegShareFromSquare,
+      icon: PiShareFatBold,
+      color: 'primary.base',
       modal: ShareExercisePopUp,
     },
     {
-      icon: FaRegTrashCan,
+      icon: DeleteIcon,
       title: 'Delete',
       color: 'error.base',
       modal: DeleteExercisePopUp,

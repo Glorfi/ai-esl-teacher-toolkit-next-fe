@@ -30,5 +30,6 @@ export {
 export { useUpdateExerciseMutation } from './update-exercise/api/updateExercise';
 export { useDeleteExerciseMutation } from './delete-exercise/api/deleteExercise';
 export { getFilteredExerciseList } from './filter-exercise/model/getFilteredExerciseList';
+export { regenerateExercise } from './regenerate-exercise/model/regenerateExercise';
 export { useIsFilterEmpty } from './filter-exercise/model/useIsFilterEmpty';
 export { toggleTopic } from './filter-exercise/model/filter-options-router';
