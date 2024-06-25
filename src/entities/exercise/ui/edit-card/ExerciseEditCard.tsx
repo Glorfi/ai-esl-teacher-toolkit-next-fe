@@ -141,7 +141,7 @@ export const ExerciseEditCard = (props: IExerciseEditCard): JSX.Element => {
           <Text fontSize={'md'} fontWeight={'bold'} color={'primary.base'}>
             Exercise information:
           </Text>
-          <Text fontWeight={'semibold'}>
+          <Text fontWeight={'semibold'} mt={'12px'}>
             Learner Level:{' '}
             <Text as={'span'} fontWeight={'400'}>
               {exData.studentLevel}
@@ -159,7 +159,7 @@ export const ExerciseEditCard = (props: IExerciseEditCard): JSX.Element => {
               {type}
             </Text>
           </Text>
-          <HStack flexWrap={"wrap"}>
+          <HStack flexWrap={'wrap'}>
             <Text fontWeight={'semibold'}>Topics: </Text>
             {exercise.topicList.map((topic) => {
               return (
@@ -178,7 +178,9 @@ export const ExerciseEditCard = (props: IExerciseEditCard): JSX.Element => {
           <Text fontSize={'16px'} fontWeight={'bold'}>
             Exercise settings:
           </Text>
-          <EditExerciseSettingsForm exercise={exercise} />
+          <Box w={'100%'} mt={'12px'}>
+            <EditExerciseSettingsForm exercise={exercise} />
+          </Box>
         </Box>
       </CardFooter>
     </Card>

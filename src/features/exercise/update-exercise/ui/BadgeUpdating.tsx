@@ -11,7 +11,7 @@ import { CheckboxIcon } from '@/shared/ui/icons/CheckBox';
 import formatDate from '@/shared/utils/formatDate';
 import { IExercise } from '@/entities/exercise';
 import { UpdatingCircleIcon } from '@/shared/ui/icons/UpdatingCircle';
-import { CloseIcon } from '@chakra-ui/icons';
+import { GrClose } from "react-icons/gr";
 
 interface IBadgeUpdating {
   exercise: IExercise;
@@ -77,7 +77,7 @@ export const BadgeUpdating = (props: IBadgeUpdating): JSX.Element => {
           />
         )}
         {errorMessage && !isUpdating ? (
-          <Icon as={CloseIcon} boxSize={'12px'} color={'error.base'} />
+          <Icon as={GrClose} boxSize={'12px'} color={'error.base'} />
         ) : null}
         <Text
           color={!errorMessage ? 'primary.base' : 'error.base'}
