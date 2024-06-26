@@ -5,7 +5,7 @@ import { Suspense } from 'react';
 
 const MagicPage = (): JSX.Element => {
   return (
-    <Stack minH={'100vh'} alignItems={'center'} justifyContent={'center'}>
+    <Stack minH={'100vh'} alignItems={'center'} p={['0 26px', '0']}>
       <Suspense>
         <MagicAuthResolver />
       </Suspense>
