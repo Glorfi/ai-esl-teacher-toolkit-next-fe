@@ -27,7 +27,7 @@ export default function Home() {
         <Text
           as="h1"
           color={'primary.base'}
-          fontSize={'64px'}
+          fontSize={['2xl','64px']}
           fontWeight={'bold'}
           //  lineHeight={'80px'}
           textAlign={'center'}
@@ -38,7 +38,7 @@ export default function Home() {
           mt={'24px'}
           as="h2"
           color={'primary.base'}
-          fontSize={'20px'}
+          fontSize={['md','20px']}
           fontWeight={'bold'}
           //  lineHeight={'80px'}
           textAlign={'center'}

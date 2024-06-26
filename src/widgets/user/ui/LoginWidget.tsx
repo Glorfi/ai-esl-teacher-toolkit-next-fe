@@ -18,6 +18,7 @@ import {
   CardBody,
   HStack,
   Link,
+  useToast,
 } from '@chakra-ui/react';
 import { useEffect, useState } from 'react';
 import validator from 'validator';
@@ -37,10 +38,10 @@ export const SignonWidget = (props: SignonWidget): JSX.Element => {
   const [isEmailValid, setIsEmailValid] = useState<boolean | null>(null);
   const debounceEmail = useDebounce(email, 1000);
   const router = useRouter();
+  const toast = useToast();
 
   const [sendEmail, { isSuccess, isError, isLoading }] =
     useMagicSignOnMutation();
-  //const isSuccess = true;
 
   function handleTokenInput(e: React.ChangeEvent<HTMLInputElement>) {
     if (e.target.value.length <= 6) {
@@ -70,7 +71,7 @@ export const SignonWidget = (props: SignonWidget): JSX.Element => {
 
   const signUpWording = {
     title: 'Create your account',
-    altText: "Do you have an account? ",
+    altText: 'Do you have an account? ',
     confirmation:
       'To confirm your registration, follow the link we sent to your email ',
   };
@@ -81,17 +82,25 @@ export const SignonWidget = (props: SignonWidget): JSX.Element => {
       : setIsEmailValid(null);
   }, [debounceEmail]);
 
-  // useEffect(() => {
-  //   isSuccess || isError ? onClose() : null;
-  // }, [isSuccess, isError]);
-
-  // useEffect(() => {
-  //   onOpen();
-  // }, []);
+  useEffect(() => {
+    if (isError) {
+      toast({
+        title: 'Something went wrong. Please try again!',
+        status: 'error',
+        isClosable: true,
+        position: 'top-right',
+      });
+    }
+  }, [isError]);
 
   return (
     <>
-      <Card minW={['462px']} minH={['80vh']} variant={'outline'}>
+      <Card
+        maxW={['320px', '462px']}
+        minH={['80vh']}
+        variant={['unstyled', 'outline']}
+        w={'100%'}
+      >
         <CardHeader pt={'36px'} display={'flex'} justifyContent={'center'}>
           <HStack minH={'24px'}>
             <BookIcon color={'primary.base'} />
