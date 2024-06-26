@@ -11,8 +11,7 @@ import { TextInput, TextInputProps } from './TextInput';
 import { ChangeEvent, useEffect, useState } from 'react';
 import { UpdatingCircleIcon } from '../icons/UpdatingCircle';
 import { CheckboxIcon } from '../icons/CheckBox';
-import { CloseIcon } from '@chakra-ui/icons';
-import { IoClose } from 'react-icons/io5';
+import { GrClose } from 'react-icons/gr';
 
 interface TextInputWithUpdateFieldProps extends GridProps {
   inputProps?: TextInputProps;
@@ -55,7 +54,7 @@ export const TextInputWithUpdateField = ({
               (fakeFocus && !inputProps?.isInvalid)
                 ? UpdatingCircleIcon
                 : inputProps?.isInvalid
-                ? CloseIcon
+                ? GrClose
                 : AiFillEdit
             }
             color={

@@ -237,7 +237,7 @@ export const ExerciseFilterForm = (props: StackProps): JSX.Element => {
           >
             <option value={''}></option>
             <option value={'Children 7-12 y.o.'}>Children 7-12 y.o.</option>
-            <option value={'Teenagers 13-20 y.o.'}>Teenagers 13-20 y.o.</option>
+            <option value={'Teenagers 13-20 y.o'}>Teenagers 13-20 y.o.</option>
             <option value={'Adults 20+ y.o'}>Adults 20+ y.o</option>
           </Select>
         </VStack>

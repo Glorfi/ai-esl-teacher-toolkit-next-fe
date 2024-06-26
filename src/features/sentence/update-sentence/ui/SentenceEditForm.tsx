@@ -166,7 +166,7 @@ export const SentenceEditForm = (
           variant: isFormOpen.isOpen ? 'secondaryForced' : 'secondary',
           color: 'primary.base',
           onChange: handleInputChange,
-          isInvalid: !isSentenceValid,
+          isInvalid: !isSentenceValid || !isAnswerValid,
           isSuccess: isSuccess && data && data._id === sentence._id,
           errorMessage: !isAnswerValid
             ? 'The sentence must include the answer'

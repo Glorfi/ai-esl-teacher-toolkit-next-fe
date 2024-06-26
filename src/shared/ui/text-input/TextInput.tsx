@@ -33,7 +33,8 @@ export const TextInput = ({
           fontSize="10px"
           color="error.base"
           w={'100%'}
-          minH={'15px'}
+          minH={'20px'}
+          lineHeight={"20px"}
           {...textProps}
         >
           {props.isInvalid ? errorMessage : null}
