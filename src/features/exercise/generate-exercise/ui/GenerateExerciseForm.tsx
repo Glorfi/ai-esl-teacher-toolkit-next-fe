@@ -144,9 +144,7 @@ export const GenerateExerciseForm = (): JSX.Element => {
         >
           <HStack>
             <Radio value="vocabulary">Vocabulary</Radio>
-            <Radio value="grammar" isDisabled>
-              Grammar
-            </Radio>
+            <Radio value="grammar">Grammar</Radio>
             <Radio value="reading" isDisabled>
               Reading
             </Radio>

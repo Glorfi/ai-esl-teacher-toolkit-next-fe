@@ -5,12 +5,17 @@ import {
   WORKSHEET_SKILL,
   VOCABULARY_WORKSHEET_TYPE,
 } from '@/shared';
+import {
+  GRAMMAR_WORKSHEET_TYPE,
+  WORKSHEET_TARGET_CONSTRUCTION,
+} from '@/shared/constants/prompt';
 import { useEffect, useState } from 'react';
 
 interface IConfig {
   roleSkill: string;
   workSheetSkill: string;
   task: string;
+  targetConstruction: string;
   wordList?: string | undefined;
   learnerLevel?: string;
   learnerAge?: string;
@@ -26,6 +31,7 @@ export const useGeneratePrompt = (
   const [config, setConfig] = useState<IConfig>({
     roleSkill: '',
     workSheetSkill: '',
+    targetConstruction: '',
     task: '',
     wordList: '',
     learnerLevel: LEARNER_LEVEL.B1,
@@ -38,22 +44,47 @@ export const useGeneratePrompt = (
       setConfig((prevConfig) => ({
         ...prevConfig,
         roleSkill: ROLE_SKILL.vocabulary,
+        workSheetSkill: WORKSHEET_SKILL.vocabulary,
+        targetConstruction: WORKSHEET_TARGET_CONSTRUCTION.vocabulary,
       }));
+      // setConfig((prevConfig) => ({
+      //   ...prevConfig,
+
+      // }));
+      // setConfig
+    }
+    if (skill === 'grammar') {
       setConfig((prevConfig) => ({
         ...prevConfig,
-        workSheetSkill: WORKSHEET_SKILL.vocabulary,
+        roleSkill: ROLE_SKILL.grammar,
+        targetConstruction: WORKSHEET_TARGET_CONSTRUCTION.grammar,
+        workSheetSkill: WORKSHEET_SKILL.grammar,
       }));
+      // setConfig((prevConfig) => ({
+      //   ...prevConfig,
+      //   workSheetSkill: WORKSHEET_SKILL.grammar,
+      // }));
     }
     if (task === 'fillInGaps') {
       setConfig((prevConfig) => ({
         ...prevConfig,
-        task: VOCABULARY_WORKSHEET_TYPE.fillInGaps,
+        task:
+          skill === 'vocabulary'
+            ? VOCABULARY_WORKSHEET_TYPE.fillInGaps
+            : skill === 'grammar'
+            ? GRAMMAR_WORKSHEET_TYPE.fillInGaps
+            : '',
       }));
     }
     if (task === 'multipleChoice') {
       setConfig((prevConfig) => ({
         ...prevConfig,
-        task: VOCABULARY_WORKSHEET_TYPE.multipleChoice,
+        task:
+          skill === 'vocabulary'
+            ? VOCABULARY_WORKSHEET_TYPE.multipleChoice
+            : skill === 'grammar'
+            ? GRAMMAR_WORKSHEET_TYPE.multipleChoice
+            : '',
       }));
     }
     if (words) {
@@ -90,7 +121,7 @@ export const useGeneratePrompt = (
 
   useEffect(() => {
     setPrompt(`You are a tutor creating ${config.roleSkill}. The sentences will provide ${config.workSheetSkill}.
-    Compose sentences to practice the following words and phrases:
+    Compose sentences to practice ${config.targetConstruction}:
     ${config.wordList}
     Do not use modifiers between words of the phrase.
     The sentence should be appropriate for ${config.learnerLevel}.

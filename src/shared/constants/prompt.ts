@@ -1,11 +1,17 @@
 export const ROLE_SKILL = {
   vocabulary: 'vocabulary sentences',
+  grammar: 'grammar sentences',
 };
 
 export const WORKSHEET_SKILL = {
   vocabulary: 'vocabulary practice',
+  grammar: 'grammar practice',
 };
 
+export const WORKSHEET_TARGET_CONSTRUCTION = {
+  vocabulary: 'the following words and phrases',
+  grammar: 'the following grammar structure',
+};
 export const VOCABULARY_WORKSHEET_TYPE = {
   fillInGaps: `In your reply write nothing else but JSON:
   [ {"sentence": "your sentence generated here",
@@ -17,6 +23,19 @@ export const VOCABULARY_WORKSHEET_TYPE = {
    "answer":  "the form of the word or the phrase in your sentence",
    "hint":  "the base form of the word or the phrase",
 "options": "is the array of strings with options for mutliple choise, options should contain the correct answer from the answer field and 2 wrong but similar in meaning but incompatible words"}]`,
+};
+
+export const GRAMMAR_WORKSHEET_TYPE = {
+  fillInGaps: `In your reply write nothing else but JSON:
+ [ {"sentence": "your sentence generated here",
+   "answer":  "the form of the word or the phrase  used with a target grammar structure in your sentence",
+   "hint":  "the base form of the word or the phrase",
+"options": "is the array of strings with options for mutliple choise, options should contain the word or the phrase  used with a target grammar structure and 2 wrong words similar but used wrong grammar form"}]`,
+  multipleChoice: `In your reply write nothing else but JSON:
+  [ {"sentence": "your sentence generated here",
+   "answer":  "the form of the word or the phrase used with a target grammar structure in your sentence",
+   "hint":  "the base form of the word or the phrase",
+"options": "is the array of strings with options for mutliple choise, options should contain the word or the phrase  used with a target grammar structure and 2 wrong words similar but used wrong grammar form"}]`,
 };
 
 // export const VOCABULARY_WORKSHEET_TYPE = {
