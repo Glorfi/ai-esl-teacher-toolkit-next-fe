@@ -15,6 +15,7 @@ import {
   useToast,
   Switch,
   IconButton,
+  Input,
 } from '@chakra-ui/react';
 import { BsInfoCircle } from 'react-icons/bs';
 import { useEffect, useState } from 'react';
@@ -69,7 +70,8 @@ export const GenerateExerciseForm = (): JSX.Element => {
     formValues.taskType,
     formValues.wordList,
     formValues.learnerLevel,
-    formValues.learnerAge
+    formValues.learnerAge,
+    formValues.context
   );
 
   const checkFormValidity = () => {
@@ -168,8 +170,16 @@ export const GenerateExerciseForm = (): JSX.Element => {
           </HStack>
         </RadioGroup>
         <VStack alignItems={'flex-start'} spacing={0}>
-          <Text fontSize={'lg'}>Words to practice</Text>
-          <Text fontSize={'2xs'}>type words separeted by comas</Text>
+          <Text fontSize={'lg'}>
+            {formValues.skill === 'vocabulary'
+              ? 'Words to practice'
+              : 'Grammar Construction'}
+          </Text>
+          <Text fontSize={'2xs'}>
+            {formValues.skill === 'vocabulary'
+              ? 'type words separeted by comas'
+              : 'type grammar construction'}
+          </Text>
         </VStack>
         <Textarea
           colorScheme="secondary"
@@ -178,6 +188,19 @@ export const GenerateExerciseForm = (): JSX.Element => {
             setFormValues({ ...formValues, wordList: e.target.value })
           }
         />
+        {formValues.skill === 'grammar' && (
+          <
+            // ВРЕМЕННОЕ РЕШЕНИЕ ПОЗЖЕ УБРАТЬ ВЕТВИСТУЮ ЛОГИКУ
+          >
+            <Text fontSize={'lg'}>Context</Text>
+            <Input
+              value={formValues.context}
+              onChange={(e) =>
+                setFormValues({ ...formValues, context: e.target.value })
+              }
+            ></Input>
+          </>
+        )}
         <Text fontSize={'lg'}>Learner's level</Text>
         <Select
           // defaultValue={'B1'}

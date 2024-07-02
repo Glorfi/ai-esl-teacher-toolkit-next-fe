@@ -6,6 +6,7 @@ import {
   VOCABULARY_WORKSHEET_TYPE,
 } from '@/shared';
 import {
+  GRAMMAR_CONTEXT,
   GRAMMAR_WORKSHEET_TYPE,
   WORKSHEET_TARGET_CONSTRUCTION,
 } from '@/shared/constants/prompt';
@@ -19,6 +20,7 @@ interface IConfig {
   wordList?: string | undefined;
   learnerLevel?: string;
   learnerAge?: string;
+  context?: string;
 }
 
 export const useGeneratePrompt = (
@@ -26,7 +28,8 @@ export const useGeneratePrompt = (
   task: string,
   words?: string,
   learnerLevel?: string,
-  learnerAge?: string
+  learnerAge?: string,
+  context?: string
 ) => {
   const [config, setConfig] = useState<IConfig>({
     roleSkill: '',
@@ -117,7 +120,14 @@ export const useGeneratePrompt = (
         learnerAge: ageMapping[learnerAge] || prevConfig.learnerLevel,
       }));
     }
-  }, [skill, task, words, learnerLevel, learnerAge]);
+
+    if (context) {
+      setConfig((prevConfig) => ({
+        ...prevConfig,
+        context: `${GRAMMAR_CONTEXT} ${context}`,
+      }));
+    }
+  }, [skill, task, words, learnerLevel, learnerAge, context]);
 
   useEffect(() => {
     setPrompt(`You are a tutor creating ${config.roleSkill}. The sentences will provide ${config.workSheetSkill}.
@@ -127,6 +137,7 @@ export const useGeneratePrompt = (
     The sentence should be appropriate for ${config.learnerLevel}.
     The learners are ${config.learnerAge}.
     The sentences should use casual language.
+    ${config.context}.
     ${config.task}`);
   }, [config]);
 

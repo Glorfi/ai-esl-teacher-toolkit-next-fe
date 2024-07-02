@@ -1,6 +1,6 @@
 export const ROLE_SKILL = {
   vocabulary: 'vocabulary sentences',
-  grammar: 'grammar sentences',
+  grammar: 'grammar exercise',
 };
 
 export const WORKSHEET_SKILL = {
@@ -26,17 +26,19 @@ export const VOCABULARY_WORKSHEET_TYPE = {
 };
 
 export const GRAMMAR_WORKSHEET_TYPE = {
-  fillInGaps: `In your reply write nothing else but JSON:
- [ {"sentence": "your sentence generated here",
-   "answer":  "the form of the word or the phrase  used with a target grammar structure in your sentence",
-   "hint":  "the base form of the word or the phrase",
-"options": "is the array of strings with options for mutliple choise, options should contain the word or the phrase  used with a target grammar structure and 2 wrong words similar but used wrong grammar form"}]`,
-  multipleChoice: `In your reply write nothing else but JSON:
+  fillInGaps: `Make at least 10 sentences. Make extended sentences so a student can guess the correct answer by the context of a sentence. In your reply write nothing else but JSON:
   [ {"sentence": "your sentence generated here",
-   "answer":  "the form of the word or the phrase used with a target grammar structure in your sentence",
+   "answer":  "the word or the word combination used in form of the target grammar structure in your sentence, if you need to use a modifier include it in the answer",
    "hint":  "the base form of the word or the phrase",
-"options": "is the array of strings with options for mutliple choise, options should contain the word or the phrase  used with a target grammar structure and 2 wrong words similar but used wrong grammar form"}]`,
+"options": "is the array of strings with options for mutliple choise, options should contain the word or the word combination used in form of the target grammar structure in your sentence and 2 wrong words or word combinations similar but used wrong grammar form"}]`,
+  multipleChoice: `Make at least 10 sentences. Make extended sentences so a student can guess the correct answer by the context of a sentence. In your reply write nothing else but JSON:
+  [ {"sentence": "your sentence generated here",
+   "answer":  "the word or the word combination used in form of the target grammar structure in your sentence, if you need to use a modifier include it in the answer",
+   "hint":  "the base form of the word or the phrase",
+"options": "is the array of strings with options for mutliple choise, options should contain the word or the word combination used in form of the target grammar structure in your sentence and 2 wrong words or word combinations similar but used wrong grammar form"}]`,
 };
+
+export const GRAMMAR_CONTEXT = 'Make sentences in the context of';
 
 // export const VOCABULARY_WORKSHEET_TYPE = {
 //   fillInGaps: `I need a JSON with the following keys:

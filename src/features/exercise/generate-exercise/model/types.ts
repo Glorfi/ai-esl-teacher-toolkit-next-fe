@@ -2,6 +2,7 @@ export interface IFormValues {
   skill: 'grammar' | 'vocabulary' | string;
   taskType: string;
   wordList: string;
+  context?: string;
   learnerLevel: string;
   learnerAge: 'children' | 'teenagers' | 'adults' | string;
   isStrictChecking: boolean;
