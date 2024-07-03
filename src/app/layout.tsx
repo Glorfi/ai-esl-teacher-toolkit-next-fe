@@ -3,6 +3,7 @@ import './globals.css';
 import { Providers } from './providers';
 import { fonts } from '../shared/ui/fonts';
 import { AuthComponent } from '@/widgets/user';
+import { GoogleAnalytics } from '@next/third-parties/google';
 
 export const metadata: Metadata = {
   title: 'AI ESL Teacher Toolkit',
@@ -21,6 +22,7 @@ export default function RootLayout({
           {children}
           <AuthComponent />
         </Providers>
+        <GoogleAnalytics gaId={process.env.NEXT_GA_KEY ? process.env.NEXT_GA_KEY : ''} />
       </body>
     </html>
   );
