@@ -36,6 +36,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
                 clickmap: true,
                 trackLinks: true,
                 accurateTrackBounce: true,
+                webvisor: true,
               });
             `,
           }}
