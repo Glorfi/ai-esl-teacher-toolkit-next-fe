@@ -22,10 +22,12 @@ export default function RootLayout({ children }: RootLayoutProps) {
           {children}
           <AuthComponent />
         </Providers>
-        <GoogleAnalytics gaId={process.env.NEXT_GA_KEY ?? ''} />
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
+        {process.env.NODE_ENV === 'production' ? (
+          <>
+            <GoogleAnalytics gaId={process.env.NEXT_GA_KEY ?? ''} />
+            <script
+              dangerouslySetInnerHTML={{
+                __html: `
               (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
               m[i].l=1*new Date();
               for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
@@ -39,17 +41,19 @@ export default function RootLayout({ children }: RootLayoutProps) {
                 webvisor: true,
               });
             `,
-          }}
-        />
-        <noscript>
-          <div>
-            <img
-              src="https://mc.yandex.ru/watch/97746601"
-              style={{ position: 'absolute', left: '-9999px' }}
-              alt=""
+              }}
             />
-          </div>
-        </noscript>
+            <noscript>
+              <div>
+                <img
+                  src="https://mc.yandex.ru/watch/97746601"
+                  style={{ position: 'absolute', left: '-9999px' }}
+                  alt=""
+                />
+              </div>
+            </noscript>
+          </>
+        ) : null}
       </body>
     </html>
   );
