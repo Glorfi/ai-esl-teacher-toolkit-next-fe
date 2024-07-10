@@ -54,7 +54,7 @@ export const Header = (): JSX.Element => {
       transition={'all 1s ease-in'}
       position={'sticky'}
       top={'30px'}
-      zIndex={"500"}
+      zIndex={'500'}
     >
       <HStack>
         <BookIcon color={'primary.base'} />
@@ -70,6 +70,7 @@ export const Header = (): JSX.Element => {
         {links.map((link) => {
           return (
             <Link
+              key={link.title}
               href={link.link}
               color={'primary.base'}
               fontSize={'sm'}
