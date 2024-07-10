@@ -1,9 +1,10 @@
 // 1. Import the extendTheme function
-import { extendTheme } from '@chakra-ui/react';
+import { Card, extendTheme } from '@chakra-ui/react';
 import { fonts, textTheme } from './fonts';
 import { tagTheme } from './tag/Tag';
 import { textInputTheme } from './text-input/textInputTheme';
 import { selectTheme } from './select-input/selectTheme';
+import { cardTheme } from './card/CardTheme';
 
 // 2. Extend the theme to include custom colors, fonts, etc
 const colors = {
@@ -139,6 +140,7 @@ const components = {
   Tag: tagTheme,
   Input: textInputTheme,
   Select: selectTheme,
+  Card: cardTheme,
 };
 
 export const theme = extendTheme({
