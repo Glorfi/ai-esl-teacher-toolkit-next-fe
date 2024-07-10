@@ -1,6 +1,7 @@
 {
   "compilerOptions": {
     "lib": ["dom", "dom.iterable", "esnext"],
+    "maxNodeModuleJsDepth": 10,
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
