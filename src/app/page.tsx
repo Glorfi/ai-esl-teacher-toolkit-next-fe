@@ -3,7 +3,11 @@
 import { VStack } from '@chakra-ui/react';
 import { Header } from '@/widgets/header';
 
-import { AdvantagesSection, LeadSection } from '@/widgets/landing-widgets';
+import {
+  AdvantagesSection,
+  HowToStartSection,
+  LeadSection,
+} from '@/widgets/landing-widgets';
 
 export default function Home() {
   return (
@@ -16,6 +20,7 @@ export default function Home() {
       <Header />
       <LeadSection />
       <AdvantagesSection />
+      <HowToStartSection />
     </VStack>
   );
 }

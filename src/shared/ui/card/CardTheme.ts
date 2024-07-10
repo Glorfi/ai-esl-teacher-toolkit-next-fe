@@ -25,6 +25,7 @@ const variants = {
       border: '1px solid  #E2E8F0',
       color: 'white',
       backgroundColor: 'secondary.base',
+      transition: 'all 0.3s ease',
       _hover: {
         backgroundColor: 'transparent',
         color: 'primary.base',
