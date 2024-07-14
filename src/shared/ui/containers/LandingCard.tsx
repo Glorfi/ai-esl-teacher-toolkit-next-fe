@@ -11,7 +11,7 @@ import {
 import { useState } from 'react';
 
 interface ILandingCard extends CardProps {
-  cardNumber: string;
+  cardNumber?: string;
   cardTitle: string;
   cardText: string;
   graphicElement?: 'circles' | 'horizontalTwist';
@@ -27,9 +27,11 @@ export const LandingCard = (props: ILandingCard): JSX.Element => {
       onMouseLeave={() => setIsHovered(false)}
     >
       <CardBody p={'32px'}>
-        <Text fontWeight={'600'} color={'inherit'}>
-          {cardNumber}
-        </Text>
+        {cardNumber && (
+          <Text fontWeight={'600'} color={'inherit'}>
+            {cardNumber}
+          </Text>
+        )}
         <Text
           as={'h3'}
           mt={'38px'}
@@ -44,7 +46,7 @@ export const LandingCard = (props: ILandingCard): JSX.Element => {
         </Text>
       </CardBody>
       {graphicElement && (
-        <CardFooter p={0}>
+        <CardFooter p={0} width={"100%"}>
           {graphicElement === 'circles' ? (
             <svg
               xmlns="http://www.w3.org/2000/svg"

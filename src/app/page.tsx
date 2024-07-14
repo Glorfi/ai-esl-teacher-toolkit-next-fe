@@ -5,8 +5,11 @@ import { Header } from '@/widgets/header';
 
 import {
   AdvantagesSection,
+  ExerciseTypesSection,
+  FaqSection,
   HowToStartSection,
   LeadSection,
+  NumbersSection,
 } from '@/widgets/landing-widgets';
 
 export default function Home() {
@@ -21,6 +24,9 @@ export default function Home() {
       <LeadSection />
       <AdvantagesSection />
       <HowToStartSection />
+      <ExerciseTypesSection />
+      <NumbersSection />
+      <FaqSection />
     </VStack>
   );
 }

@@ -116,6 +116,7 @@ const colors = {
     900: '#401515',
   },
   graySecondary: '#8C8C8C',
+  grayAlt: '#E2E8F0',
 };
 
 const breakboints = {

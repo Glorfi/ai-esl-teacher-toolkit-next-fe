@@ -53,14 +53,38 @@ export const HowToStartSection = (): JSX.Element => {
         colorScheme="secondary"
         mt={'48px'}
       >
-        <TabList>
-          <Tab>Fill in the details</Tab>
-          <Tab>Generate Exercise</Tab>
-          <Tab>Edit it</Tab>
-          <Tab>Send to student</Tab>
+        <TabList gap={'16px'} as={'ul'}>
+          <Tab
+            backgroundColor={'grayAlt'}
+            color={'primary.base'}
+            _selected={{ backgroundColor: 'secondary.base', color: 'white' }}
+          >
+            &#x2022; Fill in the details
+          </Tab>
+          <Tab
+            backgroundColor={'grayAlt'}
+            color={'primary.base'}
+            _selected={{ backgroundColor: 'secondary.base', color: 'white' }}
+          >
+            &#x2022; Generate exercise
+          </Tab>
+          <Tab
+            backgroundColor={'grayAlt'}
+            color={'primary.base'}
+            _selected={{ backgroundColor: 'secondary.base', color: 'white' }}
+          >
+            &#x2022; Edit it
+          </Tab>
+          <Tab
+            backgroundColor={'grayAlt'}
+            color={'primary.base'}
+            _selected={{ backgroundColor: 'secondary.base', color: 'white' }}
+          >
+            &#x2022; Send to student
+          </Tab>
         </TabList>
         <TabPanels>
-          <TabPanel>
+          <TabPanel p={0} mt={'24px'}>
             <Card
               variant={'outline'}
               flexDirection={'row'}
@@ -106,7 +130,7 @@ export const HowToStartSection = (): JSX.Element => {
               />
             </Card>
           </TabPanel>
-          <TabPanel>
+          <TabPanel p={0} mt={'24px'}>
             <Card
               variant={'outline'}
               flexDirection={'row'}
@@ -140,7 +164,7 @@ export const HowToStartSection = (): JSX.Element => {
               />
             </Card>
           </TabPanel>
-          <TabPanel>
+          <TabPanel p={0} mt={'24px'}>
             <Card
               variant={'outline'}
               flexDirection={'row'}
@@ -178,7 +202,7 @@ export const HowToStartSection = (): JSX.Element => {
               />
             </Card>
           </TabPanel>
-          <TabPanel>
+          <TabPanel p={0} mt={'24px'}>
             <Card
               variant={'outline'}
               flexDirection={'row'}

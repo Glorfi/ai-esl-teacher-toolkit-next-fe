@@ -22,7 +22,7 @@ export const AdvantagesSection = (): JSX.Element => {
         Advantages of using the platform
       </Text>
       <Grid
-        gridTemplateColumns={'1fr 360px 360px'}
+        gridTemplateColumns={'1fr 1fr 1fr'}
         gap={'24px'}
         mt={'48px'}
         w={'100%'}
@@ -57,34 +57,6 @@ export const AdvantagesSection = (): JSX.Element => {
           gridRow={'1/3'}
           graphicElement="horizontalTwist"
         />
-        {/* <Card variant={'outline'} p={'32px'} borderRadius={'16px'}>
-          <Text fontWeight={'600'}>1.</Text>
-          <Text as={'h3'} mt={'38px'} fontWeight={'bold'} fontSize={'2xl'}>
-            Personalized exercises
-          </Text>
-          <Text fontWeight={'500'} mt={'12px'}>
-            Personalized exercises tailored to each student's level and needs.
-          </Text>
-        </Card>
-        <Card variant={'outline'} gridRow={2} p={'32px'} borderRadius={'16px'}>
-          <Text fontWeight={'600'}>2.</Text>
-        </Card>
-        <Card
-          variant={'outline'}
-          gridRow={'1/3'}
-          p={'32px'}
-          borderRadius={'16px'}
-        >
-          <Text fontWeight={'600'}>3.</Text>
-        </Card>
-        <Card
-          variant={'outline'}
-          gridRow={'1/3'}
-          p={'32px'}
-          borderRadius={'16px'}
-        >
-          <Text fontWeight={'600'}>4.</Text>
-        </Card> */}
       </Grid>
     </VStack>
   );
