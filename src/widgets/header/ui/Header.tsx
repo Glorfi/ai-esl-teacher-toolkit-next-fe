@@ -26,12 +26,12 @@ export const Header = (): JSX.Element => {
     token ? token : skipToken
   );
   const links: ILink[] = [
-    { link: '', title: 'Advantages' },
-    { link: '', title: 'How it works' },
-    { link: '', title: 'Exercises' },
-    { link: '', title: 'Numbers' },
-    { link: '', title: 'FAQ' },
-    { link: '', title: 'Contact us' },
+    { link: '#AdvantagesSection', title: 'Advantages' },
+    { link: '#HowToStartSection', title: 'How it works' },
+    { link: '#ExerciseTypesSection', title: 'Exercises' },
+    { link: '#NumbersSection', title: 'Numbers' },
+    { link: '#FaqSection', title: 'FAQ' },
+    { link: '#ContactsSection', title: 'Contact us' },
   ];
   useEffect(() => {
     setIsRendered(true);
@@ -41,9 +41,10 @@ export const Header = (): JSX.Element => {
   return (
     <HStack
       as={'header'}
+      maxW={'1130px'}
       justifyContent={'space-between'}
       w={'100%'}
-      margin={'30px 0 0 0'}
+      margin={'30px auto 0'}
       p={'12px 24px'}
       bgColor={'whiteAlpha.700'}
       backdropFilter={'blur(4px)'}
@@ -55,6 +56,7 @@ export const Header = (): JSX.Element => {
       position={'sticky'}
       top={'30px'}
       zIndex={'500'}
+      scrollBehavior={'smooth'}
     >
       <HStack>
         <BookIcon color={'primary.base'} />
@@ -70,12 +72,23 @@ export const Header = (): JSX.Element => {
         {links.map((link) => {
           return (
             <Link
+              // as={'button'}
               key={link.title}
               href={link.link}
               color={'primary.base'}
               fontSize={'sm'}
               fontWeight={'bold'}
+              cursor={'pointer'}
               _hover={{ textDecoration: 'none' }}
+              onClick={(e) => {
+                e.preventDefault();
+                document
+                  .querySelector(link.link)
+                  ?.scrollIntoView({ behavior: 'smooth' });
+                setTimeout(() => {
+                  window.location.hash = link.link;
+                }, 500);
+              }}
             >
               {link.title}
             </Link>

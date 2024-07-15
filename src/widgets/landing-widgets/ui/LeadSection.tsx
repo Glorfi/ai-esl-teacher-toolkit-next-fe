@@ -4,10 +4,12 @@ import Image from 'next/image';
 import NextLink from 'next/link';
 import { FaArrowRightLong } from 'react-icons/fa6';
 import leadImage from '../../../../public/leadImage.png';
+import { useRef } from 'react';
 
 export const LeadSection = (): JSX.Element => {
   return (
     <VStack
+      id="LeadSection"
       as={'section'}
       gap={0}
       //minHeight={'100vh'}
@@ -15,6 +17,7 @@ export const LeadSection = (): JSX.Element => {
       alignItems={'center'}
       mt={'104px'}
       w={'100%'}
+      scrollMarginTop={"94px"}
     >
       <Text
         as="h1"

@@ -17,11 +17,13 @@ export const ExerciseTypesSection = (): JSX.Element => {
   return (
     <VStack
       as={'section'}
+      id='ExerciseTypesSection'
       gap={0}
       justifyContent={'center'}
       alignItems={'center'}
       mt={'156px'}
       w={'100%'}
+      scrollMarginTop={"94px"}
     >
       <Text
         as="h2"

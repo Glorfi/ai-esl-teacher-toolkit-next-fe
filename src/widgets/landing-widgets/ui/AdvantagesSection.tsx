@@ -5,11 +5,13 @@ export const AdvantagesSection = (): JSX.Element => {
   return (
     <VStack
       as={'section'}
+      id='AdvantagesSection'
       gap={0}
       justifyContent={'center'}
       alignItems={'center'}
       mt={'156px'}
       w={'100%'}
+      scrollMarginTop={"94px"}
     >
       <Text
         as="h2"

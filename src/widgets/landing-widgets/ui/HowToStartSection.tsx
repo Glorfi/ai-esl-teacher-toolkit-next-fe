@@ -30,11 +30,13 @@ export const HowToStartSection = (): JSX.Element => {
   return (
     <VStack
       as={'section'}
+      id='HowToStartSection'
       gap={0}
       justifyContent={'center'}
       alignItems={'center'}
       mt={'128px'}
       w={'100%'}
+      scrollMarginTop={"94px"}
     >
       <Text
         as="h2"

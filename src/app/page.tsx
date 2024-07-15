@@ -5,8 +5,10 @@ import { Header } from '@/widgets/header';
 
 import {
   AdvantagesSection,
+  ContactsSection,
   ExerciseTypesSection,
   FaqSection,
+  FooterSection,
   HowToStartSection,
   LeadSection,
   NumbersSection,
@@ -14,19 +16,25 @@ import {
 
 export default function Home() {
   return (
-    <VStack
-      minHeight={'100vh'}
-      m={'0 auto'}
-      maxW={'1130px'}
-      padding={['0 20px', '0 20px', '0 20px', '0']}
-    >
+    <>
       <Header />
-      <LeadSection />
-      <AdvantagesSection />
-      <HowToStartSection />
-      <ExerciseTypesSection />
-      <NumbersSection />
-      <FaqSection />
-    </VStack>
+      <VStack
+        as={'main'}
+        minHeight={'100vh'}
+        m={'0 auto'}
+        maxW={'1130px'}
+        padding={['0 20px', '0 20px', '0 20px', '0']}
+        scrollBehavior={"smooth"}
+      >
+        <LeadSection />
+        <AdvantagesSection />
+        <HowToStartSection />
+        <ExerciseTypesSection />
+        <NumbersSection />
+        <FaqSection />
+        <ContactsSection />
+      </VStack>
+      <FooterSection />
+    </>
   );
 }

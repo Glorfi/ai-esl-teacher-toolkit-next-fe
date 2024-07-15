@@ -21,11 +21,13 @@ export const NumbersSection = (): JSX.Element => {
   return (
     <VStack
       as={'section'}
+      id='NumbersSection'
       gap={0}
       justifyContent={'center'}
       alignItems={'center'}
       mt={'156px'}
       w={'100%'}
+      scrollMarginTop={"94px"}
     >
       {' '}
       <Text
