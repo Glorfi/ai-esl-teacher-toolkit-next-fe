@@ -11,6 +11,10 @@ import {
   Box,
 } from '@chakra-ui/react';
 
+interface ExpandProp {
+  isExpanded: boolean
+}
+
 export const FaqSection = (): JSX.Element => {
   return (
     <VStack
@@ -46,7 +50,7 @@ export const FaqSection = (): JSX.Element => {
       </Text>
       <Accordion mt={'48px'} w={'100%'} allowMultiple>
         <AccordionItem>
-          {({ isExpanded }) => (
+          {({ isExpanded }: ExpandProp) => (
             <>
               <AccordionButton p={'24px 16px'}>
                 <Text
