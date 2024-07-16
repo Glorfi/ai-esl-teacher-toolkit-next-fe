@@ -1,3 +1,4 @@
+
 import { AddIcon } from '@chakra-ui/icons';
 import { Link } from '@chakra-ui/next-js';
 import {
@@ -12,7 +13,7 @@ import {
 } from '@chakra-ui/react';
 
 interface ExpandProp {
-  isExpanded: boolean
+  isExpanded: boolean;
 }
 
 export const FaqSection = (): JSX.Element => {
@@ -50,6 +51,7 @@ export const FaqSection = (): JSX.Element => {
       </Text>
       <Accordion mt={'48px'} w={'100%'} allowMultiple>
         <AccordionItem>
+        {/* @ts-ignore */}
           {({ isExpanded }: ExpandProp) => (
             <>
               <AccordionButton p={'24px 16px'}>
