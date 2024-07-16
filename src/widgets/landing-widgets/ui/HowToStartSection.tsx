@@ -1,3 +1,5 @@
+//import '../../../shared/ui/animations/slide-fade.css'
+import '@/shared/ui/animations/slide-fade.css';
 import {
   VStack,
   Text,
@@ -14,6 +16,7 @@ import {
   ListIcon,
   List,
   Button,
+  SlideFade,
 } from '@chakra-ui/react';
 import Image from 'next/image';
 import { IoMdCheckmark } from 'react-icons/io';
@@ -30,13 +33,13 @@ export const HowToStartSection = (): JSX.Element => {
   return (
     <VStack
       as={'section'}
-      id='HowToStartSection'
+      id="HowToStartSection"
       gap={0}
       justifyContent={'center'}
       alignItems={'center'}
       mt={'128px'}
       w={'100%'}
-      scrollMarginTop={"94px"}
+      scrollMarginTop={'94px'}
     >
       <Text
         as="h2"
@@ -92,6 +95,7 @@ export const HowToStartSection = (): JSX.Element => {
               flexDirection={'row'}
               borderRadius={16}
               overflow={'hidden'}
+              className="slideFadeDown"
             >
               <Box w={'50%'} p={'36px'} alignItems={'flex-start'}>
                 <Text
@@ -139,6 +143,7 @@ export const HowToStartSection = (): JSX.Element => {
               borderRadius={16}
               overflow={'hidden'}
               bgColor={'secondary.base'}
+              className="slideFadeDown"
             >
               <Box w={'50%'} p={'36px'} alignItems={'flex-start'}>
                 <Text
@@ -172,6 +177,7 @@ export const HowToStartSection = (): JSX.Element => {
               flexDirection={'row'}
               borderRadius={16}
               overflow={'hidden'}
+              className="slideFadeDown"
             >
               <Box w={'50%'} p={'36px'} alignItems={'flex-start'}>
                 <Text
@@ -211,6 +217,7 @@ export const HowToStartSection = (): JSX.Element => {
               borderRadius={16}
               overflow={'hidden'}
               bgColor={'secondary.base'}
+              className="slideFadeDown"
             >
               <Box w={'50%'} p={'36px'} alignItems={'flex-start'}>
                 <Text
