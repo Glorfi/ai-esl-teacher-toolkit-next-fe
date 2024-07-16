@@ -5,11 +5,13 @@ export const FooterSection = (): JSX.Element => {
   return (
     <HStack
       as={'footer'}
-      m={'156px auto 0'}
+      m={['116px auto 0','156px auto 0']}
       maxW={'1130px'}
+      flexDirection={['column', 'row']}
       //padding={['0 20px', '0 20px', '0 20px', '0']}
-      p={'24px 0'}
+      p={['24px','24px 0']}
       borderTop={'1px solid #E2E8F0'}
+      alignItems={['flex-start']}
       justifyContent={'space-between'}
     >
       <Text fontSize={'xs'}>Copyright © 2024 ESL Teacher ToolKit</Text>

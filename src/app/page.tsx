@@ -1,7 +1,7 @@
 'use client';
 
 import { VStack } from '@chakra-ui/react';
-import { Header } from '@/widgets/header';
+import { Header, WorkspaceHeader } from '@/widgets/header';
 
 import {
   AdvantagesSection,
@@ -13,6 +13,7 @@ import {
   LeadSection,
   NumbersSection,
 } from '@/widgets/landing-widgets';
+import { MobileMenuMain } from '@/shared';
 
 export default function Home() {
   return (
@@ -23,8 +24,9 @@ export default function Home() {
         minHeight={'100vh'}
         m={'0 auto'}
         maxW={'1130px'}
-        padding={['0 20px', '0 20px', '0 20px', '0']}
-        scrollBehavior={"smooth"}
+        padding={['0 26px', '0 26px', '0 26px', '0']}
+        scrollBehavior={'smooth'}
+        gap={0}
       >
         <LeadSection />
         <AdvantagesSection />

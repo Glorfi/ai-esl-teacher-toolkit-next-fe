@@ -17,18 +17,18 @@ export const ExerciseTypesSection = (): JSX.Element => {
   return (
     <VStack
       as={'section'}
-      id='ExerciseTypesSection'
+      id="ExerciseTypesSection"
       gap={0}
       justifyContent={'center'}
       alignItems={'center'}
-      mt={'156px'}
+      mt={['116px', '156px']}
       w={'100%'}
-      scrollMarginTop={"94px"}
+      scrollMarginTop={'94px'}
     >
       <Text
         as="h2"
         color={'primary.base'}
-        fontSize={['2xl', '64px']}
+        fontSize={['32px', '64px']}
         fontWeight={'bold'}
         //  lineHeight={'80px'}
         textAlign={'center'}
@@ -47,18 +47,18 @@ export const ExerciseTypesSection = (): JSX.Element => {
         Maximize your teaching efficiency with our exercise generation Platform.
       </Text>
       <Grid
-        mt={'48px'}
-        gridTemplateColumns={'1fr 1fr 1fr'}
-        gap={'24px'}
+        mt={['32px', '48px']}
+        gridTemplateColumns={['1fr', '1fr 1fr 1fr']}
+        gap={['16px','24px']}
         minH={'394px'}
         overflow={'hidden'}
       >
-        <Card variant={'landingDark'} overflow={'hidden'}>
-          <CardBody p={'32px'}>
+        <Card variant={'landingDark'} overflow={'hidden'} minH={'293px'}>
+          <CardBody p={['24px', '32px']}>
             <Text
               as={'h4'}
               fontWeight={'bold'}
-              fontSize={'2xl'}
+              fontSize={['xl', '2xl']}
               color={'inherit'}
             >
               Vocabulary exercises
@@ -78,6 +78,7 @@ export const ExerciseTypesSection = (): JSX.Element => {
               position={'absolute'}
               bottom={'10'}
               left={'10px'}
+              fontSize={['xs', 'md']}
             >
               Responsibility
             </Text>
@@ -90,6 +91,7 @@ export const ExerciseTypesSection = (): JSX.Element => {
               position={'absolute'}
               bottom={'88px'}
               left={'148px'}
+              fontSize={['xs', 'md']}
             >
               School
             </Text>{' '}
@@ -102,6 +104,7 @@ export const ExerciseTypesSection = (): JSX.Element => {
               position={'absolute'}
               bottom={'-5px'}
               left={'115px'}
+              fontSize={['xs', 'md']}
             >
               Vacation
             </Text>
@@ -114,6 +117,7 @@ export const ExerciseTypesSection = (): JSX.Element => {
               position={'absolute'}
               bottom={'40px'}
               left={'222px'}
+              fontSize={['xs', 'md']}
             >
               Education
             </Text>
@@ -126,13 +130,14 @@ export const ExerciseTypesSection = (): JSX.Element => {
               position={'absolute'}
               bottom={'110px'}
               left={'290px'}
+              fontSize={['xs', 'md']}
             >
               Shopping
             </Text>
           </CardFooter>
         </Card>
         <Card variant={'landingLight'} _hover={{ bgColor: 'unset' }} p={'0'}>
-          <CardHeader p={'32px 32px 0'} opacity={'0.5'}>
+          <CardHeader p={['24px 24px 0', '32px 32px 0']} opacity={'0.5'}>
             <Text
               as={'h4'}
               fontWeight={'bold'}
@@ -145,7 +150,7 @@ export const ExerciseTypesSection = (): JSX.Element => {
               Make an exercise on the desired topic and grammar rules.
             </Text>
           </CardHeader>
-          <CardBody p={0} display={'flex'} mt={'70px'} w={'100%'}>
+          <CardBody p={0} display={'flex'} mt={['8px','70px']} w={'100%'}>
             <Box className="scroll-left" bgColor={'highlight.base'}>
               <Text
                 fontSize={'xl'}
@@ -159,12 +164,12 @@ export const ExerciseTypesSection = (): JSX.Element => {
               </Text>
             </Box>
           </CardBody>
-          <CardFooter p={'0 32px 32px'} opacity={'0.5'}>
+          <CardFooter p={['0 24px 24px', '0 32px 32px']} opacity={'0.5'}>
             <Image src={grammarEx} alt="grammar exercises" />
           </CardFooter>
         </Card>
         <Card variant={'landingLight'} _hover={{ bgColor: 'unset' }} p={'0'}>
-          <CardHeader p={'32px 32px 0'} opacity={'0.5'}>
+          <CardHeader p={['24px 24px 0', '32px 32px 0']} opacity={'0.5'}>
             <Text
               as={'h4'}
               fontWeight={'bold'}
@@ -178,7 +183,7 @@ export const ExerciseTypesSection = (): JSX.Element => {
               much more.
             </Text>
           </CardHeader>
-          <CardBody p={0} display={'flex'} w={'100%'} mt={'70px'}>
+          <CardBody p={0} display={'flex'} w={'100%'} mt={['8px','70px']}>
             <Box className="scroll-left" bgColor={'highlight.base'}>
               <Text
                 fontSize={'xl'}
@@ -192,7 +197,7 @@ export const ExerciseTypesSection = (): JSX.Element => {
               </Text>
             </Box>
           </CardBody>
-          <CardFooter p={'0 32px 32px'} opacity={'0.5'}>
+          <CardFooter p={['0 24px 24px', '0 32px 32px']} opacity={'0.5'}>
             <Image src={readingEX} alt="reading exercises" />
           </CardFooter>
         </Card>

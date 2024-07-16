@@ -15,18 +15,18 @@ export const FaqSection = (): JSX.Element => {
   return (
     <VStack
       as={'section'}
-      id='FaqSection'
+      id="FaqSection"
       gap={0}
       justifyContent={'center'}
       alignItems={'center'}
-      mt={'156px'}
+      mt={['116px', '156px']}
       w={'100%'}
-      scrollMarginTop={"94px"}
+      scrollMarginTop={'94px'}
     >
       <Text
         as="h2"
         color={'primary.base'}
-        fontSize={['2xl', '64px']}
+        fontSize={['32px', '64px']}
         fontWeight={'bold'}
         //  lineHeight={'80px'}
         textAlign={'center'}
@@ -53,7 +53,7 @@ export const FaqSection = (): JSX.Element => {
                   as="span"
                   flex="1"
                   textAlign="left"
-                  fontSize={'xl'}
+                  fontSize={['md', 'xl']}
                   fontWeight={'bold'}
                 >
                   1. Can I customize the generated exercises?
@@ -66,7 +66,7 @@ export const FaqSection = (): JSX.Element => {
                 />
               </AccordionButton>
               <AccordionPanel p={'12px 16px 24px'}>
-                <Text>
+                <Text fontSize={['sm', 'md']}>
                   Yes, you can fully customize the generated exercises. You can
                   modify sentences, options, hints, and answers. As we expand
                   our functionality, you will also be able to customize new
@@ -85,7 +85,7 @@ export const FaqSection = (): JSX.Element => {
                   as="span"
                   flex="1"
                   textAlign="left"
-                  fontSize={'xl'}
+                  fontSize={['md', 'xl']}
                   fontWeight={'bold'}
                 >
                   2. Can the app generate exercises based on specific topics or
@@ -99,7 +99,7 @@ export const FaqSection = (): JSX.Element => {
                 />
               </AccordionButton>
               <AccordionPanel p={'12px 16px 24px'}>
-                <Text>
+                <Text fontSize={['sm', 'md']}>
                   Absolutely. For vocabulary exercises, you can select the words
                   you want to include. You can also specify the topic to ensure
                   the words are used in the intended context. For upcoming
@@ -119,7 +119,7 @@ export const FaqSection = (): JSX.Element => {
                   as="span"
                   flex="1"
                   textAlign="left"
-                  fontSize={'xl'}
+                  fontSize={['md', 'xl']}
                   fontWeight={'bold'}
                 >
                   3. How accurate and reliable are the AI-generated exercises?
@@ -132,7 +132,7 @@ export const FaqSection = (): JSX.Element => {
                 />
               </AccordionButton>
               <AccordionPanel p={'12px 16px 24px'}>
-                <Text>
+                <Text fontSize={['sm', 'md']}>
                   While the AI-generated exercises are generally reliable, we
                   highly recommend reviewing the content to ensure it meets your
                   standards. The AI is quite advanced but still benefits from
@@ -151,7 +151,7 @@ export const FaqSection = (): JSX.Element => {
                   as="span"
                   flex="1"
                   textAlign="left"
-                  fontSize={'xl'}
+                  fontSize={['md', 'xl']}
                   fontWeight={'bold'}
                 >
                   4. Сan I make exercises for students of different level?
@@ -164,7 +164,7 @@ export const FaqSection = (): JSX.Element => {
                 />
               </AccordionButton>
               <AccordionPanel p={'12px 16px 24px'}>
-                <Text>
+                <Text fontSize={['sm', 'md']}>
                   Yes, you can create exercises tailored to different
                   proficiency levels, making it easy to cater to the diverse
                   needs of your students.
@@ -182,7 +182,7 @@ export const FaqSection = (): JSX.Element => {
                   as="span"
                   flex="1"
                   textAlign="left"
-                  fontSize={'xl'}
+                  fontSize={['md', 'xl']}
                   fontWeight={'bold'}
                 >
                   5. How many people can I send the exercise link to?
@@ -195,7 +195,7 @@ export const FaqSection = (): JSX.Element => {
                 />
               </AccordionButton>
               <AccordionPanel p={'12px 16px 24px'}>
-                <Text>
+                <Text fontSize={['sm', 'md']}>
                   You can share the exercise link with as many people as you
                   like, as often as you need. There are no expiration limits on
                   the links.
@@ -213,7 +213,7 @@ export const FaqSection = (): JSX.Element => {
                   as="span"
                   flex="1"
                   textAlign="left"
-                  fontSize={'xl'}
+                  fontSize={['md', 'xl']}
                   fontWeight={'bold'}
                 >
                   6. Can your service be used on mobile devices?
@@ -226,7 +226,7 @@ export const FaqSection = (): JSX.Element => {
                 />
               </AccordionButton>
               <AccordionPanel p={'12px 16px 24px'}>
-                <Text>
+                <Text fontSize={['sm', 'md']}>
                   Yes, our service is fully compatible with mobile devices,
                   allowing you to generate and customize exercises on the go.
                 </Text>
@@ -243,7 +243,7 @@ export const FaqSection = (): JSX.Element => {
                   as="span"
                   flex="1"
                   textAlign="left"
-                  fontSize={'xl'}
+                  fontSize={['md', 'xl']}
                   fontWeight={'bold'}
                 >
                   7. What should I do if I encounter technical issues with
@@ -257,7 +257,7 @@ export const FaqSection = (): JSX.Element => {
                 />
               </AccordionButton>
               <AccordionPanel p={'12px 16px 24px'}>
-                <Text>
+                <Text fontSize={['sm', 'md']}>
                   You can reach out to our{' '}
                   <Link href={'#'} color={'secondary.base'}>
                     Telegram Chat

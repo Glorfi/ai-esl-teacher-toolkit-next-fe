@@ -26,7 +26,7 @@ export const LandingCard = (props: ILandingCard): JSX.Element => {
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      <CardBody p={'32px'}>
+      <CardBody p={['24px','32px']}>
         {cardNumber && (
           <Text fontWeight={'600'} color={'inherit'}>
             {cardNumber}
@@ -36,7 +36,7 @@ export const LandingCard = (props: ILandingCard): JSX.Element => {
           as={'h3'}
           mt={'38px'}
           fontWeight={'bold'}
-          fontSize={'2xl'}
+          fontSize={['xl','2xl']}
           color={'inherit'}
         >
           {cardTitle}

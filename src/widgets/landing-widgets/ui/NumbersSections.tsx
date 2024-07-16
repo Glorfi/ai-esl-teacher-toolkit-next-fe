@@ -21,19 +21,18 @@ export const NumbersSection = (): JSX.Element => {
   return (
     <VStack
       as={'section'}
-      id='NumbersSection'
+      id="NumbersSection"
       gap={0}
       justifyContent={'center'}
       alignItems={'center'}
-      mt={'156px'}
+      mt={['116px', '156px']}
       w={'100%'}
-      scrollMarginTop={"94px"}
+      scrollMarginTop={'94px'}
     >
-      {' '}
       <Text
         as="h2"
         color={'primary.base'}
-        fontSize={['2xl', '64px']}
+        fontSize={['32px', '64px']}
         fontWeight={'bold'}
         //  lineHeight={'80px'}
         textAlign={'center'}
@@ -52,14 +51,14 @@ export const NumbersSection = (): JSX.Element => {
         Knowledge without borders: interesting figures and facts about platform.
       </Text>
       <Grid
-        gridTemplateColumns={'1fr 1fr 1fr'}
+        gridTemplateColumns={['1fr', '1fr 1fr 1fr']}
         w={'100%'}
-        gap={'24px'}
-        mt={'48px'}
+        gap={['16px','24px']}
+        mt={['32px', '48px']}
       >
         <Card
           variant={'landingLight'}
-          p={'32px'}
+          p={['24px', '32px']}
           color={'primary.base'}
           gridRow={'1/3'}
         >
@@ -92,7 +91,7 @@ export const NumbersSection = (): JSX.Element => {
             </Grid>
           </CardHeader>
           <CardBody p={0} mt={'24px'}>
-            <Text fontSize={'lg'} fontWeight={500} color={'inherit'}>
+            <Text fontSize={['md', 'lg']} fontWeight={500} color={'inherit'}>
               "I use this service to generate exercises, and it just saves me
               time! The quality of the exercises is excellent; they precisely
               meet the needs of my students. Now I can focus on providing
@@ -104,21 +103,22 @@ export const NumbersSection = (): JSX.Element => {
             </Text>
           </CardBody>
         </Card>
-        <Card variant={'landingLight'} p={'32px'}>
+        <Card variant={'landingLight'} p={['24px', '32px']} minH={"250px"}>
           <CardBody p={0}>
-            <Text fontSize={'40px'} fontWeight={'bold'} color={'inherit'}>
+            <Text fontSize={['32px','40px']} fontWeight={'bold'} color={'inherit'}>
               5+ countries
             </Text>
           </CardBody>
           <CardFooter p={0}>
-            <Text fontSize={'lg'} fontWeight={'bold'} color={'inherit'}>
+            <Text fontSize={['md','lg']} fontWeight={'bold'} color={'inherit'}>
               Teachers using our platform worldwide
             </Text>
           </CardFooter>
         </Card>
         <Card
           variant={'landingLight'}
-          p={'32px'}
+          p={['24px', '32px']}
+          minH={"250px"}
           onMouseEnter={() => {
             setIsHoursCardHover(true);
           }}
@@ -2541,21 +2541,22 @@ export const NumbersSection = (): JSX.Element => {
             </svg>
           </CardHeader>
           <CardBody p={0}>
-            <Text fontSize={'40px'} fontWeight={'bold'} color={'inherit'}>
+            <Text fontSize={['32px','40px']} fontWeight={'bold'} color={'inherit'}>
               5 hours
             </Text>
           </CardBody>
           <CardFooter p={0}>
-            <Text fontSize={'lg'} fontWeight={'bold'} color={'inherit'}>
+            <Text fontSize={['md','lg']} fontWeight={'bold'} color={'inherit'}>
               Saved weekly on prep time
             </Text>
           </CardFooter>
         </Card>
         <Card
           variant={'landingDark'}
-          p={'32px'}
+          p={['24px', '32px']}
           onMouseEnter={() => setIsSmilingCardHovered(true)}
           onMouseLeave={() => setIsSmilingCardHovered(false)}
+          minH={"250px"}
         >
           <CardBody
             p={0}
@@ -2563,7 +2564,7 @@ export const NumbersSection = (): JSX.Element => {
             w={'100%'}
             justifyContent={'space-between'}
           >
-            <Text fontSize={'40px'} fontWeight={'bold'} color={'inherit'}>
+            <Text fontSize={['32px','40px']} fontWeight={'bold'} color={'inherit'}>
               95%
             </Text>
             <svg
@@ -2596,19 +2597,19 @@ export const NumbersSection = (): JSX.Element => {
             </svg>
           </CardBody>
           <CardFooter p={0}>
-            <Text fontSize={'lg'} fontWeight={'bold'} color={'inherit'}>
+            <Text fontSize={['md','lg']} fontWeight={'bold'} color={'inherit'}>
               Teachers are happy with our platform
             </Text>
           </CardFooter>
         </Card>
-        <Card variant={'landingLight'} p={'32px'}>
+        <Card variant={'landingLight'} p={['24px', '32px']} minH={"250px"}>
           <CardBody p={0}>
-            <Text fontSize={'40px'} fontWeight={'bold'} color={'inherit'}>
+            <Text fontSize={['32px','40px']} fontWeight={'bold'} color={'inherit'}>
               1000+
             </Text>
           </CardBody>
           <CardFooter p={0}>
-            <Text fontSize={'lg'} fontWeight={'bold'} color={'inherit'}>
+            <Text fontSize={['md','lg']} fontWeight={'bold'} color={'inherit'}>
               Generated exercises
             </Text>
           </CardFooter>

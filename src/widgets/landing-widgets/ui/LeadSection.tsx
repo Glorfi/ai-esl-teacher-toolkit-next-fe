@@ -1,9 +1,10 @@
 import { APP_PATHS } from '@/shared';
-import { VStack, ButtonGroup, Button, Link, Text } from '@chakra-ui/react';
+import { VStack, ButtonGroup, Button, Link, Text, Box, Stack } from '@chakra-ui/react';
 import Image from 'next/image';
 import NextLink from 'next/link';
 import { FaArrowRightLong } from 'react-icons/fa6';
 import leadImage from '../../../../public/leadImage.png';
+import leadImageMobile from '../../../../public/leadImageMobile.png';
 import { useRef } from 'react';
 
 export const LeadSection = (): JSX.Element => {
@@ -15,14 +16,14 @@ export const LeadSection = (): JSX.Element => {
       //minHeight={'100vh'}
       justifyContent={'center'}
       alignItems={'center'}
-      mt={'104px'}
+      mt={['64px', '104px']}
       w={'100%'}
-      scrollMarginTop={"94px"}
+      scrollMarginTop={'94px'}
     >
       <Text
         as="h1"
         color={'primary.base'}
-        fontSize={['2xl', '64px']}
+        fontSize={['32px', '64px']}
         fontWeight={'bold'}
         //  lineHeight={'80px'}
         textAlign={'center'}
@@ -42,7 +43,7 @@ export const LeadSection = (): JSX.Element => {
         personalized assignments.
       </Text>
 
-      <Link as={NextLink} href={APP_PATHS.SIGN_UP} mt={'32px'}>
+      <Link as={NextLink} href={APP_PATHS.SIGN_UP} mt={['24px', '32px']}>
         <Button
           variant={'solid'}
           colorScheme="primary"
@@ -51,16 +52,30 @@ export const LeadSection = (): JSX.Element => {
           Let's start
         </Button>
       </Link>
-      <Image
-        src={leadImage}
-        priority={true}
-        alt="app-interface"
-        style={{
-          marginTop: '48px',
-          boxShadow: '0 4px 40px 0 rgba(29, 52, 90, 0.1)',
-          borderRadius: '20px',
-        }}
-      />
+      <Stack w={'100%'} display={['none', 'flex']} alignItems={"center"}>
+        <Image
+          src={leadImage}
+          priority={true}
+          alt="app-interface"
+          style={{
+            marginTop: '48px',
+            boxShadow: '0 4px 40px 0 rgba(29, 52, 90, 0.1)',
+            borderRadius: '20px',
+          }}
+        />
+      </Stack>
+      <Stack w={'100%'} display={['flex', 'none']} alignItems={"center"}>
+        <Image
+          src={leadImageMobile}
+          priority={true}
+          alt="app-interface"
+          style={{
+            marginTop: '32px',
+            boxShadow: '0 4px 40px 0 rgba(29, 52, 90, 0.1)',
+            borderRadius: '20px',
+          }}
+        />
+      </Stack>
     </VStack>
   );
 };

@@ -37,14 +37,14 @@ export const HowToStartSection = (): JSX.Element => {
       gap={0}
       justifyContent={'center'}
       alignItems={'center'}
-      mt={'128px'}
+      mt={['116px', '128px']}
       w={'100%'}
       scrollMarginTop={'94px'}
     >
       <Text
         as="h2"
         color={'primary.base'}
-        fontSize={['2xl', '64px']}
+        fontSize={['32px', '64px']}
         fontWeight={'bold'}
         //  lineHeight={'80px'}
         textAlign={'center'}
@@ -56,9 +56,15 @@ export const HowToStartSection = (): JSX.Element => {
         align="center"
         variant="soft-rounded"
         colorScheme="secondary"
-        mt={'48px'}
+        mt={['32px', '48px']}
       >
-        <TabList gap={'16px'} as={'ul'}>
+        <TabList
+          gap={'16px'}
+          as={'ul'}
+          overflow={['scroll', 'hidden']}
+          justifyContent={['flex-start', 'center']}
+          whiteSpace={'nowrap'}
+        >
           <Tab
             backgroundColor={'grayAlt'}
             color={'primary.base'}
@@ -96,10 +102,15 @@ export const HowToStartSection = (): JSX.Element => {
               borderRadius={16}
               overflow={'hidden'}
               className="slideFadeDown"
+              minH={['404px', 'unset']}
             >
-              <Box w={'50%'} p={'36px'} alignItems={'flex-start'}>
+              <Box
+                w={['100%', '50%']}
+                p={['24px', '36px']}
+                alignItems={'flex-start'}
+              >
                 <Text
-                  fontSize={'32px'}
+                  fontSize={['2xl', '32px']}
                   fontWeight={'bold'}
                   textAlign={'start'}
                   lineHeight={'100%'}
@@ -126,14 +137,13 @@ export const HowToStartSection = (): JSX.Element => {
                   </ListItem>
                 </List>
               </Box>
-              <Image
-                src={step1}
-                // priority={true}
-                alt="app-interface step 1"
-                style={{
-                  width: '50%',
-                }}
-              />
+              <Box w={'50%'} display={['none', 'block']}>
+                <Image
+                  src={step1}
+                  // priority={true}
+                  alt="app-interface step 1"
+                />
+              </Box>
             </Card>
           </TabPanel>
           <TabPanel p={0} mt={'24px'}>
@@ -144,10 +154,15 @@ export const HowToStartSection = (): JSX.Element => {
               overflow={'hidden'}
               bgColor={'secondary.base'}
               className="slideFadeDown"
+              minH={['404px', 'unset']}
             >
-              <Box w={'50%'} p={'36px'} alignItems={'flex-start'}>
+              <Box
+                w={['100%', '50%']}
+                p={['24px', '36px']}
+                alignItems={'flex-start'}
+              >
                 <Text
-                  fontSize={'32px'}
+                  fontSize={['2xl', '32px']}
                   fontWeight={'bold'}
                   textAlign={'start'}
                   lineHeight={'100%'}
@@ -161,14 +176,13 @@ export const HowToStartSection = (): JSX.Element => {
                   is generated.
                 </Text>
               </Box>
-              <Image
-                src={step2}
-                // priority={true}
-                alt="app-interface step 1"
-                style={{
-                  width: '50%',
-                }}
-              />
+              <Box w={'50%'} display={['none', 'block']}>
+                <Image
+                  src={step2}
+                  // priority={true}
+                  alt="app-interface step 1"
+                />
+              </Box>
             </Card>
           </TabPanel>
           <TabPanel p={0} mt={'24px'}>
@@ -178,10 +192,15 @@ export const HowToStartSection = (): JSX.Element => {
               borderRadius={16}
               overflow={'hidden'}
               className="slideFadeDown"
+              minH={['404px', 'unset']}
             >
-              <Box w={'50%'} p={'36px'} alignItems={'flex-start'}>
+              <Box
+                w={['100%', '50%']}
+                p={['24px', '36px']}
+                alignItems={'flex-start'}
+              >
                 <Text
-                  fontSize={'32px'}
+                  fontSize={['2xl', '32px']}
                   fontWeight={'bold'}
                   textAlign={'start'}
                   lineHeight={'100%'}
@@ -200,14 +219,13 @@ export const HowToStartSection = (): JSX.Element => {
                   </ListItem>
                 </List>
               </Box>
-              <Image
-                src={step3}
-                // priority={true}
-                alt="app-interface step 1"
-                style={{
-                  width: '50%',
-                }}
-              />
+              <Box w={'50%'} display={['none', 'block']}>
+                <Image
+                  src={step3}
+                  // priority={true}
+                  alt="app-interface step 1"
+                />
+              </Box>
             </Card>
           </TabPanel>
           <TabPanel p={0} mt={'24px'}>
@@ -218,10 +236,15 @@ export const HowToStartSection = (): JSX.Element => {
               overflow={'hidden'}
               bgColor={'secondary.base'}
               className="slideFadeDown"
+              minH={['404px', 'unset']}
             >
-              <Box w={'50%'} p={'36px'} alignItems={'flex-start'}>
+              <Box
+                w={['100%', '50%']}
+                p={['24px', '36px']}
+                alignItems={'flex-start'}
+              >
                 <Text
-                  fontSize={'32px'}
+                  fontSize={['2xl', '32px']}
                   fontWeight={'bold'}
                   textAlign={'start'}
                   lineHeight={'100%'}
@@ -248,14 +271,13 @@ export const HowToStartSection = (): JSX.Element => {
                   </Link>
                 </Box>
               </Box>
-              <Image
-                src={step4}
-                // priority={true}
-                alt="app-interface step 1"
-                style={{
-                  width: '50%',
-                }}
-              />
+              <Box w={'50%'} display={['none', 'block']}>
+                <Image
+                  src={step4}
+                  // priority={true}
+                  alt="app-interface step 1"
+                />
+              </Box>
             </Card>
           </TabPanel>
         </TabPanels>
