@@ -24,14 +24,14 @@ export const FaqSection = (): JSX.Element => {
       gap={0}
       justifyContent={'center'}
       alignItems={'center'}
-      mt={['116px', '156px']}
+      mt={['116px', '116px', '156px']}
       w={'100%'}
       scrollMarginTop={'94px'}
     >
       <Text
         as="h2"
         color={'primary.base'}
-        fontSize={['32px', '64px']}
+        fontSize={['32px', '32px', '64px']}
         fontWeight={'bold'}
         //  lineHeight={'80px'}
         textAlign={'center'}

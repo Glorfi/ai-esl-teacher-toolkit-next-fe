@@ -16,7 +16,7 @@ export const AdvantagesSection = (): JSX.Element => {
       <Text
         as="h2"
         color={'primary.base'}
-        fontSize={['32px', '64px']}
+        fontSize={['32px', '32px','64px']}
         fontWeight={'bold'}
         //  lineHeight={'80px'}
         textAlign={'center'}
@@ -24,7 +24,7 @@ export const AdvantagesSection = (): JSX.Element => {
         Advantages of using the platform
       </Text>
       <Grid
-        gridTemplateColumns={['1fr', '1fr 1fr 1fr']}
+        gridTemplateColumns={['1fr', '1fr', '1fr 1fr 1fr']}
         gap={'24px'}
         mt={['32px', '48px']}
         w={'100%'}
@@ -47,7 +47,7 @@ export const AdvantagesSection = (): JSX.Element => {
           cardNumber={'3.'}
           cardTitle="High-quality exercises"
           cardText="High-quality exercises that enhance effective learning and student motivation."
-          gridRow={['3', '1/3']}
+          gridRow={['3', '3', '1/3']}
           graphicElement="circles"
           justifyContent={'space-between'}
         />
@@ -56,7 +56,7 @@ export const AdvantagesSection = (): JSX.Element => {
           cardNumber={'4.'}
           cardTitle="Dynamic lesson adaptation"
           cardText="Students can check their answers directly on the platform, promoting self-assessment, and allowing them to identify and address their mistakes immediately."
-          gridRow={['4','1/3']}
+          gridRow={['4', '4','1/3']}
           graphicElement="horizontalTwist"
         />
       </Grid>

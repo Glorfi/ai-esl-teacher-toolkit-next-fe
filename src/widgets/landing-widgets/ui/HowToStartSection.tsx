@@ -28,8 +28,10 @@ import { Link } from '@chakra-ui/next-js';
 import NextLink from 'next/link';
 import { FaArrowRightLong } from 'react-icons/fa6';
 import { APP_PATHS } from '@/shared';
+import { useAppSelector } from '@/shared/hooks/hooks';
 
 export const HowToStartSection = (): JSX.Element => {
+  const userData = useAppSelector((state) => state.user);
   return (
     <VStack
       as={'section'}
@@ -37,14 +39,14 @@ export const HowToStartSection = (): JSX.Element => {
       gap={0}
       justifyContent={'center'}
       alignItems={'center'}
-      mt={['116px', '128px']}
+      mt={['116px', '116px', '128px']}
       w={'100%'}
       scrollMarginTop={'94px'}
     >
       <Text
         as="h2"
         color={'primary.base'}
-        fontSize={['32px', '64px']}
+        fontSize={['32px', '32px', '64px']}
         fontWeight={'bold'}
         //  lineHeight={'80px'}
         textAlign={'center'}
@@ -56,13 +58,13 @@ export const HowToStartSection = (): JSX.Element => {
         align="center"
         variant="soft-rounded"
         colorScheme="secondary"
-        mt={['32px', '48px']}
+        mt={['32px', '32px', '48px']}
       >
         <TabList
           gap={'16px'}
           as={'ul'}
-          overflow={['scroll', 'hidden']}
-          justifyContent={['flex-start', 'center']}
+          overflow={['scroll', 'scroll', 'hidden']}
+          justifyContent={['flex-start', 'flex-start', 'center']}
           whiteSpace={'nowrap'}
         >
           <Tab
@@ -102,11 +104,11 @@ export const HowToStartSection = (): JSX.Element => {
               borderRadius={16}
               overflow={'hidden'}
               className="slideFadeDown"
-              minH={['404px', 'unset']}
+              minH={['404px', '404px', 'unset']}
             >
               <Box
-                w={['100%', '50%']}
-                p={['24px', '36px']}
+                w={['100%', '100%', '50%']}
+                p={['24px', '24px', '36px']}
                 alignItems={'flex-start'}
               >
                 <Text
@@ -137,7 +139,7 @@ export const HowToStartSection = (): JSX.Element => {
                   </ListItem>
                 </List>
               </Box>
-              <Box w={'50%'} display={['none', 'block']}>
+              <Box w={'50%'} display={['none', 'none', 'block']}>
                 <Image
                   src={step1}
                   // priority={true}
@@ -154,11 +156,12 @@ export const HowToStartSection = (): JSX.Element => {
               overflow={'hidden'}
               bgColor={'secondary.base'}
               className="slideFadeDown"
-              minH={['404px', 'unset']}
+              // minH={['404px', '404px', 'unset']}
+              minH={['404px', '404px', 'unset']}
             >
               <Box
-                w={['100%', '50%']}
-                p={['24px', '36px']}
+                w={['100%', '100%', '50%']}
+                p={['24px', '24px', '36px']}
                 alignItems={'flex-start'}
               >
                 <Text
@@ -176,7 +179,7 @@ export const HowToStartSection = (): JSX.Element => {
                   is generated.
                 </Text>
               </Box>
-              <Box w={'50%'} display={['none', 'block']}>
+              <Box w={'50%'} display={['none', 'none', 'block']}>
                 <Image
                   src={step2}
                   // priority={true}
@@ -192,11 +195,11 @@ export const HowToStartSection = (): JSX.Element => {
               borderRadius={16}
               overflow={'hidden'}
               className="slideFadeDown"
-              minH={['404px', 'unset']}
+              minH={['404px', '404px', 'unset']}
             >
               <Box
-                w={['100%', '50%']}
-                p={['24px', '36px']}
+                w={['100%', '100%', '50%']}
+                p={['24px', '24px', '36px']}
                 alignItems={'flex-start'}
               >
                 <Text
@@ -219,7 +222,7 @@ export const HowToStartSection = (): JSX.Element => {
                   </ListItem>
                 </List>
               </Box>
-              <Box w={'50%'} display={['none', 'block']}>
+              <Box w={'50%'} display={['none', 'none', 'block']}>
                 <Image
                   src={step3}
                   // priority={true}
@@ -236,11 +239,11 @@ export const HowToStartSection = (): JSX.Element => {
               overflow={'hidden'}
               bgColor={'secondary.base'}
               className="slideFadeDown"
-              minH={['404px', 'unset']}
+              minH={['404px', '404px', 'unset']}
             >
               <Box
-                w={['100%', '50%']}
-                p={['24px', '36px']}
+                w={['100%', '100%', '50%']}
+                p={['24px', '24px', '36px']}
                 alignItems={'flex-start'}
               >
                 <Text
@@ -258,7 +261,7 @@ export const HowToStartSection = (): JSX.Element => {
                 <Box mt={'32px'} textAlign={'left'}>
                   <Link
                     as={NextLink}
-                    href={APP_PATHS.SIGN_UP}
+                    href={userData ? APP_PATHS.DASHBOARD : APP_PATHS.SIGN_UP}
                     color={'primary.base'}
                   >
                     <Button
@@ -266,12 +269,12 @@ export const HowToStartSection = (): JSX.Element => {
                       rightIcon={<FaArrowRightLong />}
                       color={'primary.base'}
                     >
-                      Let's start
+                      {userData ? "Go to dashboard" : "Let's start!"}
                     </Button>
                   </Link>
                 </Box>
               </Box>
-              <Box w={'50%'} display={['none', 'block']}>
+              <Box w={'50%'} display={['none', 'none', 'block']}>
                 <Image
                   src={step4}
                   // priority={true}

@@ -12,7 +12,7 @@ export const ContactsSection = (): JSX.Element => {
       p={['24px', '80px 0']}
       justifyContent={['flex-start', 'flex-start', , 'center']}
       alignItems={'center'}
-      mt={['116px', '156px']}
+      mt={['116px', '116px', '156px']}
       w={'100%'}
       bgColor={'secondary.base'}
       borderRadius={'16px'}

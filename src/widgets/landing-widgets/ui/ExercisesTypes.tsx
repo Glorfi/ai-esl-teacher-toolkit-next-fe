@@ -21,14 +21,14 @@ export const ExerciseTypesSection = (): JSX.Element => {
       gap={0}
       justifyContent={'center'}
       alignItems={'center'}
-      mt={['116px', '156px']}
+      mt={['116px', '116px', '156px']}
       w={'100%'}
       scrollMarginTop={'94px'}
     >
       <Text
         as="h2"
         color={'primary.base'}
-        fontSize={['32px', '64px']}
+        fontSize={['32px', '32px', '64px']}
         fontWeight={'bold'}
         //  lineHeight={'80px'}
         textAlign={'center'}
@@ -47,8 +47,8 @@ export const ExerciseTypesSection = (): JSX.Element => {
         Maximize your teaching efficiency with our exercise generation Platform.
       </Text>
       <Grid
-        mt={['32px', '48px']}
-        gridTemplateColumns={['1fr', '1fr 1fr 1fr']}
+        mt={['32px', '32px', '48px']}
+        gridTemplateColumns={['1fr', '1fr', '1fr 1fr 1fr']}
         gap={['16px','24px']}
         minH={'394px'}
         overflow={'hidden'}

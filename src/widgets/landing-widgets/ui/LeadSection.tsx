@@ -1,13 +1,24 @@
 import { APP_PATHS } from '@/shared';
-import { VStack, ButtonGroup, Button, Link, Text, Box, Stack } from '@chakra-ui/react';
+import {
+  VStack,
+  ButtonGroup,
+  Button,
+  Link,
+  Text,
+  Box,
+  Stack,
+} from '@chakra-ui/react';
 import Image from 'next/image';
 import NextLink from 'next/link';
 import { FaArrowRightLong } from 'react-icons/fa6';
 import leadImage from '../../../../public/leadImage.png';
 import leadImageMobile from '../../../../public/leadImageMobile.png';
 import { useRef } from 'react';
+import { useAppSelector } from '@/shared/hooks/hooks';
 
 export const LeadSection = (): JSX.Element => {
+  const userData = useAppSelector((state) => state.user);
+
   return (
     <VStack
       id="LeadSection"
@@ -23,7 +34,7 @@ export const LeadSection = (): JSX.Element => {
       <Text
         as="h1"
         color={'primary.base'}
-        fontSize={['32px', '64px']}
+        fontSize={['32px', '32px', '64px']}
         fontWeight={'bold'}
         //  lineHeight={'80px'}
         textAlign={'center'}
@@ -43,16 +54,20 @@ export const LeadSection = (): JSX.Element => {
         personalized assignments.
       </Text>
 
-      <Link as={NextLink} href={APP_PATHS.SIGN_UP} mt={['24px', '32px']}>
+      <Link
+        as={NextLink}
+        href={userData ? APP_PATHS.DASHBOARD : APP_PATHS.SIGN_UP}
+        mt={['24px', '32px']}
+      >
         <Button
           variant={'solid'}
           colorScheme="primary"
           rightIcon={<FaArrowRightLong />}
         >
-          Let's start
+          {userData ? "Go to dashboard" : "Let's start"}
         </Button>
       </Link>
-      <Stack w={'100%'} display={['none', 'flex']} alignItems={"center"}>
+      <Stack w={'100%'} display={['none', 'flex']} alignItems={'center'}>
         <Image
           src={leadImage}
           priority={true}
@@ -64,7 +79,7 @@ export const LeadSection = (): JSX.Element => {
           }}
         />
       </Stack>
-      <Stack w={'100%'} display={['flex', 'none']} alignItems={"center"}>
+      <Stack w={'100%'} display={['flex', 'none']} alignItems={'center'}>
         <Image
           src={leadImageMobile}
           priority={true}
