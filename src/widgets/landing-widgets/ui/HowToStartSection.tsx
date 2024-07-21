@@ -29,9 +29,10 @@ import NextLink from 'next/link';
 import { FaArrowRightLong } from 'react-icons/fa6';
 import { APP_PATHS } from '@/shared';
 import { useAppSelector } from '@/shared/hooks/hooks';
+import { RootState } from '@/app/lib/store/store';
 
 export const HowToStartSection = (): JSX.Element => {
-  const userData = useAppSelector((state) => state.user);
+  const userData = useAppSelector((state: RootState) => state.user);
   return (
     <VStack
       as={'section'}
