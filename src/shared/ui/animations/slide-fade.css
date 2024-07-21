@@ -1,0 +1,14 @@
+/* YourComponent.css */
+
+.slideFadeDown {
+  opacity: 0;
+  transform: translateY(-30px);
+  animation: slideFadeIn 0.3s forwards;
+}
+
+@keyframes slideFadeIn {
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
