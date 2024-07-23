@@ -2,6 +2,7 @@
 import { VStack, Text, Box } from '@chakra-ui/react';
 import { Link } from '@chakra-ui/next-js';
 import { FaTelegram } from 'react-icons/fa6';
+import { EXTERNAL_LINKS } from '@/shared/constants/ExternalLinks';
 
 export const ContactsSection = (): JSX.Element => {
   return (
@@ -56,7 +57,7 @@ export const ContactsSection = (): JSX.Element => {
       >
         Find latest updates on the products and share your ideas!
       </Text>
-      <Link mt={'32px'} href={'#'} w={['72px', '94px']}>
+      <Link mt={'32px'} href={EXTERNAL_LINKS.TELEGRAM} w={['72px', '94px']} target='blank'>
         <FaTelegram color="white" size={'94px'} />
       </Link>
       <Box
