@@ -1,11 +1,11 @@
 'use client';
-
 import { WorkspaceHeader } from '@/widgets/header';
 import {
   MobileMenuDashBoard,
   MobileMenuUserLibrary,
 } from '@/widgets/mobile-menu';
 import { SidebarDashboardWithRecentEx } from '@/widgets/sidebar-dashboard';
+import { HelpWidget } from '@/widgets/user';
 
 import { Box, HStack } from '@chakra-ui/react';
 import { useState } from 'react';
@@ -44,6 +44,7 @@ const ClientDashboardLayout = ({
           {children}
         </HStack>
       </HStack>
+      <HelpWidget />
     </Box>
   );
 };

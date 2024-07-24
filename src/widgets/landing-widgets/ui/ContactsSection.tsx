@@ -2,7 +2,7 @@
 import { VStack, Text, Box } from '@chakra-ui/react';
 import { Link } from '@chakra-ui/next-js';
 import { FaTelegram } from 'react-icons/fa6';
-import { EXTERNAL_LINKS } from '@/shared/constants/ExternalLinks';
+import { EXTERNAL_LINKS } from '@/shared';
 
 export const ContactsSection = (): JSX.Element => {
   return (
@@ -11,7 +11,7 @@ export const ContactsSection = (): JSX.Element => {
       id="ContactsSection"
       gap={0}
       p={['24px', '80px 0']}
-      justifyContent={['flex-start', 'flex-start', , 'center']}
+      justifyContent={['flex-start', 'flex-start', 'center']}
       alignItems={'center'}
       mt={['116px', '116px', '156px']}
       w={'100%'}
