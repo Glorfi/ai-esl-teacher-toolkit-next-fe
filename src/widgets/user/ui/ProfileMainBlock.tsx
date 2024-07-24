@@ -43,7 +43,7 @@ export const ProfileMainBlock = (): JSX.Element => {
             {userEmail}
           </Text>
         </HStack>
-        <Card mt={'14px'} variant={'outline'} boxShadow={'none'}>
+        {/* <Card mt={'14px'} variant={'outline'} boxShadow={'none'}>
           <CardBody
             display={'flex'}
             alignItems={'center'}
@@ -56,7 +56,7 @@ export const ProfileMainBlock = (): JSX.Element => {
               <Text>1900</Text>
             </HStack>
           </CardBody>
-        </Card>
+        </Card> */}
         <Button
           colorScheme="highlight"
           variant={'outline'}
