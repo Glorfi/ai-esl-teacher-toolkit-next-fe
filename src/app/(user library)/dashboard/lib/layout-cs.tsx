@@ -6,6 +6,7 @@ import {
   SidebarDashboardWithRecentEx,
   SidebarUserLibrary,
 } from '@/widgets/sidebar-dashboard';
+import { HelpWidget } from '@/widgets/user';
 
 import { Box, HStack, VStack } from '@chakra-ui/react';
 import { useState } from 'react';
@@ -40,6 +41,7 @@ const LibraryDashboardLayout = ({
           {children}
         </HStack>
       </HStack>
+      <HelpWidget />
     </Box>
   );
 };

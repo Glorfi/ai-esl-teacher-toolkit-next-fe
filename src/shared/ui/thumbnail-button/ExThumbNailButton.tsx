@@ -1,3 +1,4 @@
+'use client'
 import { IconButton, MenuButtonProps } from '@chakra-ui/react';
 import { HiDotsHorizontal } from 'react-icons/hi';
 import { forwardRef } from '@chakra-ui/react';

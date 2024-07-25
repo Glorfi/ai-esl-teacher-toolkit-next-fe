@@ -5,6 +5,7 @@ import {
   SidebarDashboardWithRecentEx,
   SidebarUserProfile,
 } from '@/widgets/sidebar-dashboard';
+import { HelpWidget } from '@/widgets/user';
 
 import { Box, HStack } from '@chakra-ui/react';
 import { useState } from 'react';
@@ -38,6 +39,7 @@ const ProfileDashboardLayout = ({
           {children}
         </HStack>
       </HStack>
+      <HelpWidget />
     </Box>
   );
 };
