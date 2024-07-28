@@ -8,7 +8,7 @@ import { GoogleAnalytics } from '@next/third-parties/google';
 export const metadata: Metadata = {
   title: 'AI ESL Teacher Toolkit',
   description:
-    'Create customizable English exercises, activities, and worksheets using AI ESL Teacher Toolkit. Tailored for teachers and students of all levels.',
+    'Create customizable English exercises, activities, and worksheets using AI-powered ESL Teacher Toolkit. Tailored for teachers and students of all levels.',
   keywords: [
     'AI English exercises',
     'English teaching materials',
